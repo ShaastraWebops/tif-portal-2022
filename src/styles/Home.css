@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 .home{  
     background-image: url("../assests/Homebackground.jpg") !important;
     background-repeat: no-repeat;
@@ -13,4 +13,9 @@
 .registerbutton{
     font-family: 'Montserrat', sans-serif;
     font-weight: 300 !important ;
+}
+
+.about-tif-text{
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 1px;
 }
