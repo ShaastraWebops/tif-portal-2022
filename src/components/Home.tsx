@@ -1,7 +1,6 @@
 import { Box, Center, Container, Flex, Grid, VStack } from '@chakra-ui/layout';
 import { Heading ,Button } from '@chakra-ui/react';
 import React from 'react';
-import { ColorModeSwitcher } from '../ColorModeSwitcher';
 
 const Home = () =>{
     return (
