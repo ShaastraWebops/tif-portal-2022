@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from 'react'
 import {
   ChakraProvider,
   Box,
@@ -8,14 +8,16 @@ import {
   Code,
   Grid,
   theme,
-} from "@chakra-ui/react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import Home from "./components/Home";
+} from '@chakra-ui/react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import Home from './pages/Home'
+import JMT from './pages/JMT'
 
 export const App = () => (
   <ChakraProvider theme={theme}>
     <Router>
-      <Route exact path="/" component={Home} />
+      <Route exact path='/' component={Home} />
+      <Route exact path='/jmt' component={JMT} />
     </Router>
   </ChakraProvider>
 )
