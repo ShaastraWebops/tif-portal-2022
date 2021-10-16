@@ -7,7 +7,7 @@ import {
   SimpleGrid,
   Stack,
 } from '@chakra-ui/layout'
-import { Heading, Button, Text, Image } from '@chakra-ui/react'
+import { Heading, Button, Text, Image, Link } from '@chakra-ui/react'
 import React from 'react'
 import '../styles/Home.css'
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
@@ -48,8 +48,17 @@ const Home = () => {
             Tech and Innovation Fair
           </Heading>
           <Box p={2} m={2}>
-            <Button bg='#ff7e20' textColor='white' className='registerbutton'>
-              Register Now
+            <Button
+              bg='#ff7e20'
+              textColor='white'
+              className='registerbutton'
+              _hover={{
+                bg: 'white',
+                textColor: 'black',
+                border: '2px solid black',
+              }}
+            >
+              <Link href='/register'>Register Now</Link>
             </Button>
           </Box>
         </Flex>

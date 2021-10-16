@@ -1,12 +1,6 @@
+import React from 'react'
 import { useState } from 'react'
-import {
-  useColorMode,
-  Switch,
-  Flex,
-  Button,
-  IconButton,
-  Link,
-} from '@chakra-ui/react'
+import { Flex, Button, IconButton, Link } from '@chakra-ui/react'
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 import '../styles/Navbar.css'
 

@@ -63,6 +63,7 @@ function Contact() {
                   <Input
                     variant='flushed'
                     placeholder='Name'
+                    _placeholder={{ color: 'gray.500' }}
                     color='black'
                     type='text'
                     id='name'
@@ -74,6 +75,7 @@ function Contact() {
                   <Input
                     variant='flushed'
                     placeholder='Email'
+                    _placeholder={{ color: 'gray.500' }}
                     color='black'
                     type='email'
                     id='email'
@@ -85,6 +87,7 @@ function Contact() {
                   <Input
                     variant='flushed'
                     placeholder='Subject'
+                    _placeholder={{ color: 'gray.500' }}
                     color='black'
                     type='text'
                     id='subject'
@@ -96,6 +99,7 @@ function Contact() {
                   <Textarea
                     variant='flushed'
                     placeholder='Message'
+                    _placeholder={{ color: 'gray.500' }}
                     color='black'
                     type='text'
                     id='message'

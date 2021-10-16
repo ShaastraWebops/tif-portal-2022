@@ -102,6 +102,7 @@ function Rules() {
                 {rule1 ? (
                   <Icon
                     as={TiChevronRight}
+                    color='white'
                     h={10}
                     w={10}
                     marginLeft={5}
@@ -124,6 +125,7 @@ function Rules() {
                 {rule2 ? (
                   <Icon
                     as={TiChevronRight}
+                    color='white'
                     h={10}
                     w={10}
                     marginLeft={5}
@@ -146,6 +148,7 @@ function Rules() {
                 {rule3 ? (
                   <Icon
                     as={TiChevronRight}
+                    color='white'
                     h={10}
                     w={10}
                     marginLeft={5}
@@ -168,6 +171,7 @@ function Rules() {
                 {rule4 ? (
                   <Icon
                     as={TiChevronRight}
+                    color='white'
                     h={10}
                     w={10}
                     marginLeft={5}
@@ -190,6 +194,7 @@ function Rules() {
                 {rule5 ? (
                   <Icon
                     as={TiChevronRight}
+                    color='white'
                     h={10}
                     w={10}
                     marginLeft={5}
@@ -212,6 +217,7 @@ function Rules() {
                 {rule6 ? (
                   <Icon
                     as={TiChevronRight}
+                    color='white'
                     h={10}
                     w={10}
                     marginLeft={5}
@@ -222,7 +228,7 @@ function Rules() {
                 )}
               </Flex>
             </Flex>
-            <Box float='right' width='50%' marginRight={24}>
+            <Box float='right' width='50%' marginRight={24} textColor='white'>
               {rule1 ? (
                 <UnorderedList>
                   <ListItem>
