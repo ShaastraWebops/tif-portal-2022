@@ -1,5 +1,28 @@
 .history {
-  background-color: white;
+  background-image: url('../assests/Roadmap.png') !important;
   background-repeat: no-repeat;
   background-size: cover !important;
+}
+
+.option-1 {
+  position: relative;
+  top: 64%;
+  left: 37.5%;
+}
+
+.option-2 {
+  position: relative;
+  top: 18%;
+  right: 13%;
+}
+
+.option-3 {
+  position: relative;
+  bottom: 8%;
+  left: 27%;
+}
+
+.option-4 {
+  position: relative;
+  bottom: 43%;
 }

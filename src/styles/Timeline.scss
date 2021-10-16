@@ -1,5 +1,5 @@
 $outline-width: 0;
-$break-point: 1000px;
+$break-point: 1400px;
 
 html {
   box-sizing: border-box;
@@ -14,15 +14,18 @@ $gray-base: #999999;
 $brand-primary: #ff7e20;
 
 .steps-timeline {
+  align-items: center;
   @media screen and (max-width: $break-point) {
-    border-left: 4px solid #88979f;
+    border-right: 4px solid #88979f;
     margin-left: 25px;
   }
 
   @media screen and (min-width: $break-point) {
-    border-top: 4px solid #88979f;
+    border-top: 4px solid#88979f;
     padding-top: 20px;
     margin-top: 40px;
+    margin-left: -45%;
+    margin-right: -45%;
   }
 
   &:after {
@@ -31,6 +34,7 @@ $brand-primary: #ff7e20;
     clear: both;
   }
 }
+
 .steps-one,
 .steps-two,
 .steps-three,
@@ -39,6 +43,7 @@ $brand-primary: #ff7e20;
 .steps-six {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   @media screen and (max-width: $break-point) {
     margin-left: -25px;
   }
@@ -50,63 +55,53 @@ $brand-primary: #ff7e20;
   }
 }
 .steps-one,
-.steps-two {
+.steps-two,
+.steps-three,
+.steps-four,
+.steps-five,
+.steps-six {
   @media screen and (max-width: $break-point) {
     padding-bottom: 40px;
+    margin-right: -25%;
   }
 }
 .steps-one {
   @media screen and (min-width: $break-point) {
-    margin-left: -45.5%;
-    margin-right: 35%;
+    margin-left: -18.5%;
+    margin-right: 3%;
   }
 }
 .steps-two {
-  @media screen and (max-width: $break-point) {
-    margin-bottom: -100%;
-  }
   @media screen and (min-width: $break-point) {
-    margin-left: -42%;
-    margin-right: 35%;
-  }
-}
-
-.steps-three {
-  @media screen and (max-width: $break-point) {
-    margin-bottom: -100%;
-  }
-  @media screen and (min-width: $break-point) {
-    margin-left: -35%;
+    margin-left: -15%;
     margin-right: 3%;
   }
 }
 
-.steps-four {
-  @media screen and (max-width: $break-point) {
-    margin-bottom: -100%;
-  }
+.steps-three {
   @media screen and (min-width: $break-point) {
-    margin-left: -3%;
+    margin-left: -17.5%;
+    margin-right: -75%;
+  }
+}
+
+.steps-four {
+  @media screen and (min-width: $break-point) {
+    margin-left: 3.5%;
     margin-right: -75%;
   }
 }
 
 .steps-five {
-  @media screen and (max-width: $break-point) {
-    margin-bottom: -100%;
-  }
   @media screen and (min-width: $break-point) {
-    margin-left: 35%;
+    margin-left: 25%;
     margin-right: -75%;
   }
 }
 
 .steps-six {
-  @media screen and (max-width: $break-point) {
-    margin-bottom: -100%;
-  }
   @media screen and (min-width: $break-point) {
-    margin-left: 72%;
+    margin-left: 46.5%;
     margin-right: -75%;
   }
 }
@@ -114,24 +109,35 @@ $brand-primary: #ff7e20;
 .steps-circle {
   display: block;
   margin: auto;
-  width: 8px;
-  height: 8px;
-
+  width: 40px;
+  height: 40px;
   @media screen and (max-width: $break-point) {
-    float: left;
+    float: right;
     margin-right: 20px;
   }
 }
 
 .text-ctn {
   margin-top: 50px;
+  @media screen and (max-width: $break-point) {
+    margin-top: -12%;
+    margin-right: 5px;
+  }
 }
 
-.steps-description {
+.steps-heading {
+  font-size: 20px;
+  padding: 2px;
+  color: #ff7e20;
+}
+
+.steps-description,
+.steps-heading {
   margin: 0;
 }
 
-.steps-description {
+.steps-description,
+.steps-heading {
   overflow: hidden;
 
   @media screen and (min-width: $break-point) {

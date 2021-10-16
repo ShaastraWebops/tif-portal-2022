@@ -18,8 +18,8 @@ import React from 'react'
 function Timeline() {
   return (
     <React.Fragment>
-      <Box height='300px'>
-        <Heading textColor='#ff7e20' marginTop={5}>
+      <Flex flexDirection='column' alignItems='center'>
+        <Heading textColor='#ff7e20' marginTop={5} marginBottom={10}>
           Structure and Timeline
         </Heading>
         <Box>
@@ -29,22 +29,26 @@ function Timeline() {
                 value={0}
                 className='steps-circle'
                 color='#ff7e20'
+                backgroundColor='#2e2d2d'
+                thickness='16px'
               />
               <div className='text-ctn'>
-                <p className='steps-description'>13th October</p>
+                <p className='steps-heading'>13th October</p>
                 <p className='steps-description'>Registration</p>
               </div>
             </div>
-
+            <div className='line-ctn'></div>
             <div className='steps-two'>
               <CircularProgress
                 value={20}
                 className='steps-circle'
                 color='#ff7e20'
+                backgroundColor='#2e2d2d'
+                thickness='16px'
               />
               <div className='text-ctn'>
-                <p className='steps-description'>13th October</p>
-                <p className='steps-description'>Registration</p>
+                <p className='steps-heading'>30th October</p>
+                <p className='steps-description'>Registration closes</p>
               </div>
             </div>
 
@@ -53,10 +57,12 @@ function Timeline() {
                 value={40}
                 className='steps-circle'
                 color='#ff7e20'
+                backgroundColor='#2e2d2d'
+                thickness='16px'
               />
               <div className='text-ctn'>
-                <p className='steps-description'>13th October</p>
-                <p className='steps-description'>Registration</p>
+                <p className='steps-heading'>November</p>
+                <p className='steps-description'>Screening</p>
               </div>
             </div>
             <div className='steps-four'>
@@ -64,10 +70,12 @@ function Timeline() {
                 value={60}
                 className='steps-circle'
                 color='#ff7e20'
+                backgroundColor='#2e2d2d'
+                thickness='16px'
               />
               <div className='text-ctn'>
-                <p className='steps-description'>13th October</p>
-                <p className='steps-description'>Registration</p>
+                <p className='steps-heading'>December</p>
+                <p className='steps-description'>Mentorship and Webinars</p>
               </div>
             </div>
             <div className='steps-five'>
@@ -76,10 +84,11 @@ function Timeline() {
                 className='steps-circle'
                 color='#ff7e20'
                 backgroundColor='#2e2d2d'
+                thickness='16px'
               />
               <div className='text-ctn'>
-                <p className='steps-description'>13th October</p>
-                <p className='steps-description'>Registration</p>
+                <p className='steps-heading'>13th January</p>
+                <p className='steps-description'>Workshops</p>
               </div>
             </div>
             <div className='steps-six'>
@@ -87,15 +96,18 @@ function Timeline() {
                 value={100}
                 className='steps-circle'
                 color='#ff7e20'
+                backgroundColor='#2e2d2d'
+                thickness='16px'
               />
+              <div className='vertical-line'></div>
               <div className='text-ctn'>
-                <p className='steps-description'>13th October</p>
-                <p className='steps-description'>Registration</p>
+                <p className='steps-heading'>16th January</p>
+                <p className='steps-description'>Final Pitching</p>
               </div>
             </div>
           </div>
         </Box>
-      </Box>
+      </Flex>
     </React.Fragment>
   )
 }

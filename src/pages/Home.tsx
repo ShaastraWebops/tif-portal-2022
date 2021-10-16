@@ -150,7 +150,7 @@ const Home = () => {
           <History />
           <Gallery />
           <Timeline />
-          <Flex flexDirection='column' alignItems='center' m={2}>
+          <Flex flexDirection='column' alignItems='center' m={2} marginTop={10}>
             <Heading textColor='#ff7e20' m={2} p={2}>
               What's in Store
             </Heading>
