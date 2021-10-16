@@ -21,6 +21,7 @@ import Contact from '../components/Contact'
 import Logo1 from '../assests/Logo1.png'
 import Logo2 from '../assests/Logo2.png'
 import Logo3 from '../assests/Logo3.png'
+import { Navbar } from '../components/Navbar'
 
 const Home = () => {
   return (
@@ -31,6 +32,7 @@ const Home = () => {
           alignItems='center'
           justifyItems='center'
         >
+          <Navbar />
           <Box bg='#ff7e20' width={'50%'} textColor='white' p={2} m={2}>
             <Center>
               <Text className='shaastra-title'>SHASSTRA'22</Text>

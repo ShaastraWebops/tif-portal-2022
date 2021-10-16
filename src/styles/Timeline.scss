@@ -1,0 +1,140 @@
+$outline-width: 0;
+$break-point: 1000px;
+
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+$gray-base: #999999;
+$brand-primary: #ff7e20;
+
+.steps-timeline {
+  @media screen and (max-width: $break-point) {
+    border-left: 4px solid #88979f;
+    margin-left: 25px;
+  }
+
+  @media screen and (min-width: $break-point) {
+    border-top: 4px solid #88979f;
+    padding-top: 20px;
+    margin-top: 40px;
+  }
+
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+.steps-one,
+.steps-two,
+.steps-three,
+.steps-four,
+.steps-five,
+.steps-six {
+  display: flex;
+  flex-direction: column;
+  @media screen and (max-width: $break-point) {
+    margin-left: -25px;
+  }
+
+  @media screen and (min-width: $break-point) {
+    float: left;
+    width: 33%;
+    margin-top: -50px;
+  }
+}
+.steps-one,
+.steps-two {
+  @media screen and (max-width: $break-point) {
+    padding-bottom: 40px;
+  }
+}
+.steps-one {
+  @media screen and (min-width: $break-point) {
+    margin-left: -45.5%;
+    margin-right: 35%;
+  }
+}
+.steps-two {
+  @media screen and (max-width: $break-point) {
+    margin-bottom: -100%;
+  }
+  @media screen and (min-width: $break-point) {
+    margin-left: -42%;
+    margin-right: 35%;
+  }
+}
+
+.steps-three {
+  @media screen and (max-width: $break-point) {
+    margin-bottom: -100%;
+  }
+  @media screen and (min-width: $break-point) {
+    margin-left: -35%;
+    margin-right: 3%;
+  }
+}
+
+.steps-four {
+  @media screen and (max-width: $break-point) {
+    margin-bottom: -100%;
+  }
+  @media screen and (min-width: $break-point) {
+    margin-left: -3%;
+    margin-right: -75%;
+  }
+}
+
+.steps-five {
+  @media screen and (max-width: $break-point) {
+    margin-bottom: -100%;
+  }
+  @media screen and (min-width: $break-point) {
+    margin-left: 35%;
+    margin-right: -75%;
+  }
+}
+
+.steps-six {
+  @media screen and (max-width: $break-point) {
+    margin-bottom: -100%;
+  }
+  @media screen and (min-width: $break-point) {
+    margin-left: 72%;
+    margin-right: -75%;
+  }
+}
+
+.steps-circle {
+  display: block;
+  margin: auto;
+  width: 8px;
+  height: 8px;
+
+  @media screen and (max-width: $break-point) {
+    float: left;
+    margin-right: 20px;
+  }
+}
+
+.text-ctn {
+  margin-top: 50px;
+}
+
+.steps-description {
+  margin: 0;
+}
+
+.steps-description {
+  overflow: hidden;
+
+  @media screen and (min-width: $break-point) {
+    text-align: center;
+  }
+}

@@ -3,3 +3,13 @@
   background-repeat: no-repeat;
   background-size: cover !important;
 }
+
+::placeholder {
+  color: black;
+  opacity: 1;
+}
+
+.submit-btn:hover{
+  background-color: transparent;
+  border: 1px solid black;
+}

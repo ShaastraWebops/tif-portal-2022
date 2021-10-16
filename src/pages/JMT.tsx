@@ -5,7 +5,8 @@ import {
   Flex,
   Grid,
   SimpleGrid,
-  VStack,
+  Stack,
+  StackDivider,
 } from '@chakra-ui/layout'
 import { Heading, Button, Text, Image } from '@chakra-ui/react'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
@@ -15,6 +16,7 @@ import { Carousel } from 'react-responsive-carousel'
 import React from 'react'
 import '../styles/JMT.css'
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
+import Image1 from '../assests/innovision.png'
 
 const JMT = () => {
   return (
@@ -39,24 +41,79 @@ const JMT = () => {
             </Text>
           </Box>
         </Flex>
-        <Flex flexDirection='column' textAlign='center'>
+        <Flex flexDirection='column' textAlign='center' marginBottom={5}>
           <Heading color='#ff7e20' m={1} p={1}>
             Innovision
           </Heading>
-          <Box>
-            <Text fontSize='xl' m={3} p={3}>
-              Junior Make-a-Thon (JMT) is a one-of-a-kind event that centres
-              around the ideas, imagination, and innovation skills of school
-              students and allows them to learn practical skills and apply them
-              to create new models and devices. One of the primary aims of JMT
-              is to promote maker culture among school students, with quality
-              mentorship and workshops. With the help of our partners, we
-              encourage students to come up with solutions to problems
-              persisting in different fields like agriculture, sustainability,
-              healthcare, robotics, and home comfort. JMT 2020-21 was conducted
-              in a virtual format successfully.
-            </Text>
-          </Box>
+          <Flex flexDirection='column' alignItems='center'>
+            <Stack
+              direction={['column', 'row']}
+              spacing='24px'
+              marginLeft={5}
+              marginRight={5}
+            >
+              <Box>
+                <Text fontSize='xl' m={3} p={3} textAlign='left'>
+                  Innovision was a maker culture awareness session organized in
+                  schools all over the country. We conducted an interactive
+                  webinar with the students on topics like ideas, how to
+                  innovate, maker culture, peer learning, tinkering and much
+                  more.These webinars also acted as an introduction to JMT.
+                </Text>
+              </Box>
+              <Box>
+                <Image src={Image1} alt='photo'></Image>
+              </Box>
+            </Stack>
+            <Stack
+              direction={['column', 'row']}
+              spacing='24px'
+              divider={<StackDivider borderColor='#ff7e20' />}
+            >
+              <Box w='300px' h='150px'>
+                <Flex
+                  flexDirection='column'
+                  alignItems='center'
+                  textAlign='center'
+                >
+                  <Text color='#ff7e20' fontSize='5xl'>
+                    900+
+                  </Text>
+                  <Text color='white' fontSize='xl'>
+                    registrations
+                  </Text>
+                </Flex>
+              </Box>
+              <Box w='300px' h='150px'>
+                <Flex
+                  flexDirection='column'
+                  alignItems='center'
+                  textAlign='center'
+                >
+                  <Text color='#ff7e20' fontSize='5xl'>
+                    30+
+                  </Text>
+                  <Text color='white' fontSize='xl'>
+                    schools
+                  </Text>
+                </Flex>
+              </Box>
+              <Box w='300px' h='150px'>
+                <Flex
+                  flexDirection='column'
+                  alignItems='center'
+                  textAlign='center'
+                >
+                  <Text color='#ff7e20' fontSize='5xl'>
+                    20+
+                  </Text>
+                  <Text color='white' fontSize='xl'>
+                    cities
+                  </Text>
+                </Flex>
+              </Box>
+            </Stack>
+          </Flex>
         </Flex>
         <Flex
           flexDirection={'column'}
@@ -68,7 +125,7 @@ const JMT = () => {
           </Heading>
           <Box width={'90%'}>
             <Carousel infiniteLoop autoPlay>
-              <Box>
+              <Box justifyContent='center'>
                 <Box>
                   <Icon
                     as={ImQuotesLeft}
@@ -107,7 +164,7 @@ const JMT = () => {
                   </Box>
                 </Flex>
               </Box>
-              <Box>
+              <Box justifyContent='center'>
                 <Box>
                   <Icon
                     as={ImQuotesLeft}
