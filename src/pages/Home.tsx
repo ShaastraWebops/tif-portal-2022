@@ -141,7 +141,7 @@ const Home = () => {
                       alignItems='center'
                       justifyItems='center'
                     >
-                      <Heading p={2} m={2} size='md'>
+                      <Heading p={2} m={2} size='lg'>
                         Final pitching event
                       </Heading>
                       <Text p={2} m={2}>

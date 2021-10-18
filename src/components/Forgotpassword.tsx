@@ -35,11 +35,14 @@ export default function ForgotPassword() {
         >
           Forgot your password?
         </Heading>
-        <Text fontSize={{ base: 'sm', sm: 'md' }}>
+        <Text fontSize={{ base: 'sm', sm: 'md' }} color='black'>
           You&apos;ll get an email with a reset link
         </Text>
         <FormControl id='email'>
           <Input
+            variant='outline'
+            borderColor='gray.500'
+            color='black'
             placeholder='your-email@example.com'
             _placeholder={{ color: 'gray.500' }}
             type='email'
