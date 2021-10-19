@@ -16,8 +16,11 @@ import Login from './components/Login'
 import ForgotPassword from './components/Forgotpassword'
 import Register from './components/Register'
 
-export const App = () => (
-  <ChakraProvider theme={theme}>
+export const App = () => {
+  const [role, setRole] = React.useState<any | null>("")
+
+  return(
+    <ChakraProvider theme={theme}>
     <Router>
       <Route exact path='/' component={Home} />
       <Route exact path='/jmt' component={JMT} />
@@ -26,4 +29,5 @@ export const App = () => (
       <Route exact path='/register' component={Register} />
     </Router>
   </ChakraProvider>
-)
+  )
+}
