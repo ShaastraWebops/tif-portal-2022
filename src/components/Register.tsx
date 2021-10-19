@@ -13,11 +13,31 @@ import {
   FormLabel,
   SimpleGrid,
 } from '@chakra-ui/react'
+import { useRegisterUserMutation } from '../types/generated/generated'
 
 export default function Register() {
   const [email, setemail] = useState('')
   const [password, setpassword] = useState('')
   const [username, setusername] = useState('')
+  
+  const [register] = useRegisterUserMutation();
+
+  const handleregister = () =>{
+
+    register({
+      variables : {
+        CreateUserInput : {
+          email,
+          password,
+          name : username
+        }
+      }
+    }).catch(err => console.log(err))
+    setemail('');
+    setpassword('');
+    setusername('');
+
+  }
   return (
     <Flex
       minH={'100vh'}
@@ -75,6 +95,20 @@ export default function Register() {
               <Input type='password' name='password' />
             </FormControl>
           </Stack>
+          <Button m={3} p={2}
+              width={'auto'}
+              bg='#ff7e20'
+              textColor='white'
+              className='registerbutton'
+              _hover={{
+                bg: 'white',
+                textColor: 'black',
+                border: '2px solid black',
+              }}
+              onClick={handleregister}
+            >
+              Register Now
+            </Button>
         </SimpleGrid>
       </Stack>
     </Flex>
