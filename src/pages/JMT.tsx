@@ -27,7 +27,7 @@ const JMT = () => {
             About JMT
           </Heading>
           <Box>
-            <Text fontSize='xl' m={3} p={3}>
+            <Text fontSize='xl' m={3} p={3} color='white'>
               Junior Make-a-Thon (JMT) is a one-of-a-kind event that centres
               around the ideas, imagination, and innovation skills of school
               students and allows them to learn practical skills and apply them
@@ -53,7 +53,7 @@ const JMT = () => {
               marginRight={5}
             >
               <Box>
-                <Text fontSize='xl' m={3} p={3} textAlign='left'>
+                <Text fontSize='xl' m={3} p={3} textAlign='left' color='white'>
                   Innovision was a maker culture awareness session organized in
                   schools all over the country. We conducted an interactive
                   webinar with the students on topics like ideas, how to

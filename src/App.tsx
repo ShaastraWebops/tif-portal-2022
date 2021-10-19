@@ -15,6 +15,8 @@ import JMT from './pages/JMT'
 import Login from './components/Login'
 import ForgotPassword from './components/Forgotpassword'
 import Register from './components/Register'
+import Admin from './pages/Admin'
+import Teams from './pages/Teams'
 
 export const App = () => {
   const [role, setRole] = React.useState<any | null>("")
@@ -27,6 +29,8 @@ export const App = () => {
       <Route exact path='/login' component={Login} />
       <Route exact path='/forgotpassword' component={ForgotPassword} />
       <Route exact path='/register' component={Register} />
+      <Route exact path='/admin' component={Admin} />
+      <Route exact path='/teamdetails' component={Teams} />
     </Router>
   </ChakraProvider>
   )

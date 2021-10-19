@@ -6,7 +6,6 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Checkbox,
   Stack,
   Link,
   Button,
@@ -49,8 +48,13 @@ export default function Login() {
         <Box rounded={'lg'} boxShadow={'lg'} p={8} bgColor='white'>
           <Stack spacing={4}>
             <FormControl id='email'>
-              <FormLabel>Email address</FormLabel>
+              <FormLabel color='black'>Email address</FormLabel>
               <Input
+                variant='outline'
+                borderColor='gray.500'
+                placeholder='Enter Email address'
+                _placeholder={{ color: 'gray.500' }}
+                color='black'
                 type='email'
                 name='email'
                 value={email}
@@ -58,11 +62,17 @@ export default function Login() {
               />
             </FormControl>
             <FormControl id='password'>
-              <FormLabel>Password</FormLabel>
+              <FormLabel color='black'>Password</FormLabel>
               <Input
+                variant='outline'
+                borderColor='gray.500'
+                placeholder='Enter password'
+                _placeholder={{ color: 'gray.500' }}
+                color='black'
                 type='password'
                 name='password'
                 value={password}
+                border='2px black solid'
                 onChange={(e) => setpassword(e.target.value)}
               />
             </FormControl>
@@ -73,7 +83,9 @@ export default function Login() {
                 justify={'space-between'}
               >
                 <Flex>
-                  <Text marginRight={2}>New User?</Text>
+                  <Text marginRight={2} color='black'>
+                    New User?
+                  </Text>
                   <Link color={'blue.400'} href='/register'>
                     Register
                   </Link>
@@ -92,7 +104,7 @@ export default function Login() {
                 }}
                 onClick={handlelogin}
               >
-                Sign in
+                Log in
               </Button>
             </Stack>
           </Stack>

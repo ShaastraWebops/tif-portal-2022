@@ -23,6 +23,7 @@ function Rules() {
   const [rule4, setrule4] = useState(false)
   const [rule5, setrule5] = useState(false)
   const [rule6, setrule6] = useState(false)
+  const [color1, setcolor1] = useState('#ff7e20')
 
   function handleChange1() {
     setrule1(!rule1)
@@ -31,6 +32,7 @@ function Rules() {
     setrule4(false)
     setrule5(false)
     setrule6(false)
+    setcolor1('white')
   }
 
   function handleChange2() {
@@ -81,20 +83,19 @@ function Rules() {
         <Heading textColor='#ff7e20' marginTop={5} m={2} p={2} marginBottom={6}>
           Rules and Regulations
         </Heading>
-        <Box m={2} p={2}>
+        <Box marginBottom={3} p={2}>
           <Flex>
-            <Flex
-              float='left'
-              flexDirection='column'
-              width='50%'
-              marginLeft={24}
-            >
+            <Flex float='left' flexDirection='column' width='50%'>
               <Flex>
                 <Text
-                  textColor='#ff7e20'
+                  id='rule1'
+                  textColor={rule1 ? 'white' : 'ff7e20'}
                   fontSize='3xl'
                   onClick={() => {
                     handleChange1()
+                  }}
+                  _hover={{
+                    textColor: 'white',
                   }}
                 >
                   Eligibility
@@ -114,10 +115,13 @@ function Rules() {
               </Flex>
               <Flex>
                 <Text
-                  textColor='#ff7e20'
                   fontSize='3xl'
+                  textColor={rule2 ? 'white' : 'ff7e20'}
                   onClick={() => {
                     handleChange2()
+                  }}
+                  _hover={{
+                    textColor: 'white',
                   }}
                 >
                   Participation
@@ -137,10 +141,13 @@ function Rules() {
               </Flex>
               <Flex>
                 <Text
-                  textColor='#ff7e20'
+                  textColor={rule3 ? 'white' : 'ff7e20'}
                   fontSize='3xl'
                   onClick={() => {
                     handleChange3()
+                  }}
+                  _hover={{
+                    textColor: 'white',
                   }}
                 >
                   Mentorship
@@ -160,10 +167,13 @@ function Rules() {
               </Flex>
               <Flex>
                 <Text
-                  textColor='#ff7e20'
+                  textColor={rule4 ? 'white' : 'ff7e20'}
                   fontSize='3xl'
                   onClick={() => {
                     handleChange4()
+                  }}
+                  _hover={{
+                    textColor: 'white',
                   }}
                 >
                   Judging and Evaluation
@@ -183,10 +193,13 @@ function Rules() {
               </Flex>
               <Flex>
                 <Text
-                  textColor='#ff7e20'
+                  textColor={rule5 ? 'white' : 'ff7e20'}
                   fontSize='3xl'
                   onClick={() => {
                     handleChange5()
+                  }}
+                  _hover={{
+                    textColor: 'white',
                   }}
                 >
                   Modified Circumstances
@@ -206,10 +219,13 @@ function Rules() {
               </Flex>
               <Flex>
                 <Text
-                  textColor='#ff7e20'
+                  textColor={rule6 ? 'ff7e20' : 'ff7e20'}
                   fontSize='3xl'
                   onClick={() => {
                     handleChange6()
+                  }}
+                  _hover={{
+                    textColor: 'white',
                   }}
                 >
                   Mutual Understanding
