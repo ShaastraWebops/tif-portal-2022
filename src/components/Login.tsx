@@ -13,10 +13,25 @@ import {
   Heading,
   Text,
 } from '@chakra-ui/react'
+import { useLoginMutation } from '../types/generated/generated'
 
 export default function Login() {
   const [email, setemail] = useState('')
   const [password, setpassword] = useState('')
+  const [login] = useLoginMutation();
+  const handlelogin = () =>{
+    login({
+      variables : {
+        LoginInput:{
+          email,
+          password
+        }
+      }
+    }).catch((err) => console.log(err))
+
+    setemail('');
+    setpassword('');
+  }
 
   return (
     <Flex
@@ -75,6 +90,7 @@ export default function Login() {
                   textColor: 'black',
                   border: '2px solid black',
                 }}
+                onClick={handlelogin}
               >
                 Sign in
               </Button>
