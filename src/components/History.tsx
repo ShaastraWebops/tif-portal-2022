@@ -23,6 +23,7 @@ function History() {
         alignItems='center'
         height='600px'
         flexDirection='column'
+        maxWidth={"100vw"}
       >
         <Heading textColor='#ff7e20' marginTop={8}>
           History and Evolution

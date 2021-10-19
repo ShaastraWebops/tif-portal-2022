@@ -1,5 +1,15 @@
 import React from 'react'
 import { Flex, Heading, SimpleGrid } from '@chakra-ui/react'
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+} from "@chakra-ui/react"
 
 export default function Admin() {
   return (
@@ -20,13 +30,24 @@ export default function Admin() {
       >
         Registration Details
       </Heading>
-      <SimpleGrid
+      <Table variant="simple"  bgColor='white'
         rounded={'lg'}
         boxShadow={'lg'}
         p={8}
-        bgColor='white'
-        width='75%'
-      ></SimpleGrid>
+          width='75%'>
+        <Thead>
+          <Tr>
+            <Th>To convert</Th>
+            <Th>into</Th>
+            <Th isNumeric>multiply by</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          
+        
+         
+        </Tbody>
+      </Table>
     </Flex>
   )
 }
