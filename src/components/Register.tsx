@@ -24,7 +24,8 @@ export default function Register() {
   const [password, setpassword] = useState('')
   const [username, setusername] = useState('')
   const history = useHistory();
-  
+  const [eerror , setEerror] = useState(false);
+  const [perror , setPerror] = useState(false);
   const [register] = useRegisterUserMutation();
 
   const handleregister = () =>{
@@ -49,34 +50,8 @@ export default function Register() {
     setusername('');
 
   }
-  const [member2, setMember2] = useState(false)
-  const [member3, setMember3] = useState(false)
-  const [member4, setMember4] = useState(false)
-  const [teamLimit, setTeamLimit] = useState(true)
-  const [othercategory, setOtherCategory] = useState(false)
-  const [category, setCategory] = useState('')
-
-  function addTeamMember() {
-    if (member2 === false) {
-      setMember2(true)
-    } else if (member3 === false) {
-      setMember3(true)
-    } else {
-      setMember4(true)
-      setTeamLimit(false)
-    }
-  }
-
-  function deleteMember() {
-    setTeamLimit(true)
-    if (member4 === true) {
-      setMember4(false)
-    } else if (member3 === true) {
-      setMember3(false)
-    } else {
-      setMember2(false)
-    }
-  }
+ 
+   
 
   return (
     <Flex
@@ -145,10 +120,20 @@ export default function Register() {
                 type='email'
                 name='email'
                 variant='outline'
-                borderColor='gray.500'
+                borderColor={ eerror ? "red" : 'gray.500'
+              }
                 placeholder='Re-enter Email address'
                 _placeholder={{ color: 'gray.500' }}
                 color='black'
+                onChange={e => {
+                  if(e.target.value === email){
+                    setEerror(false)
+                  }else{
+                    setEerror(true)
+
+                  }
+
+                }}
               />
             </FormControl>
           </SimpleGrid>
@@ -173,10 +158,20 @@ export default function Register() {
                 type='password'
                 name='password'
                 variant='outline'
-                borderColor='gray.500'
+                borderColor={ perror ? "red" : 'gray.500'
+              }
                 placeholder='Re-enter password'
                 _placeholder={{ color: 'gray.500' }}
                 color='black'
+                onChange={e => {
+                  if(e.target.value === password){
+                    setPerror(false)
+                  }else{
+                    setPerror(true)
+
+                  }
+
+                }}
               />
             </FormControl>
           </SimpleGrid>

@@ -36,6 +36,7 @@ export type MemberInput = {
   contactno: Scalars['String'];
   email: Scalars['String'];
   institution: Scalars['String'];
+  name: Scalars['String'];
   state: Scalars['String'];
 };
 
@@ -127,12 +128,19 @@ export type ProjectInput = {
 export type Query = {
   getProjectbyteamId: Project;
   getProjects: Array<Project>;
+  getTeamById: Team;
   getTeams: Array<Team>;
   getUsers?: Maybe<Array<User>>;
+  me?: Maybe<User>;
 };
 
 
 export type QueryGetProjectbyteamIdArgs = {
+  teamid: Scalars['String'];
+};
+
+
+export type QueryGetTeamByIdArgs = {
   teamid: Scalars['String'];
 };
 
@@ -150,7 +158,7 @@ export type Team = {
   id: Scalars['ID'];
   members: Array<User>;
   name: Scalars['String'];
-  project: Project;
+  project?: Maybe<Project>;
 };
 
 export type User = {
@@ -159,11 +167,13 @@ export type User = {
   email: Scalars['String'];
   id: Scalars['ID'];
   institution?: Maybe<Scalars['String']>;
+  isSubmitted: Scalars['Boolean'];
   isVerified: Scalars['Boolean'];
   name: Scalars['String'];
   passwordOTP?: Maybe<Scalars['String']>;
   role: UserRole;
   state?: Maybe<Scalars['String']>;
+  team?: Maybe<Team>;
 };
 
 export enum UserRole {
@@ -191,7 +201,7 @@ export type LoginMutationVariables = Exact<{
 }>;
 
 
-export type LoginMutation = { login?: Maybe<{ id: string, role: UserRole }> };
+export type LoginMutation = { login?: Maybe<{ id: string, role: UserRole, isSubmitted: boolean }> };
 
 export type LogoutUserMutationVariables = Exact<{ [key: string]: never; }>;
 
@@ -241,7 +251,12 @@ export type GetUsersQuery = { getUsers?: Maybe<Array<{ id: string, name: string,
 export type GetTeamsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetTeamsQuery = { getTeams: Array<{ id: string, name: string, members: Array<{ id: string, name: string, email: string, isVerified: boolean, institution?: Maybe<string>, contactno?: Maybe<string>, city?: Maybe<string>, state?: Maybe<string>, role: UserRole }>, project: { id: string } }> };
+export type GetTeamsQuery = { getTeams: Array<{ id: string, name: string, project?: Maybe<{ id: string, title: string, category: string }> }> };
+
+export type MeQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type MeQuery = { me?: Maybe<{ id: string, isSubmitted: boolean, team?: Maybe<{ id: string, members: Array<{ name: string, email: string }> }> }> };
 
 export type GetProjectbyteamIdQueryVariables = Exact<{
   teamid: Scalars['String'];
@@ -249,6 +264,13 @@ export type GetProjectbyteamIdQueryVariables = Exact<{
 
 
 export type GetProjectbyteamIdQuery = { getProjectbyteamId: { id: string, title: string, category: string, Q1: string, Q2: string, Q3: string, Q4: string, Q5: string, Q6: string, Q7: string, videolink: string } };
+
+export type GetTeamByIdQueryVariables = Exact<{
+  teamid: Scalars['String'];
+}>;
+
+
+export type GetTeamByIdQuery = { getTeamById: { name: string, project?: Maybe<{ id: string, title: string, category: string, Q1: string, Q2: string, Q3: string, Q4: string, Q5: string, Q6: string, Q7: string, videolink: string }>, members: Array<{ name: string, email: string, contactno?: Maybe<string>, institution?: Maybe<string>, city?: Maybe<string>, state?: Maybe<string> }> } };
 
 
 export const RegisterUserDocument = gql`
@@ -318,6 +340,7 @@ export const LoginDocument = gql`
   login(data: $LoginInput) {
     id
     role
+    isSubmitted
   }
 }
     `;
@@ -582,19 +605,10 @@ export const GetTeamsDocument = gql`
   getTeams {
     id
     name
-    members {
-      id
-      name
-      email
-      isVerified
-      institution
-      contactno
-      city
-      state
-      role
-    }
     project {
       id
+      title
+      category
     }
   }
 }
@@ -628,6 +642,51 @@ export type GetTeamsLazyQueryHookResult = ReturnType<typeof useGetTeamsLazyQuery
 export type GetTeamsQueryResult = ApolloReactCommon.QueryResult<GetTeamsQuery, GetTeamsQueryVariables>;
 export function refetchGetTeamsQuery(variables?: GetTeamsQueryVariables) {
       return { query: GetTeamsDocument, variables: variables }
+    }
+export const MeDocument = gql`
+    query me {
+  me {
+    id
+    isSubmitted
+    team {
+      id
+      members {
+        name
+        email
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useMeQuery__
+ *
+ * To run a query within a React component, call `useMeQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMeQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMeQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useMeQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<MeQuery, MeQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<MeQuery, MeQueryVariables>(MeDocument, options);
+      }
+export function useMeLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<MeQuery, MeQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<MeQuery, MeQueryVariables>(MeDocument, options);
+        }
+export type MeQueryHookResult = ReturnType<typeof useMeQuery>;
+export type MeLazyQueryHookResult = ReturnType<typeof useMeLazyQuery>;
+export type MeQueryResult = ApolloReactCommon.QueryResult<MeQuery, MeQueryVariables>;
+export function refetchMeQuery(variables?: MeQueryVariables) {
+      return { query: MeDocument, variables: variables }
     }
 export const GetProjectbyteamIdDocument = gql`
     query getProjectbyteamId($teamid: String!) {
@@ -676,4 +735,63 @@ export type GetProjectbyteamIdLazyQueryHookResult = ReturnType<typeof useGetProj
 export type GetProjectbyteamIdQueryResult = ApolloReactCommon.QueryResult<GetProjectbyteamIdQuery, GetProjectbyteamIdQueryVariables>;
 export function refetchGetProjectbyteamIdQuery(variables?: GetProjectbyteamIdQueryVariables) {
       return { query: GetProjectbyteamIdDocument, variables: variables }
+    }
+export const GetTeamByIdDocument = gql`
+    query getTeamById($teamid: String!) {
+  getTeamById(teamid: $teamid) {
+    name
+    project {
+      id
+      title
+      category
+      Q1
+      Q2
+      Q3
+      Q4
+      Q5
+      Q6
+      Q7
+      videolink
+    }
+    members {
+      name
+      email
+      contactno
+      institution
+      city
+      state
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetTeamByIdQuery__
+ *
+ * To run a query within a React component, call `useGetTeamByIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetTeamByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetTeamByIdQuery({
+ *   variables: {
+ *      teamid: // value for 'teamid'
+ *   },
+ * });
+ */
+export function useGetTeamByIdQuery(baseOptions: ApolloReactHooks.QueryHookOptions<GetTeamByIdQuery, GetTeamByIdQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<GetTeamByIdQuery, GetTeamByIdQueryVariables>(GetTeamByIdDocument, options);
+      }
+export function useGetTeamByIdLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GetTeamByIdQuery, GetTeamByIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<GetTeamByIdQuery, GetTeamByIdQueryVariables>(GetTeamByIdDocument, options);
+        }
+export type GetTeamByIdQueryHookResult = ReturnType<typeof useGetTeamByIdQuery>;
+export type GetTeamByIdLazyQueryHookResult = ReturnType<typeof useGetTeamByIdLazyQuery>;
+export type GetTeamByIdQueryResult = ApolloReactCommon.QueryResult<GetTeamByIdQuery, GetTeamByIdQueryVariables>;
+export function refetchGetTeamByIdQuery(variables?: GetTeamByIdQueryVariables) {
+      return { query: GetTeamByIdDocument, variables: variables }
     }

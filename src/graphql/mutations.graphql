@@ -10,6 +10,7 @@ mutation login($LoginInput: LoginInput!) {
    login(data: $LoginInput){
        id
        role
+       isSubmitted
    }
 }
 

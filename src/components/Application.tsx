@@ -18,7 +18,9 @@ import {
   AlertIcon,
 } from '@chakra-ui/react'
 import { AddIcon, DeleteIcon } from '@chakra-ui/icons'
-import { useCreateTeamandRegisterMutation, useFillProjectMutation } from '../types/generated/generated'
+import { useCreateTeamandRegisterMutation, useFillProjectMutation, useMeQuery } from '../types/generated/generated'
+import { useHistory } from 'react-router'
+import { Link } from 'react-router-dom';
 
 export default function Application() {
   
@@ -27,7 +29,9 @@ export default function Application() {
 
   const [teamname, setTeamname] = React.useState<string>();
   const [alert , setAlert] = React.useState(false);
-
+  const [salert , setSalert] = React.useState(false);
+  const {data,error , loading} = useMeQuery();
+  const history = useHistory();
  
   const handleMembersInput = ({ index, event }: { index: number, event: React.ChangeEvent<HTMLInputElement> }) => {
     const values = [...members];
@@ -99,6 +103,11 @@ export default function Application() {
           videolink
         }
       }})
+      .then(res => {
+        if(res.data?.fillProject){
+          setSalert(true)
+        }
+      })
       .catch(err => console.log(err))
   }
 
@@ -121,7 +130,17 @@ export default function Application() {
       >
         Complete your Application
       </Heading>
-    
+      {
+        data?.me?.isSubmitted ? <Box width = "75%"  p={2} >
+         <Text float={'right'} color={"#ff7e20"} fontSize={'2xl'}
+         _hover={{
+           cursor : "pointer"
+        }}
+         onClick={()=>{
+           history.push(`/team/${data?.me?.team?.id}`)
+         }}>Submitted Application</Text>
+        </Box> : null
+      }
       <SimpleGrid
         rounded={'lg'}
         boxShadow={'lg'}
@@ -130,13 +149,21 @@ export default function Application() {
         width='75%'
       >
          {
-            alert ? (
+            alert && (!salert) ? (
               <Alert status="success">
               <AlertIcon />
               Team created successfully
             </Alert>
             ) : null
      } 
+     {
+        (salert) ? (
+          <Alert status="success">
+          <AlertIcon />
+          Application Submitted Sucessefully . Thank You
+        </Alert>
+        ) : null
+     }
         <Stack
           spacing={4}
           marginLeft={2}
@@ -163,7 +190,7 @@ export default function Application() {
             />
           </FormControl>
           {
-                  members.map(({member, index} : any)  => {
+                  members.map((member, index)  => {
                     return (
                       <React.Fragment key={index}>
                         <Box key = {index}>
@@ -173,7 +200,7 @@ export default function Application() {
                         fontSize='lg'
                         marginBottom={1}
                         >
-                        Team Member {index + 1}
+                        Team Member {index + 1}  {index === 0 ?"(your Details)"  : null}
                         {
                               index === 0 ? null : (
                                 <IconButton
@@ -223,7 +250,8 @@ export default function Application() {
                         </SimpleGrid>
                         <SimpleGrid columns={[1, 2]} spacing={2} marginBottom={1}>
                         <FormControl id='email1' marginRight={2}>
-                            <FormLabel color='black'>Email address</FormLabel>
+                            <FormLabel color='black'>Email address
+                            {index === 0 ?"(registration mail)"  : null}</FormLabel>
                             <Input
                             variant='outline'
                             borderColor='gray.500'
@@ -354,24 +382,27 @@ export default function Application() {
               color='black'
               borderColor='gray.500'
               bgColor='white'
+              value={category}
               onChange={(e) => {
                 if (e.currentTarget.value === 'option10') {
+                  setCategory('option10')
                   setOtherCategory(true)
                 } else {
+                  setCategory(e.currentTarget.value)
                   setOtherCategory(false)
                 }
               }}
               required
             >
-              <option value='option1'>Agriculture</option>
-              <option value='option2'>Home Comfort</option>
-              <option value='option3'>Ed-Tech</option>
-              <option value='option4'>Design and Development</option>
-              <option value='option5'>Renewable Energy</option>
-              <option value='option6'>Healthcare and Sanitation</option>
-              <option value='option7'>Defense and Service</option>
-              <option value='option8'>Transportation</option>
-              <option value='option9'>Communication</option>
+              <option value='Agriculture'>Agriculture</option>
+              <option value='Home Comfort'>Home Comfort</option>
+              <option value='Ed-Tech'>Ed-Tech</option>
+              <option value='Design and Development'>Design and Development</option>
+              <option value='Renewable Energy'>Renewable Energy</option>
+              <option value='Healthcare and Sanitation'>Healthcare and Sanitation</option>
+              <option value='Defense and Service'>Defense and Service</option>
+              <option value='Transportation'>Transportation</option>
+              <option value='Communication'>Communication</option>
               <option value='option10'>Others (Specify)</option>
             </Select>
             {othercategory ? (
@@ -386,6 +417,9 @@ export default function Application() {
                   color='black'
                   type='text'
                   name='otherCategory'
+                  value={category}
+                  onChange={e=> setCategory(e.currentTarget.value)
+                  }
                 />
               </FormControl>
             ) : (
