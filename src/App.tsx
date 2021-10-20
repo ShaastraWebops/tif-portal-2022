@@ -19,9 +19,13 @@ import Admin from './pages/Admin'
 import Team from './pages/Team'
 import Application from './components/Application'
 import Verification from './components/Verification'
+import VerifyOtp from './components/VerifyOtp'
 
-export const App = () => (
-  <ChakraProvider theme={theme}>
+export const App = () => {
+  const [role, setRole] = React.useState<any | null>("")
+
+  return(
+    <ChakraProvider theme={theme}>
     <Router>
       <Route exact path='/' component={Home} />
       <Route exact path='/jmt' component={JMT} />
@@ -29,9 +33,11 @@ export const App = () => (
       <Route exact path='/forgotpassword' component={ForgotPassword} />
       <Route exact path='/register' component={Register} />
       <Route exact path='/admin' component={Admin} />
-      <Route exact path ='/team' component={Team}></Route>
+      <Route exact path ='/team/:id' component={Team}></Route>
       <Route exact path='/application' component={Application} />
       <Route exact path='/verified' component={Verification} />
+      <Route exact path='/verifyOTP' component={VerifyOtp} />
     </Router>
   </ChakraProvider>
-)
+  )
+}

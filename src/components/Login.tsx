@@ -12,10 +12,33 @@ import {
   Heading,
   Text,
 } from '@chakra-ui/react'
+import { useLoginMutation } from '../types/generated/generated'
+import { useHistory } from 'react-router'
 
 export default function Login() {
   const [email, setemail] = useState('')
   const [password, setpassword] = useState('')
+  const [login] = useLoginMutation();
+  const history = useHistory();
+  const handlelogin = () =>{
+    login({
+      variables : {
+        LoginInput:{
+          email,
+          password
+        }
+      }
+    })
+    .then(res => {
+      if(res.data?.login?.id && !res.data.login.isSubmitted){
+        history.push("/application")
+      }
+    })
+    .catch((err) => console.log(err))
+
+    setemail('');
+    setpassword('');
+  }
 
   return (
     <Flex
@@ -87,6 +110,7 @@ export default function Login() {
                   textColor: 'black',
                   border: '2px solid black',
                 }}
+                onClick={handlelogin}
               >
                 Log in
               </Button>

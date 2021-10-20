@@ -15,12 +15,43 @@ import {
   IconButton,
   Textarea,
 } from '@chakra-ui/react'
+import { useRegisterUserMutation } from '../types/generated/generated'
 import { DeleteIcon } from '@chakra-ui/icons'
+import { useHistory } from 'react-router'
 
 export default function Register() {
   const [email, setemail] = useState('')
   const [password, setpassword] = useState('')
   const [username, setusername] = useState('')
+  const history = useHistory();
+  const [eerror , setEerror] = useState(false);
+  const [perror , setPerror] = useState(false);
+  const [register] = useRegisterUserMutation();
+
+  const handleregister = () =>{
+
+    register({
+      variables : {
+        CreateUserInput : {
+          email,
+          password,
+          name : username
+        }
+      }
+    })
+    .then(res => {
+      if(res.data?.registerUser){
+        history.push("/verifyOTP")
+      }
+    })
+    .catch(err => console.log(err))
+    setemail('');
+    setpassword('');
+    setusername('');
+
+  }
+ 
+   
 
   return (
     <Flex
@@ -89,10 +120,20 @@ export default function Register() {
                 type='email'
                 name='email'
                 variant='outline'
-                borderColor='gray.500'
+                borderColor={ eerror ? "red" : 'gray.500'
+              }
                 placeholder='Re-enter Email address'
                 _placeholder={{ color: 'gray.500' }}
                 color='black'
+                onChange={e => {
+                  if(e.target.value === email){
+                    setEerror(false)
+                  }else{
+                    setEerror(true)
+
+                  }
+
+                }}
               />
             </FormControl>
           </SimpleGrid>
@@ -117,10 +158,20 @@ export default function Register() {
                 type='password'
                 name='password'
                 variant='outline'
-                borderColor='gray.500'
+                borderColor={ perror ? "red" : 'gray.500'
+              }
                 placeholder='Re-enter password'
                 _placeholder={{ color: 'gray.500' }}
                 color='black'
+                onChange={e => {
+                  if(e.target.value === password){
+                    setPerror(false)
+                  }else{
+                    setPerror(true)
+
+                  }
+
+                }}
               />
             </FormControl>
           </SimpleGrid>
@@ -134,6 +185,7 @@ export default function Register() {
                 textColor: 'black',
                 border: '2px solid black',
               }}
+              onClick={handleregister}
             >
               Sign Up
             </Button>

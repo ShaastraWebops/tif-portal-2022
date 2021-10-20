@@ -9,8 +9,20 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react'
+import { useGetPasswordOtpMutation } from '../types/generated/generated'
 
 export default function ForgotPassword() {
+  const [email, setemail] = useState('');
+  const [getpasswordotp] = useGetPasswordOtpMutation();
+
+  const handleresetpassword = () =>{
+    getpasswordotp({
+      variables : {
+        email
+      }
+    })
+    setemail(" ")
+  }
   return (
     <Flex
       minH={'100vh'}
@@ -46,6 +58,7 @@ export default function ForgotPassword() {
             placeholder='your-email@example.com'
             _placeholder={{ color: 'gray.500' }}
             type='email'
+            onChange={(e) => setemail(e.target.value)}
           />
         </FormControl>
         <Stack spacing={6}>
@@ -57,6 +70,7 @@ export default function ForgotPassword() {
               textColor: 'black',
               border: '2px solid black',
             }}
+            onClick={handleresetpassword}
           >
             Request Reset
           </Button>

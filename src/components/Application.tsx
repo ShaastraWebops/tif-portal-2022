@@ -14,37 +14,101 @@ import {
   SimpleGrid,
   IconButton,
   Textarea,
+  Alert,
+  AlertIcon,
 } from '@chakra-ui/react'
-import { DeleteIcon } from '@chakra-ui/icons'
+import { AddIcon, DeleteIcon } from '@chakra-ui/icons'
+import { useCreateTeamandRegisterMutation, useFillProjectMutation, useMeQuery } from '../types/generated/generated'
+import { useHistory } from 'react-router'
+import { Link } from 'react-router-dom';
 
 export default function Application() {
-  const [member2, setMember2] = useState(false)
-  const [member3, setMember3] = useState(false)
-  const [member4, setMember4] = useState(false)
-  const [teamLimit, setTeamLimit] = useState(true)
-  const [othercategory, setOtherCategory] = useState(false)
-  const [category, setCategory] = useState('')
+  
+  const [members, setMembers] = React.useState([{ 
+    name: '', contactno : ' ' , email :' ' ,institution: ' ' ,city : ' ' , state: '' }]);
 
-  function addTeamMember() {
-    if (member2 === false) {
-      setMember2(true)
-    } else if (member3 === false) {
-      setMember3(true)
-    } else {
-      setMember4(true)
-      setTeamLimit(false)
+  const [teamname, setTeamname] = React.useState<string>();
+  const [alert , setAlert] = React.useState(false);
+  const [salert , setSalert] = React.useState(false);
+  const {data,error , loading} = useMeQuery();
+  const history = useHistory();
+ 
+  const handleMembersInput = ({ index, event }: { index: number, event: React.ChangeEvent<HTMLInputElement> }) => {
+    const values = [...members];
+
+    if (event.target.name === 'Name') {
+      values[index]['name'] = event.target.value
+    }else if(event.target.name === "contact") {
+      values[index]['contactno'] = event.target.value
+    }else if(event.target.name === "email"){
+        values[index]['email'] = event.target.value
+    }else if(event.target.name === "college"){
+        values[index]['institution'] = event.target.value
+    }else if(event.target.name === "city"){
+        values[index]['city'] = event.target.value
+    }else if(event.target.name === "state"){
+        values[index]['state'] = event.target.value
     }
+    setMembers(values)
   }
 
-  function deleteMember() {
-    setTeamLimit(true)
-    if (member4 === true) {
-      setMember4(false)
-    } else if (member3 === true) {
-      setMember3(false)
-    } else {
-      setMember2(false)
-    }
+  const [createteam] = useCreateTeamandRegisterMutation();
+  const handleaddteam = () =>{
+
+    createteam({
+      variables : {
+        createTeamAndRegisterData : {
+          name : teamname!,
+          members : members
+
+        }
+      }
+    })
+    .then(res => {
+      if(res.data?.createTeamAndRegister){
+        setAlert(true)
+      }
+    })
+    .catch(err => console.log(err))
+
+  }
+
+  const [title , setTitle] = React.useState(' ');
+  const [fillproject] = useFillProjectMutation();
+  const [othercategory, setOtherCategory] = useState(false)
+  const [category, setCategory] = useState('');
+  const [Q1,setQ1] = useState('');
+  const [Q2,setQ2] = useState('');
+  const [Q3,setQ3] = useState('');
+  const [Q4,setQ4] = useState('');
+  const [Q5,setQ5] = useState('');
+  const [Q6,setQ6] = useState('');
+  const [Q7,setQ7] = useState('');
+  const [videolink , setVideolink] = useState('');
+
+  const handlefillproject = () =>{
+
+    fillproject({
+      variables : {
+        ProjectInput : {
+          title,
+          category,
+          Q1,
+          Q2,
+          Q3,
+          Q4,
+          Q5,
+          Q6,
+          Q7,
+          videolink
+        }
+      }})
+      .then(res => {
+        if(res.data?.fillProject){
+          setSalert(true)
+        }
+      })
+      .catch(err => console.log(err))
   }
 
   return (
@@ -55,6 +119,7 @@ export default function Application() {
       backgroundColor='#2e2d2d'
       flexDirection='column'
     >
+      
       {' '}
       <Heading
         fontSize={'4xl'}
@@ -65,6 +130,17 @@ export default function Application() {
       >
         Complete your Application
       </Heading>
+      {
+        data?.me?.isSubmitted ? <Box width = "75%"  p={2} >
+         <Text float={'right'} color={"#ff7e20"} fontSize={'2xl'}
+         _hover={{
+           cursor : "pointer"
+        }}
+         onClick={()=>{
+           history.push(`/team/${data?.me?.team?.id}`)
+         }}>Submitted Application</Text>
+        </Box> : null
+      }
       <SimpleGrid
         rounded={'lg'}
         boxShadow={'lg'}
@@ -72,12 +148,29 @@ export default function Application() {
         bgColor='white'
         width='75%'
       >
+         {
+            alert && (!salert) ? (
+              <Alert status="success">
+              <AlertIcon />
+              Team created successfully
+            </Alert>
+            ) : null
+     } 
+     {
+        (salert) ? (
+          <Alert status="success">
+          <AlertIcon />
+          Application Submitted Sucessefully . Thank You
+        </Alert>
+        ) : null
+     }
         <Stack
           spacing={4}
           marginLeft={2}
           marginRight={2}
           paddingLeft={2}
           paddingRight={2}
+          width={'auto'}
         >
           <Text color='black' marginTop={3} fontSize='xl' fontWeight='bold'>
             Enter your Team Details
@@ -92,403 +185,136 @@ export default function Application() {
               placeholder='Enter team name'
               _placeholder={{ color: 'gray.500' }}
               color='black'
+              value={teamname}
+              onChange={(e) => { setTeamname(e.target.value) }}
             />
           </FormControl>
-          <Box>
-            <Text
-              color='black'
-              fontWeight='medium'
-              fontSize='lg'
-              marginBottom={1}
-            >
-              Team Member 1
-            </Text>
-            <SimpleGrid columns={[1, 2]} spacing={2} marginBottom={1}>
-              <FormControl id='name1' marginRight={2}>
-                <FormLabel color='black'>Name</FormLabel>
-                <Input
-                  variant='outline'
-                  borderColor='gray.500'
-                  placeholder='Enter name'
-                  _placeholder={{ color: 'gray.500' }}
-                  color='black'
-                  type='text'
-                  name='name1'
-                />
-              </FormControl>
-              <FormControl id='contact1'>
-                <FormLabel color='black'>Contact No.</FormLabel>
-                <Input
-                  type='number'
-                  name='contact1'
-                  variant='outline'
-                  borderColor='gray.500'
-                  placeholder='Enter Contact No.'
-                  _placeholder={{ color: 'gray.500' }}
-                  color='black'
-                />
-              </FormControl>
-            </SimpleGrid>
-            <SimpleGrid columns={[1, 2]} spacing={2} marginBottom={1}>
-              <FormControl id='email1' marginRight={2}>
-                <FormLabel color='black'>Email address</FormLabel>
-                <Input
-                  variant='outline'
-                  borderColor='gray.500'
-                  placeholder='Email address'
-                  _placeholder={{ color: 'gray.500' }}
-                  color='black'
-                  type='email'
-                  name='email1'
-                />
-              </FormControl>
-              <FormControl id='college1'>
-                <FormLabel color='black'>College Name</FormLabel>
-                <Input
-                  type='text'
-                  name='college1'
-                  variant='outline'
-                  borderColor='gray.500'
-                  placeholder='College Name'
-                  _placeholder={{ color: 'gray.500' }}
-                  color='black'
-                />
-              </FormControl>
-            </SimpleGrid>
-            <SimpleGrid columns={[1, 2]} spacing={2}>
-              <FormControl id='city1' marginRight={2}>
-                <FormLabel color='black'>City</FormLabel>
-                <Input
-                  variant='outline'
-                  borderColor='gray.500'
-                  placeholder='Enter city'
-                  _placeholder={{ color: 'gray.500' }}
-                  color='black'
-                  type='text'
-                  name='city1'
-                />
-              </FormControl>
-              <FormControl id='state1'>
-                <FormLabel color='black'>State</FormLabel>
-                <Input
-                  type='text'
-                  name='state1'
-                  variant='outline'
-                  borderColor='gray.500'
-                  placeholder='Enter state'
-                  _placeholder={{ color: 'gray.500' }}
-                  color='black'
-                />
-              </FormControl>
-            </SimpleGrid>
-          </Box>
-          {member2 ? (
-            <Box>
-              <Flex>
-                <Text
-                  color='black'
-                  fontWeight='medium'
-                  fontSize='lg'
-                  marginBottom={1}
-                  marginRight={2}
-                >
-                  Team Member 2
-                </Text>
-                <IconButton
-                  colorScheme='red'
-                  aria-label='Delete'
-                  size='sm'
-                  icon={<DeleteIcon />}
-                  onClick={deleteMember}
-                />
-              </Flex>
-              <SimpleGrid columns={[1, 2]} spacing={2} marginBottom={1}>
-                <FormControl id='name2' marginRight={2}>
-                  <FormLabel color='black'>Name</FormLabel>
-                  <Input
-                    variant='outline'
-                    borderColor='gray.500'
-                    placeholder='Enter name'
-                    _placeholder={{ color: 'gray.500' }}
-                    color='black'
-                    type='text'
-                    name='name2'
-                  />
-                </FormControl>
-                <FormControl id='contact2'>
-                  <FormLabel color='black'>Contact No.</FormLabel>
-                  <Input
-                    type='number'
-                    name='contact2'
-                    variant='outline'
-                    borderColor='gray.500'
-                    placeholder='Enter Contact No.'
-                    _placeholder={{ color: 'gray.500' }}
-                    color='black'
-                  />
-                </FormControl>
-              </SimpleGrid>
-              <SimpleGrid columns={[1, 2]} spacing={2} marginBottom={1}>
-                <FormControl id='email2' marginRight={2}>
-                  <FormLabel color='black'>Email address</FormLabel>
-                  <Input
-                    variant='outline'
-                    borderColor='gray.500'
-                    placeholder='Email address'
-                    _placeholder={{ color: 'gray.500' }}
-                    color='black'
-                    type='email'
-                    name='email2'
-                  />
-                </FormControl>
-                <FormControl id='college2'>
-                  <FormLabel color='black'>College Name</FormLabel>
-                  <Input
-                    type='text'
-                    name='college2'
-                    variant='outline'
-                    borderColor='gray.500'
-                    placeholder='College Name'
-                    _placeholder={{ color: 'gray.500' }}
-                    color='black'
-                  />
-                </FormControl>
-              </SimpleGrid>
-              <SimpleGrid columns={[1, 2]} spacing={2}>
-                <FormControl id='city2' marginRight={2}>
-                  <FormLabel color='black'>City</FormLabel>
-                  <Input
-                    variant='outline'
-                    borderColor='gray.500'
-                    placeholder='Enter city'
-                    _placeholder={{ color: 'gray.500' }}
-                    color='black'
-                    type='text'
-                    name='city2'
-                  />
-                </FormControl>
-                <FormControl id='state2'>
-                  <FormLabel color='black'>State</FormLabel>
-                  <Input
-                    type='text'
-                    name='state2'
-                    variant='outline'
-                    borderColor='gray.500'
-                    placeholder='Enter state'
-                    _placeholder={{ color: 'gray.500' }}
-                    color='black'
-                  />
-                </FormControl>
-              </SimpleGrid>
-            </Box>
-          ) : (
-            <div></div>
-          )}
-          {member3 ? (
-            <Box>
-              <Flex>
-                <Text
-                  color='black'
-                  fontWeight='medium'
-                  fontSize='lg'
-                  marginBottom={1}
-                  marginRight={2}
-                >
-                  Team Member 3
-                </Text>
-                <IconButton
-                  colorScheme='red'
-                  aria-label='Delete'
-                  size='sm'
-                  icon={<DeleteIcon />}
-                  onClick={deleteMember}
-                />
-              </Flex>
-              <SimpleGrid columns={[1, 2]} spacing={2} marginBottom={1}>
-                <FormControl id='name3' marginRight={2}>
-                  <FormLabel color='black'>Name</FormLabel>
-                  <Input
-                    variant='outline'
-                    borderColor='gray.500'
-                    placeholder='Enter name'
-                    _placeholder={{ color: 'gray.500' }}
-                    color='black'
-                    type='text'
-                    name='name3'
-                  />
-                </FormControl>
-                <FormControl id='contact3'>
-                  <FormLabel color='black'>Contact No.</FormLabel>
-                  <Input
-                    type='number'
-                    name='contact3'
-                    variant='outline'
-                    borderColor='gray.500'
-                    placeholder='Enter Contact No.'
-                    _placeholder={{ color: 'gray.500' }}
-                    color='black'
-                  />
-                </FormControl>
-              </SimpleGrid>
-              <SimpleGrid columns={[1, 2]} spacing={2} marginBottom={1}>
-                <FormControl id='email3' marginRight={2}>
-                  <FormLabel color='black'>Email address</FormLabel>
-                  <Input
-                    variant='outline'
-                    borderColor='gray.500'
-                    placeholder='Email address'
-                    _placeholder={{ color: 'gray.500' }}
-                    color='black'
-                    type='email'
-                    name='email3'
-                  />
-                </FormControl>
-                <FormControl id='college3'>
-                  <FormLabel color='black'>College Name</FormLabel>
-                  <Input
-                    type='text'
-                    name='college3'
-                    variant='outline'
-                    borderColor='gray.500'
-                    placeholder='College Name'
-                    _placeholder={{ color: 'gray.500' }}
-                    color='black'
-                  />
-                </FormControl>
-              </SimpleGrid>
-              <SimpleGrid columns={[1, 2]} spacing={2}>
-                <FormControl id='city3' marginRight={2}>
-                  <FormLabel color='black'>City</FormLabel>
-                  <Input
-                    variant='outline'
-                    borderColor='gray.500'
-                    placeholder='Enter city'
-                    _placeholder={{ color: 'gray.500' }}
-                    color='black'
-                    type='text'
-                    name='city3'
-                  />
-                </FormControl>
-                <FormControl id='state3'>
-                  <FormLabel color='black'>State</FormLabel>
-                  <Input
-                    type='text'
-                    name='state3'
-                    variant='outline'
-                    borderColor='gray.500'
-                    placeholder='Enter state'
-                    _placeholder={{ color: 'gray.500' }}
-                    color='black'
-                  />
-                </FormControl>
-              </SimpleGrid>
-            </Box>
-          ) : (
-            <div></div>
-          )}
-          {member4 ? (
-            <Box>
-              <Flex>
-                <Text
-                  color='black'
-                  fontWeight='medium'
-                  fontSize='lg'
-                  marginBottom={1}
-                  marginRight={2}
-                >
-                  Team Member 4
-                </Text>
-                <IconButton
-                  colorScheme='red'
-                  aria-label='Delete'
-                  size='sm'
-                  icon={<DeleteIcon />}
-                  onClick={deleteMember}
-                />
-              </Flex>
-              <SimpleGrid columns={[1, 2]} spacing={2} marginBottom={1}>
-                <FormControl id='name4' marginRight={2}>
-                  <FormLabel color='black'>Name</FormLabel>
-                  <Input
-                    variant='outline'
-                    borderColor='gray.500'
-                    placeholder='Enter name'
-                    _placeholder={{ color: 'gray.500' }}
-                    color='black'
-                    type='text'
-                    name='name4'
-                  />
-                </FormControl>
-                <FormControl id='contact4'>
-                  <FormLabel color='black'>Contact No.</FormLabel>
-                  <Input
-                    type='number'
-                    name='contact4'
-                    variant='outline'
-                    borderColor='gray.500'
-                    placeholder='Enter Contact No.'
-                    _placeholder={{ color: 'gray.500' }}
-                    color='black'
-                  />
-                </FormControl>
-              </SimpleGrid>
-              <SimpleGrid columns={[1, 2]} spacing={2} marginBottom={1}>
-                <FormControl id='email4' marginRight={2}>
-                  <FormLabel color='black'>Email address</FormLabel>
-                  <Input
-                    variant='outline'
-                    borderColor='gray.500'
-                    placeholder='Email address'
-                    _placeholder={{ color: 'gray.500' }}
-                    color='black'
-                    type='email'
-                    name='email4'
-                  />
-                </FormControl>
-                <FormControl id='college4'>
-                  <FormLabel color='black'>College Name</FormLabel>
-                  <Input
-                    type='text'
-                    name='college4'
-                    variant='outline'
-                    borderColor='gray.500'
-                    placeholder='College Name'
-                    _placeholder={{ color: 'gray.500' }}
-                    color='black'
-                  />
-                </FormControl>
-              </SimpleGrid>
-              <SimpleGrid columns={[1, 2]} spacing={2}>
-                <FormControl id='city4' marginRight={2}>
-                  <FormLabel color='black'>City</FormLabel>
-                  <Input
-                    variant='outline'
-                    borderColor='gray.500'
-                    placeholder='Enter city'
-                    _placeholder={{ color: 'gray.500' }}
-                    color='black'
-                    type='text'
-                    name='city4'
-                  />
-                </FormControl>
-                <FormControl id='state4'>
-                  <FormLabel color='black'>State</FormLabel>
-                  <Input
-                    type='text'
-                    name='state4'
-                    variant='outline'
-                    borderColor='gray.500'
-                    placeholder='Enter state'
-                    _placeholder={{ color: 'gray.500' }}
-                    color='black'
-                  />
-                </FormControl>
-              </SimpleGrid>
-            </Box>
-          ) : (
-            <div></div>
-          )}
-          {teamLimit ? (
+          {
+                  members.map((member, index)  => {
+                    return (
+                      <React.Fragment key={index}>
+                        <Box key = {index}>
+                        <Text
+                        color='black'
+                        fontWeight='medium'
+                        fontSize='lg'
+                        marginBottom={1}
+                        >
+                        Team Member {index + 1}  {index === 0 ?"(your Details)"  : null}
+                        {
+                              index === 0 ? null : (
+                                <IconButton
+                                m={2}
+                                style={{display : "inline"}}
+                                colorScheme='red'
+                                aria-label='Delete'
+                                size='sm'
+                                icon={<DeleteIcon />}
+                                onClick={() => {
+                                    const values = [...members];
+                                    values.splice(index, 1)
+                                    setMembers(values)
+                                  }}
+                                />
+                              )
+                        }
+                        </Text>
+                        
+                        <SimpleGrid columns={[1, 2]} spacing={2} marginBottom={1}>
+                        <FormControl id='name1' marginRight={2}>
+                            <FormLabel color='black'>Name</FormLabel>
+                            <Input
+                            variant='outline'
+                            borderColor='gray.500'
+                            placeholder='Enter name'
+                            _placeholder={{ color: 'gray.500' }}
+                            color='black'
+                            type='text'
+                            name = 'Name'
+                            onChange={(event) => handleMembersInput({ index, event })}
+                            />
+                        </FormControl>
+                        <FormControl id='contact1'>
+                            <FormLabel color='black'>Contact No.</FormLabel>
+                            <Input
+                            type='number'
+                            name='contact'
+                            variant='outline'
+                            borderColor='gray.500'
+                            placeholder='Enter Contact No.'
+                            _placeholder={{ color: 'gray.500' }}
+                            color='black'
+                            onChange={(event) => handleMembersInput({ index, event })}
+                            />
+                        </FormControl>
+                        </SimpleGrid>
+                        <SimpleGrid columns={[1, 2]} spacing={2} marginBottom={1}>
+                        <FormControl id='email1' marginRight={2}>
+                            <FormLabel color='black'>Email address
+                            {index === 0 ?"(registration mail)"  : null}</FormLabel>
+                            <Input
+                            variant='outline'
+                            borderColor='gray.500'
+                            placeholder='Email address'
+                            _placeholder={{ color: 'gray.500' }}
+                            color='black'
+                            type='email'
+                            name='email'
+                            onChange={(event) => handleMembersInput({ index, event })}
+
+                            />
+                        </FormControl>
+                        <FormControl id='college1'>
+                            <FormLabel color='black'>College Name</FormLabel>
+                            <Input
+                            type='text'
+                            name='college'
+                            variant='outline'
+                            borderColor='gray.500'
+                            placeholder='College Name'
+                            _placeholder={{ color: 'gray.500' }}
+                            color='black'
+                            onChange={(event) => handleMembersInput({ index, event })}
+                            />
+                        </FormControl>
+                        </SimpleGrid>
+                        <SimpleGrid columns={[1, 2]} spacing={2}>
+                        <FormControl id='city1' marginRight={2}>
+                            <FormLabel color='black'>City</FormLabel>
+                            <Input
+                            variant='outline'
+                            borderColor='gray.500'
+                            placeholder='Enter city'
+                            _placeholder={{ color: 'gray.500' }}
+                            color='black'
+                            type='text'
+                            name='city'
+                            onChange={(event) => handleMembersInput({ index, event })}
+
+                            />
+                        </FormControl>
+                        <FormControl id='state1'>
+                            <FormLabel color='black'>State</FormLabel>
+                            <Input
+                            type='text'
+                            name='state'
+                            variant='outline'
+                            borderColor='gray.500'
+                            placeholder='Enter state'
+                            _placeholder={{ color: 'gray.500' }}
+                            color='black'
+                            onChange={(event) => handleMembersInput({ index, event })}
+                            />
+                        </FormControl>
+                        </SimpleGrid>
+                      </Box>
+                      </React.Fragment>
+                    )
+                  })
+                }
+          
+          {
+          members.length < 4 ? (
             <Flex justifyContent='center'>
               <Button
                 bg={'#ff7e20'}
@@ -499,9 +325,24 @@ export default function Application() {
                   textColor: 'black',
                   border: '2px solid black',
                 }}
-                onClick={addTeamMember}
+                onClick={() => setMembers([...members, { 
+                  name: '', contactno : ' ' , email :' ' ,institution : ' ' ,city : ' ' , state: '' }])}
               >
                 Add team member
+              </Button>
+              <Button
+              mx={2}
+                bg={'#ff7e20'}
+                color={'white'}
+                height='50px'
+                _hover={{
+                  bg: 'white',
+                  textColor: 'black',
+                  border: '2px solid black',
+                }}
+                onClick={handleaddteam}
+              >
+                Add Team
               </Button>
             </Flex>
           ) : (
@@ -529,6 +370,7 @@ export default function Application() {
               color='black'
               type='text'
               name='title'
+              onChange={(e) => setTitle(e.target.value)}
             />
           </FormControl>
           <FormControl id='category'>
@@ -540,24 +382,27 @@ export default function Application() {
               color='black'
               borderColor='gray.500'
               bgColor='white'
+              value={category}
               onChange={(e) => {
                 if (e.currentTarget.value === 'option10') {
+                  setCategory('option10')
                   setOtherCategory(true)
                 } else {
+                  setCategory(e.currentTarget.value)
                   setOtherCategory(false)
                 }
               }}
               required
             >
-              <option value='option1'>Agriculture</option>
-              <option value='option2'>Home Comfort</option>
-              <option value='option3'>Ed-Tech</option>
-              <option value='option4'>Design and Development</option>
-              <option value='option5'>Renewable Energy</option>
-              <option value='option6'>Healthcare and Sanitation</option>
-              <option value='option7'>Defense and Service</option>
-              <option value='option8'>Transportation</option>
-              <option value='option9'>Communication</option>
+              <option value='Agriculture'>Agriculture</option>
+              <option value='Home Comfort'>Home Comfort</option>
+              <option value='Ed-Tech'>Ed-Tech</option>
+              <option value='Design and Development'>Design and Development</option>
+              <option value='Renewable Energy'>Renewable Energy</option>
+              <option value='Healthcare and Sanitation'>Healthcare and Sanitation</option>
+              <option value='Defense and Service'>Defense and Service</option>
+              <option value='Transportation'>Transportation</option>
+              <option value='Communication'>Communication</option>
               <option value='option10'>Others (Specify)</option>
             </Select>
             {othercategory ? (
@@ -572,6 +417,9 @@ export default function Application() {
                   color='black'
                   type='text'
                   name='otherCategory'
+                  value={category}
+                  onChange={e=> setCategory(e.currentTarget.value)
+                  }
                 />
               </FormControl>
             ) : (
@@ -594,6 +442,8 @@ export default function Application() {
               placeholder='Please enter'
               _placeholder={{ color: 'gray.500' }}
               color='black'
+              value={Q1}
+              onChange={e=> setQ1(e.target.value)}
             />
           </FormControl>
           <FormControl id='question2'>
@@ -611,6 +461,8 @@ export default function Application() {
               placeholder='Please enter'
               _placeholder={{ color: 'gray.500' }}
               color='black'
+              value={Q2}
+              onChange={e=> setQ2(e.target.value)}
             />
           </FormControl>
           <FormControl id='question3'>
@@ -627,6 +479,8 @@ export default function Application() {
               placeholder='Please enter'
               _placeholder={{ color: 'gray.500' }}
               color='black'
+              value={Q3}
+              onChange={e=> setQ3(e.target.value)}
             />
           </FormControl>
           <FormControl id='question4'>
@@ -644,6 +498,8 @@ export default function Application() {
               placeholder='Please enter'
               _placeholder={{ color: 'gray.500' }}
               color='black'
+              value={Q4}
+              onChange={e=> setQ4(e.target.value)}
             />
           </FormControl>
           <FormControl id='question5'>
@@ -660,6 +516,8 @@ export default function Application() {
               placeholder='Please enter'
               _placeholder={{ color: 'gray.500' }}
               color='black'
+              value={Q5}
+              onChange={e=> setQ5(e.target.value)}
             />
           </FormControl>
           <FormControl id='question6'>
@@ -677,6 +535,8 @@ export default function Application() {
               placeholder='Please enter'
               _placeholder={{ color: 'gray.500' }}
               color='black'
+              value={Q6}
+              onChange={e=> setQ6(e.target.value)}
             />
           </FormControl>
           <Text color='black' marginTop={3} fontSize='xl' fontWeight='bold'>
@@ -696,6 +556,8 @@ export default function Application() {
               placeholder='Please enter'
               _placeholder={{ color: 'gray.500' }}
               color='black'
+              value={Q7}
+              onChange={e=> setQ7(e.target.value)}
             />
           </FormControl>
           <Text color='black' marginTop={3} fontSize='xl' fontWeight='bold'>
@@ -719,6 +581,8 @@ export default function Application() {
               placeholder='Please enter'
               _placeholder={{ color: 'gray.500' }}
               color='black'
+              value={videolink}
+              onChange={e=> setVideolink(e.target.value)}
             />
           </FormControl>
           <Flex justifyContent='center'>
@@ -731,6 +595,7 @@ export default function Application() {
                 textColor: 'black',
                 border: '2px solid black',
               }}
+              onClick={handlefillproject}
             >
               Submit
             </Button>
