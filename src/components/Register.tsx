@@ -17,11 +17,13 @@ import {
 } from '@chakra-ui/react'
 import { useRegisterUserMutation } from '../types/generated/generated'
 import { DeleteIcon } from '@chakra-ui/icons'
+import { useHistory } from 'react-router'
 
 export default function Register() {
   const [email, setemail] = useState('')
   const [password, setpassword] = useState('')
   const [username, setusername] = useState('')
+  const history = useHistory();
   
   const [register] = useRegisterUserMutation();
 
@@ -35,7 +37,13 @@ export default function Register() {
           name : username
         }
       }
-    }).catch(err => console.log(err))
+    })
+    .then(res => {
+      if(res.data?.registerUser){
+        history.push("/verifyOTP")
+      }
+    })
+    .catch(err => console.log(err))
     setemail('');
     setpassword('');
     setusername('');
@@ -182,6 +190,7 @@ export default function Register() {
                 textColor: 'black',
                 border: '2px solid black',
               }}
+              onClick={handleregister}
             >
               Sign Up
             </Button>

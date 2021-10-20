@@ -18,6 +18,7 @@ import Register from './components/Register'
 import Admin from './pages/Admin'
 import Application from './components/Application'
 import Verification from './components/Verification'
+import VerifyOtp from './components/VerifyOtp'
 
 export const App = () => {
   const [role, setRole] = React.useState<any | null>("")
@@ -33,6 +34,7 @@ export const App = () => {
       <Route exact path='/admin' component={Admin} />
       <Route exact path='/application' component={Application} />
       <Route exact path='/verified' component={Verification} />
+      <Route exact path='/verifyOTP' component={VerifyOtp} />
     </Router>
   </ChakraProvider>
   )

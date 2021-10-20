@@ -13,11 +13,13 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { useLoginMutation } from '../types/generated/generated'
+import { useHistory } from 'react-router'
 
 export default function Login() {
   const [email, setemail] = useState('')
   const [password, setpassword] = useState('')
   const [login] = useLoginMutation();
+  const history = useHistory();
   const handlelogin = () =>{
     login({
       variables : {
@@ -26,7 +28,13 @@ export default function Login() {
           password
         }
       }
-    }).catch((err) => console.log(err))
+    })
+    .then(res => {
+      if(res.data?.login?.id){
+        history.push("/application")
+      }
+    })
+    .catch((err) => console.log(err))
 
     setemail('');
     setpassword('');

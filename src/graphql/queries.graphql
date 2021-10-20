@@ -51,7 +51,6 @@ query getProjectbyteamId($teamid: String!){
         Q5,
         Q6,
         Q7,
-        Q8,
         videolink
     }
 }

@@ -105,7 +105,6 @@ export type Project = {
   Q5: Scalars['String'];
   Q6: Scalars['String'];
   Q7: Scalars['String'];
-  Q8: Scalars['String'];
   category: Scalars['String'];
   id: Scalars['ID'];
   title: Scalars['String'];
@@ -120,7 +119,6 @@ export type ProjectInput = {
   Q5: Scalars['String'];
   Q6: Scalars['String'];
   Q7: Scalars['String'];
-  Q8: Scalars['String'];
   category: Scalars['String'];
   title: Scalars['String'];
   videolink: Scalars['String'];
@@ -250,7 +248,7 @@ export type GetProjectbyteamIdQueryVariables = Exact<{
 }>;
 
 
-export type GetProjectbyteamIdQuery = { getProjectbyteamId: { id: string, title: string, category: string, Q1: string, Q2: string, Q3: string, Q4: string, Q5: string, Q6: string, Q7: string, Q8: string, videolink: string } };
+export type GetProjectbyteamIdQuery = { getProjectbyteamId: { id: string, title: string, category: string, Q1: string, Q2: string, Q3: string, Q4: string, Q5: string, Q6: string, Q7: string, videolink: string } };
 
 
 export const RegisterUserDocument = gql`
@@ -644,7 +642,6 @@ export const GetProjectbyteamIdDocument = gql`
     Q5
     Q6
     Q7
-    Q8
     videolink
   }
 }
