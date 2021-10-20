@@ -13,7 +13,7 @@ import {
   ListItem,
   Icon,
 } from '@chakra-ui/react'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { TiChevronRight } from 'react-icons/ti'
 
 function Rules() {
@@ -24,6 +24,44 @@ function Rules() {
   const [rule5, setrule5] = useState(false)
   const [rule6, setrule6] = useState(false)
   const [color1, setcolor1] = useState('#ff7e20')
+  const [color2, setcolor2] = useState('#ff7e20')
+  const [color3, setcolor3] = useState('#ff7e20')
+  const [color4, setcolor4] = useState('#ff7e20')
+  const [color5, setcolor5] = useState('#ff7e20')
+  const [color6, setcolor6] = useState('#ff7e20')
+
+  useEffect(() => {
+    if (rule1 === true) {
+      setcolor1('white')
+    } else {
+      setcolor1('#ff7e20')
+    }
+    if (rule2 === true) {
+      setcolor2('white')
+    } else {
+      setcolor2('#ff7e20')
+    }
+    if (rule3 === true) {
+      setcolor3('white')
+    } else {
+      setcolor3('#ff7e20')
+    }
+    if (rule4 === true) {
+      setcolor4('white')
+    } else {
+      setcolor4('#ff7e20')
+    }
+    if (rule5 === true) {
+      setcolor5('white')
+    } else {
+      setcolor5('#ff7e20')
+    }
+    if (rule6 === true) {
+      setcolor6('white')
+    } else {
+      setcolor6('#ff7e20')
+    }
+  }, [rule1, rule2, rule3, rule4, rule5, rule6])
 
   function handleChange1() {
     setrule1(!rule1)
@@ -79,17 +117,29 @@ function Rules() {
 
   return (
     <React.Fragment>
-      <Flex alignItems='center' width='100%' flexDirection='column' height="100vh" justifyContent="center">
+      <Flex
+        alignItems='center'
+        width='100%'
+        flexDirection='column'
+        justifyContent='center'
+        maxWidth='100%'
+        overflowX='hidden'
+      >
         <Heading textColor='#ff7e20' marginTop={5} m={2} p={2} marginBottom={6}>
           Rules and Regulations
         </Heading>
         <Box marginBottom={3} p={2}>
           <Flex>
-            <Flex float='left' flexDirection='column' width='50%'>
+            <Flex
+              float='left'
+              flexDirection='column'
+              width='50%'
+              marginLeft={12}
+            >
               <Flex>
                 <Text
                   id='rule1'
-                  textColor={rule1 ? 'white' : 'ff7e20'}
+                  textColor={color1}
                   fontSize='3xl'
                   onClick={() => {
                     handleChange1()
@@ -116,7 +166,7 @@ function Rules() {
               <Flex>
                 <Text
                   fontSize='3xl'
-                  textColor={rule2 ? 'white' : 'ff7e20'}
+                  textColor={color2}
                   onClick={() => {
                     handleChange2()
                   }}
@@ -141,7 +191,7 @@ function Rules() {
               </Flex>
               <Flex>
                 <Text
-                  textColor={rule3 ? 'white' : 'ff7e20'}
+                  textColor={color3}
                   fontSize='3xl'
                   onClick={() => {
                     handleChange3()
@@ -167,7 +217,7 @@ function Rules() {
               </Flex>
               <Flex>
                 <Text
-                  textColor={rule4 ? 'white' : 'ff7e20'}
+                  textColor={color4}
                   fontSize='3xl'
                   onClick={() => {
                     handleChange4()
@@ -193,7 +243,7 @@ function Rules() {
               </Flex>
               <Flex>
                 <Text
-                  textColor={rule5 ? 'white' : 'ff7e20'}
+                  textColor={color5}
                   fontSize='3xl'
                   onClick={() => {
                     handleChange5()
@@ -219,7 +269,7 @@ function Rules() {
               </Flex>
               <Flex>
                 <Text
-                  textColor={rule6 ? 'ff7e20' : 'ff7e20'}
+                  textColor={color6}
                   fontSize='3xl'
                   onClick={() => {
                     handleChange6()

@@ -8,7 +8,7 @@ export const Navbar = () => {
   const [display, changeDisplay] = useState('none')
 
   return (
-    <Flex>
+    <Flex maxWidth='100%' overflowX='hidden'>
       <Flex className='nav' backgroundColor='gray.100'>
         {/* Desktop */}
         <Flex display={['none', 'none', 'flex', 'flex']}>
