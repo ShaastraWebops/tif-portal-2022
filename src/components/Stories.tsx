@@ -24,6 +24,8 @@ function Stories() {
     <React.Fragment>
       <Box alignItems='center'>
         <Flex
+          height="100vh"
+          justifyContent="center"
           flexDirection={'column'}
           alignItems={'center'}
           className='stories'

@@ -163,7 +163,7 @@ export default function Application() {
             />
           </FormControl>
           {
-                  members.map((member, index) => {
+                  members.map(({member, index} : any)  => {
                     return (
                       <React.Fragment key={index}>
                         <Box key = {index}>
