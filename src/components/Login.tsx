@@ -30,8 +30,10 @@ export default function Login() {
       }
     })
     .then(res => {
-      if(res.data?.login?.id){
+      if(res.data?.login?.id && !res.data.login.isSubmitted){
         history.push("/application")
+      }else if(res.data?.login?.id && res.data.login.isSubmitted){
+        history.push
       }
     })
     .catch((err) => console.log(err))
