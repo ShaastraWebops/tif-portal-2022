@@ -25,7 +25,7 @@ import Image6 from '../assests/Image6.jpg'
 function Gallery() {
   return (
     <React.Fragment>
-      <Flex height='600px' flexDirection={'column'} alignItems={'center'}>
+      <Flex  flexDirection={'column'} alignItems={'center'} height="100vh" justifyContent="center">
         <Heading textColor='#ff7e20' m={3} p={3}>
           Gallery
         </Heading>

@@ -38,6 +38,8 @@ function Contact() {
       <Flex
         alignItems='center'
         className='contact'
+        height="100vh"
+        justifyContent="center"
         width='100%'
         flexDirection='column'
       >

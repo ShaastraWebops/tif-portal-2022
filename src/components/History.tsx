@@ -21,7 +21,7 @@ function History() {
       <Flex
         className='history'
         alignItems='center'
-        height='600px'
+        height='100vh'
         flexDirection='column'
       >
         <Heading textColor='#ff7e20' marginTop={8}>

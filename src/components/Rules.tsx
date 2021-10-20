@@ -79,7 +79,7 @@ function Rules() {
 
   return (
     <React.Fragment>
-      <Flex alignItems='center' width='100%' flexDirection='column'>
+      <Flex alignItems='center' width='100%' flexDirection='column' height="100vh" justifyContent="center">
         <Heading textColor='#ff7e20' marginTop={5} m={2} p={2} marginBottom={6}>
           Rules and Regulations
         </Heading>
