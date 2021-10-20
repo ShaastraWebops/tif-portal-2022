@@ -64,15 +64,15 @@ const Home = () => {
         </Flex>
       </Center>
       <Center minHeight={'100vh'} backgroundColor='#2e2d2d' p={3}>
-        <Flex
+        <Flex 
           flexDirection={'column'}
           alignItems='center'
           justifyItems='center'
         >
-          <Heading textColor='#ff7e20' marginTop={2}>
+          <Heading textColor='#ff7e20' marginTop={2} height="30vh">
             About TIF
           </Heading>
-          <Box width='95%' p={2} m={2}>
+          <Box width='95%' p={2} m={2} height="20vh">
             <Text textColor='white' className='about-tif-text'>
               Tech and Innovation Fair (TIF) is a{' '}
               <b> flagship competition event </b>of Shaastra that scouts for
@@ -83,7 +83,7 @@ const Home = () => {
               biotechnology, agriculture, and IoT.
             </Text>
           </Box>
-          <Box width={['85%']}>
+          <Box width={['85%']}  height="50vh">
             <SimpleGrid
               columns={[1, 1, 2, 3]}
               spacing={10}
@@ -159,7 +159,7 @@ const Home = () => {
           <History />
           <Gallery />
           <Timeline />
-          <Flex flexDirection='column' alignItems='center' m={2} marginTop={10}>
+          <Flex flexDirection='column' alignItems='center' m={2} marginTop={10} height="100vh" justifyContent="center">
             <Heading textColor='#ff7e20' m={2} p={2}>
               What's in Store
             </Heading>
