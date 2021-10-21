@@ -34,7 +34,7 @@ const Home = () => {
           maxWidth='100%'
           overflowX='hidden'
         >
-          <Navbar />
+          <Navbar isHome={false} isJMT={true} isLogin={true} isApp={false} />
           <Box bg='#ff7e20' width={'50%'} textColor='white' p={2} m={2}>
             <Center>
               <Text className='shaastra-title'>SHAASTRA'22</Text>
@@ -158,49 +158,79 @@ const Home = () => {
               </Center>
             </SimpleGrid>
           </Box>
-          </Flex>
-          </Center>
-          <Center minHeight={'100vh'} backgroundColor='#2e2d2d' p={3}>
+        </Flex>
+      </Center>
+      <Center minHeight={'100vh'} backgroundColor='#2e2d2d' p={3}>
         <Flex
           flexDirection={'column'}
           alignItems='center'
           justifyItems='center'
         >
           <History />
-          </Flex>
-          </Center>
-          <Center minHeight={'100vh'} backgroundColor='#2e2d2d' p={3}>
+        </Flex>
+      </Center>
+      <Center minHeight={'100vh'} backgroundColor='#2e2d2d' p={3}>
         <Flex
           flexDirection={'column'}
           alignItems='center'
           justifyItems='center'
         >
-        
           <Gallery />
           <Timeline />
-          </Flex>
-          </Center>
-         
+        </Flex>
+      </Center>
 
-        <Center minHeight={'100vh'} backgroundColor='#2e2d2d'>
-         <Flex
+      <Center minHeight={'100vh'} backgroundColor='#2e2d2d'>
+        <Flex
           flexDirection={'column'}
           alignItems='center'
           justifyItems='center'
         >
-            <Heading textColor='#ff7e20' marginBottom={10} p={2}>
-              What's in Store
-            </Heading>
-            <SimpleGrid
-              columns={[1, 1, 2, 3]}
-              spacing={10}
-              width='100%'
-              textColor='white'
-              textAlign='justify'
-              marginTop={10}
-              marginBottom={10}
-
-            >
+          <Heading textColor='#ff7e20' marginBottom={10} p={2}>
+            What's in Store
+          </Heading>
+          <SimpleGrid
+            columns={[1, 1, 2, 3]}
+            spacing={10}
+            width='100%'
+            textColor='white'
+            textAlign='justify'
+            marginTop={10}
+            marginBottom={10}
+          >
+            <Box m={3} height='250px'>
+              <Center>
+                <Flex
+                  flexDirection='column'
+                  alignItems='center'
+                  justifyItems='center'
+                >
+                  <Box boxSize='200px'>
+                    <Image src={Logo1} alt='logo' objectFit='cover'></Image>
+                  </Box>
+                  <Text fontSize='2xl' m={2} p={2}>
+                    Mentorship
+                  </Text>
+                </Flex>
+              </Center>
+            </Box>
+            <Box m={3} height='250px' marginRight={10} marginLeft={10}>
+              <Center>
+                <Flex
+                  flexDirection='column'
+                  alignItems='center'
+                  justifyItems='center'
+                >
+                  <Box boxSize='200px'>
+                    <Image src={Logo2} alt='logo' objectFit='cover'></Image>
+                  </Box>
+                  <Text fontSize='2xl' m={2} p={2}>
+                    Cash Prizes
+                  </Text>
+                </Flex>
+              </Center>
+            </Box>
+            <Center>
               <Box m={3} height='250px'>
                 <Center>
                   <Flex
@@ -209,56 +239,20 @@ const Home = () => {
                     justifyItems='center'
                   >
                     <Box boxSize='200px'>
-                      <Image src={Logo1} alt='logo' objectFit='cover'></Image>
+                      <Image src={Logo3} alt='logo' objectFit='cover'></Image>
                     </Box>
-                    <Text fontSize='2xl' m={2} p={2}>
-                      Mentorship
-                    </Text>
+                    <Text fontSize='2xl'>Incubation Opportunities</Text>
                   </Flex>
                 </Center>
               </Box>
-              <Box m={3} height='250px' marginRight={10} marginLeft={10}>
-                <Center>
-                  <Flex
-                    flexDirection='column'
-                    alignItems='center'
-                    justifyItems='center'
-                  >
-                    <Box boxSize='200px'>
-                      <Image src={Logo2} alt='logo' objectFit='cover'></Image>
-                    </Box>
-                    <Text fontSize='2xl' m={2} p={2}>
-                      Cash Prizes
-                    </Text>
-                  </Flex>
-                </Center>
-              </Box>
-              <Center>
-                <Box m={3} height='250px'>
-                  <Center>
-                    <Flex
-                      flexDirection='column'
-                      alignItems='center'
-                      justifyItems='center'
-                    >
-                      <Box boxSize='200px'>
-                        <Image src={Logo3} alt='logo' objectFit='cover'></Image>
-                      </Box>
-                      <Text fontSize='2xl'>Incubation Opportunities</Text>
-                    </Flex>
-                  </Center>
-                </Box>
-              </Center>
-            </SimpleGrid>
-            <Rules />
-
-            </Flex>
             </Center>
-            
+          </SimpleGrid>
+          <Rules />
+        </Flex>
+      </Center>
 
-          
-          <Center minHeight={'100vh'} backgroundColor='#2e2d2d' p={3}>
-         <Flex
+      <Center minHeight={'100vh'} backgroundColor='#2e2d2d' p={3}>
+        <Flex
           flexDirection={'column'}
           alignItems='center'
           justifyItems='center'

@@ -9,19 +9,20 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react'
+import { Navbar } from './Navbar'
 import { useGetPasswordOtpMutation } from '../types/generated/generated'
 
 export default function ForgotPassword() {
-  const [email, setemail] = useState('');
-  const [getpasswordotp] = useGetPasswordOtpMutation();
+  const [email, setemail] = useState('')
+  const [getpasswordotp] = useGetPasswordOtpMutation()
 
-  const handleresetpassword = () =>{
+  const handleresetpassword = () => {
     getpasswordotp({
-      variables : {
-        email
-      }
+      variables: {
+        email,
+      },
     })
-    setemail(" ")
+    setemail(' ')
   }
   return (
     <Flex
@@ -30,6 +31,7 @@ export default function ForgotPassword() {
       justify={'center'}
       backgroundColor='#2e2d2d'
     >
+      <Navbar isHome={true} isJMT={true} isLogin={false} isApp={false} />
       <Stack
         spacing={4}
         w={'full'}
@@ -39,6 +41,7 @@ export default function ForgotPassword() {
         boxShadow={'lg'}
         p={6}
         my={12}
+        width='85%'
       >
         <Heading
           lineHeight={1.1}

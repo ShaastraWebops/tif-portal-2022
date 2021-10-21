@@ -14,30 +14,31 @@ import {
 } from '@chakra-ui/react'
 import { useLoginMutation } from '../types/generated/generated'
 import { useHistory } from 'react-router'
+import { Navbar } from './Navbar'
 
 export default function Login() {
   const [email, setemail] = useState('')
   const [password, setpassword] = useState('')
-  const [login] = useLoginMutation();
-  const history = useHistory();
-  const handlelogin = () =>{
+  const [login] = useLoginMutation()
+  const history = useHistory()
+  const handlelogin = () => {
     login({
-      variables : {
-        LoginInput:{
+      variables: {
+        LoginInput: {
           email,
-          password
+          password,
+        },
+      },
+    })
+      .then((res) => {
+        if (res.data?.login?.id) {
+          history.push('/application')
         }
-      }
-    })
-    .then(res => {
-      if(res.data?.login?.id){
-        history.push("/application")
-      }
-    })
-    .catch((err) => console.log(err))
+      })
+      .catch((err) => console.log(err))
 
-    setemail('');
-    setpassword('');
+    setemail('')
+    setpassword('')
   }
 
   return (
@@ -47,6 +48,7 @@ export default function Login() {
       justify={'center'}
       backgroundColor='#2e2d2d'
     >
+      <Navbar isHome={true} isJMT={true} isLogin={false} isApp={false} />
       <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
         <Stack align={'center'}>
           <Heading fontSize={'4xl'} textColor='#ff7e20'>
