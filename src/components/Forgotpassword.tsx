@@ -22,6 +22,10 @@ export default function ForgotPassword() {
       variables: {
         email,
       },
+    }).then(res=>{
+      if(res.data?.getPasswordOTP){
+        history.push("/forgotpasswordOTP")
+      }
     })
     setemail(' ')
   }
