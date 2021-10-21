@@ -30,7 +30,7 @@ export default function Login() {
       }
     })
     .then(res => {
-      if(res.data?.login?.id && !res.data.login.isSubmitted){
+      if(res.data?.login?.id){
         history.push("/application")
       }
     })

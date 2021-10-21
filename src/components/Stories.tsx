@@ -28,6 +28,7 @@ function Stories() {
           flexDirection={'column'}
           alignItems={'center'}
           className='stories'
+          height={'500px'}
         >
           <Heading textColor='#ff7e20' m={3} p={3}>
             Success Stories

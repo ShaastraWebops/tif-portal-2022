@@ -125,16 +125,17 @@ function Rules() {
         maxWidth='100%'
         overflowX='hidden'
       >
-        <Heading textColor='#ff7e20' marginTop={5} m={2} p={2} marginBottom={6}>
+        <Heading textColor='#ff7e20'  p={2} marginBottom={6}>
           Rules and Regulations
         </Heading>
-        <Box marginBottom={3} p={2}>
+        <Box marginBottom={3} p={2} marginTop={15}>
           <Flex>
             <Flex
               float='left'
               flexDirection='column'
               width='50%'
               marginLeft={12}
+              
             >
               <Flex>
                 <Text
@@ -294,7 +295,7 @@ function Rules() {
                 )}
               </Flex>
             </Flex>
-            <Box float='right' width='50%' marginRight={24} textColor='white'>
+            <Box float='right' width='50%' marginRight={24} textColor='white' fontSize={'xl'}>
               {rule1 ? (
                 <UnorderedList>
                   <ListItem>

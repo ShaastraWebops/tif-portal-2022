@@ -50,7 +50,7 @@ export const Navbar = () => {
               w='100%'
               color='#ff7e20'
             >
-              Explore JMT
+              JMT
             </Button>
           </Link>
         </Flex>

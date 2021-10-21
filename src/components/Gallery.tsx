@@ -73,7 +73,7 @@ function Gallery() {
               <Image
                 boxSize='500px'
                 objectFit='cover'
-                src={Image4}
+                src={Image3}
                 alt='Gallery'
               />
             </Box>

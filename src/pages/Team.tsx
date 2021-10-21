@@ -25,7 +25,7 @@ export default function Team() {
         teamid : id
     }})
 
-    console.log(data)
+    console.log(data?.getTeamById.project)
   return (
     <Flex
       minH={'100vh'}

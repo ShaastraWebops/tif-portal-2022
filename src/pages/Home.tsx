@@ -37,7 +37,7 @@ const Home = () => {
           <Navbar />
           <Box bg='#ff7e20' width={'50%'} textColor='white' p={2} m={2}>
             <Center>
-              <Text className='shaastra-title'>SHASSTRA'22</Text>
+              <Text className='shaastra-title'>SHAASTRA'22</Text>
             </Center>
           </Box>
           <Heading
@@ -158,17 +158,37 @@ const Home = () => {
               </Center>
             </SimpleGrid>
           </Box>
+          </Flex>
+          </Center>
+          <Center minHeight={'100vh'} backgroundColor='#2e2d2d' p={3}>
+        <Flex
+          flexDirection={'column'}
+          alignItems='center'
+          justifyItems='center'
+        >
           <History />
+          </Flex>
+          </Center>
+          <Center minHeight={'100vh'} backgroundColor='#2e2d2d' p={3}>
+        <Flex
+          flexDirection={'column'}
+          alignItems='center'
+          justifyItems='center'
+        >
+        
           <Gallery />
           <Timeline />
-          <Flex
-            flexDirection='column'
-            alignItems='center'
-            m={2}
-            marginTop={10}
-            justifyContent='center'
-          >
-            <Heading textColor='#ff7e20' m={2} p={2}>
+          </Flex>
+          </Center>
+         
+
+        <Center minHeight={'100vh'} backgroundColor='#2e2d2d'>
+         <Flex
+          flexDirection={'column'}
+          alignItems='center'
+          justifyItems='center'
+        >
+            <Heading textColor='#ff7e20' marginBottom={10} p={2}>
               What's in Store
             </Heading>
             <SimpleGrid
@@ -177,6 +197,9 @@ const Home = () => {
               width='100%'
               textColor='white'
               textAlign='justify'
+              marginTop={10}
+              marginBottom={10}
+
             >
               <Box m={3} height='250px'>
                 <Center>
@@ -227,10 +250,21 @@ const Home = () => {
                 </Box>
               </Center>
             </SimpleGrid>
-          </Flex>
-          <Rules />
+            <Rules />
+
+            </Flex>
+            </Center>
+            
+
+          
+          <Center minHeight={'100vh'} backgroundColor='#2e2d2d' p={3}>
+         <Flex
+          flexDirection={'column'}
+          alignItems='center'
+          justifyItems='center'
+        >
           <Stories />
-          <Partners />
+          {/* <Partners /> */}
           <Contact />
         </Flex>
       </Center>
