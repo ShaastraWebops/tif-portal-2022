@@ -15,6 +15,7 @@ import {
   IconButton,
   Textarea,
 } from '@chakra-ui/react'
+import { Navbar } from './Navbar'
 import { useRegisterUserMutation } from '../types/generated/generated'
 import { DeleteIcon } from '@chakra-ui/icons'
 import { useHistory } from 'react-router'
@@ -23,35 +24,31 @@ export default function Register() {
   const [email, setemail] = useState('')
   const [password, setpassword] = useState('')
   const [username, setusername] = useState('')
-  const history = useHistory();
-  const [eerror , setEerror] = useState(false);
-  const [perror , setPerror] = useState(false);
-  const [register] = useRegisterUserMutation();
+  const history = useHistory()
+  const [eerror, setEerror] = useState(false)
+  const [perror, setPerror] = useState(false)
+  const [register] = useRegisterUserMutation()
 
-  const handleregister = () =>{
-
+  const handleregister = () => {
     register({
-      variables : {
-        CreateUserInput : {
+      variables: {
+        CreateUserInput: {
           email,
           password,
-          name : username
+          name: username,
+        },
+      },
+    })
+      .then((res) => {
+        if (res.data?.registerUser) {
+          history.push('/verifyOTP')
         }
-      }
-    })
-    .then(res => {
-      if(res.data?.registerUser){
-        history.push("/verifyOTP")
-      }
-    })
-    .catch(err => console.log(err))
-    setemail('');
-    setpassword('');
-    setusername('');
-
+      })
+      .catch((err) => console.log(err))
+    setemail('')
+    setpassword('')
+    setusername('')
   }
- 
-   
 
   return (
     <Flex
@@ -61,7 +58,7 @@ export default function Register() {
       backgroundColor='#2e2d2d'
       flexDirection='column'
     >
-      {' '}
+      <Navbar isHome={true} isJMT={true} isLogin={true} isApp={false} />{' '}
       <Heading
         fontSize={'4xl'}
         textColor='#ff7e20'
@@ -76,7 +73,7 @@ export default function Register() {
         boxShadow={'lg'}
         p={8}
         bgColor='white'
-        width='50%'
+        width='75%'
       >
         <Stack
           spacing={4}
@@ -120,19 +117,16 @@ export default function Register() {
                 type='email'
                 name='email'
                 variant='outline'
-                borderColor={ eerror ? "red" : 'gray.500'
-              }
+                borderColor={eerror ? 'red' : 'gray.500'}
                 placeholder='Re-enter Email address'
                 _placeholder={{ color: 'gray.500' }}
                 color='black'
-                onChange={e => {
-                  if(e.target.value === email){
+                onChange={(e) => {
+                  if (e.target.value === email) {
                     setEerror(false)
-                  }else{
+                  } else {
                     setEerror(true)
-
                   }
-
                 }}
               />
             </FormControl>
@@ -158,19 +152,16 @@ export default function Register() {
                 type='password'
                 name='password'
                 variant='outline'
-                borderColor={ perror ? "red" : 'gray.500'
-              }
+                borderColor={perror ? 'red' : 'gray.500'}
                 placeholder='Re-enter password'
                 _placeholder={{ color: 'gray.500' }}
                 color='black'
-                onChange={e => {
-                  if(e.target.value === password){
+                onChange={(e) => {
+                  if (e.target.value === password) {
                     setPerror(false)
-                  }else{
+                  } else {
                     setPerror(true)
-
                   }
-
                 }}
               />
             </FormControl>
