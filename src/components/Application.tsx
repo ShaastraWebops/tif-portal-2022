@@ -25,6 +25,7 @@ import {
 } from '../types/generated/generated'
 import { useHistory } from 'react-router'
 import { Link } from 'react-router-dom'
+import { Navbar } from './Navbar'
 
 export default function Application() {
   const [members, setMembers] = React.useState([
@@ -133,7 +134,7 @@ export default function Application() {
       backgroundColor='#2e2d2d'
       flexDirection='column'
     >
-      {' '}
+      <Navbar isHome={true} isJMT={true} isLogin={false} isApp={false} />{' '}
       <Heading
         fontSize={'4xl'}
         textColor='#ff7e20'
