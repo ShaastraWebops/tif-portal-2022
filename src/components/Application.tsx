@@ -18,7 +18,7 @@ import {
   AlertIcon,
 } from '@chakra-ui/react'
 import { AddIcon, DeleteIcon } from '@chakra-ui/icons'
-import { useCreateTeamandRegisterMutation, useFillProjectMutation, useMeQuery } from '../types/generated/generated'
+import { useCreateTeamandRegisterMutation, useFillProjectMutation, useLogoutUserMutation, useMeQuery, useUpdateProjectMutation } from '../types/generated/generated'
 import { useHistory } from 'react-router'
 import { Link } from 'react-router-dom';
 
@@ -111,6 +111,27 @@ export default function Application() {
       .catch(err => console.log(err))
   }
 
+  const [updateproject] = useUpdateProjectMutation();
+  const handleUpdate = async () =>{
+    await updateproject({
+      variables :{
+        ProjectInput:{
+          title,
+          category,
+          Q1,
+          Q2,
+          Q3,
+          Q4,
+          Q5,
+          Q6,
+          Q7,
+          videolink
+        }
+      }
+    }).catch(err => console.log(err))
+  }
+  const [logout] = useLogoutUserMutation();
+  
   return (
     <Flex
       minH={'100vh'}
@@ -130,8 +151,21 @@ export default function Application() {
       >
         Complete your Application
       </Heading>
+      <Box width = "75%"  p={2} >
+      <Text float={'right'} color={"#ff7e20"} fontSize={'2xl'}
+        mx={2}
+         _hover={{
+           cursor : "pointer"
+        }}
+         onClick={ async ()=>{
+           await logout().then(res => {
+             if(res.data?.logoutUser){
+              history.replace("/")
+             }
+           })
+         }}>Logout</Text>
       {
-        data?.me?.isSubmitted ? <Box width = "75%"  p={2} >
+        data?.me?.isSubmitted ? 
          <Text float={'right'} color={"#ff7e20"} fontSize={'2xl'}
          _hover={{
            cursor : "pointer"
@@ -139,8 +173,9 @@ export default function Application() {
          onClick={()=>{
            history.push(`/team/${data?.me?.team?.id}`)
          }}>Submitted Application</Text>
-        </Box> : null
+         : null   
       }
+        </Box> 
       <SimpleGrid
         rounded={'lg'}
         boxShadow={'lg'}
@@ -164,6 +199,7 @@ export default function Application() {
         </Alert>
         ) : null
      }
+       { !data?.me?.isSubmitted ? 
         <Stack
           spacing={4}
           marginLeft={2}
@@ -313,9 +349,9 @@ export default function Application() {
                   })
                 }
           
-          {
-          members.length < 4 ? (
             <Flex justifyContent='center'>
+            {
+              members.length < 4 && !alert ? (
               <Button
                 bg={'#ff7e20'}
                 color={'white'}
@@ -330,6 +366,9 @@ export default function Application() {
               >
                 Add team member
               </Button>
+              ) : (
+            <div></div>
+          )}
               <Button
               mx={2}
                 bg={'#ff7e20'}
@@ -345,10 +384,9 @@ export default function Application() {
                 Add Team
               </Button>
             </Flex>
-          ) : (
-            <div></div>
-          )}
-        </Stack>
+         
+        </Stack> : null
+       }
         <Stack
           spacing={4}
           marginLeft={2}
@@ -595,9 +633,9 @@ export default function Application() {
                 textColor: 'black',
                 border: '2px solid black',
               }}
-              onClick={handlefillproject}
+              onClick={data?.me?.isSubmitted ? handleUpdate : handlefillproject}
             >
-              Submit
+              {data?.me?.isSubmitted ? "Update" : "Submit"}
             </Button>
           </Flex>
         </Stack>

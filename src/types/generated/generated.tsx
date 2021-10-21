@@ -50,6 +50,7 @@ export type Mutation = {
   registerUser: Scalars['Boolean'];
   resendVerificationMail: Scalars['Boolean'];
   resetPassword: Scalars['Boolean'];
+  updateProject: Scalars['Boolean'];
   verifyUser: Scalars['String'];
 };
 
@@ -91,6 +92,11 @@ export type MutationResendVerificationMailArgs = {
 
 export type MutationResetPasswordArgs = {
   data: ResetPasswordInput;
+};
+
+
+export type MutationUpdateProjectArgs = {
+  data: ProjectInput;
 };
 
 
@@ -228,6 +234,13 @@ export type FillProjectMutationVariables = Exact<{
 
 
 export type FillProjectMutation = { fillProject: boolean };
+
+export type UpdateProjectMutationVariables = Exact<{
+  ProjectInput: ProjectInput;
+}>;
+
+
+export type UpdateProjectMutation = { updateProject: boolean };
 
 export type CreateTeamandRegisterMutationVariables = Exact<{
   createTeamAndRegisterData: CreateTeamInput;
@@ -493,6 +506,37 @@ export function useFillProjectMutation(baseOptions?: ApolloReactHooks.MutationHo
 export type FillProjectMutationHookResult = ReturnType<typeof useFillProjectMutation>;
 export type FillProjectMutationResult = ApolloReactCommon.MutationResult<FillProjectMutation>;
 export type FillProjectMutationOptions = ApolloReactCommon.BaseMutationOptions<FillProjectMutation, FillProjectMutationVariables>;
+export const UpdateProjectDocument = gql`
+    mutation updateProject($ProjectInput: ProjectInput!) {
+  updateProject(data: $ProjectInput)
+}
+    `;
+export type UpdateProjectMutationFn = ApolloReactCommon.MutationFunction<UpdateProjectMutation, UpdateProjectMutationVariables>;
+
+/**
+ * __useUpdateProjectMutation__
+ *
+ * To run a mutation, you first call `useUpdateProjectMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateProjectMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateProjectMutation, { data, loading, error }] = useUpdateProjectMutation({
+ *   variables: {
+ *      ProjectInput: // value for 'ProjectInput'
+ *   },
+ * });
+ */
+export function useUpdateProjectMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<UpdateProjectMutation, UpdateProjectMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useMutation<UpdateProjectMutation, UpdateProjectMutationVariables>(UpdateProjectDocument, options);
+      }
+export type UpdateProjectMutationHookResult = ReturnType<typeof useUpdateProjectMutation>;
+export type UpdateProjectMutationResult = ApolloReactCommon.MutationResult<UpdateProjectMutation>;
+export type UpdateProjectMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateProjectMutation, UpdateProjectMutationVariables>;
 export const CreateTeamandRegisterDocument = gql`
     mutation createTeamandRegister($createTeamAndRegisterData: CreateTeamInput!) {
   createTeamAndRegister(data: $createTeamAndRegisterData)

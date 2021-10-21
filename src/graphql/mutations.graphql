@@ -32,6 +32,9 @@ mutation fillProject($ProjectInput: ProjectInput!) {
   fillProject(data: $ProjectInput)
 }
 
+mutation updateProject($ProjectInput: ProjectInput!) {
+  updateProject(data: $ProjectInput)
+}
  mutation createTeamandRegister($createTeamAndRegisterData: CreateTeamInput!){
     createTeamAndRegister(data: $createTeamAndRegisterData)
   }

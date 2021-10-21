@@ -191,7 +191,7 @@ export default function Team() {
                              <Image src={phone} width="15%"></Image>
                              <Box textAlign="center" marginLeft={2}  >{member.contactno}</Box>
                          </Flex>
-                         <Box fontSize="2xl" margin="auto" marginTop={2}>College name</Box>
+                         <Box fontSize="2xl" margin="auto" marginTop={2}>{member.institution}</Box>
                          <Flex alignSelf="center" width="90%" justifyContent="space-between" marginTop={4} marginBottom={2}>
                              {/* <Image src={p}  width="15%"></Image> */}
                              <Box textAlign="center" margin="auto">{member.city}, <br /> {member.state}</Box>
