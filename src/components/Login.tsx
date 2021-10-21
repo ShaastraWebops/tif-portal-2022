@@ -11,6 +11,8 @@ import {
   Button,
   Heading,
   Text,
+  Alert,
+  AlertIcon,
 } from '@chakra-ui/react'
 import { useLoginMutation } from '../types/generated/generated'
 import { useHistory } from 'react-router'
@@ -21,6 +23,7 @@ export default function Login() {
   const [password, setpassword] = useState('')
   const [login] = useLoginMutation()
   const history = useHistory()
+  const [alert , setAlert] = React.useState();
   const handlelogin = () => {
     login({
       variables: {
@@ -35,7 +38,7 @@ export default function Login() {
           history.push('/application')
         }
       })
-      .catch((err) => console.log(err))
+      .catch((err) => setAlert(err.message))
 
     setemail('')
     setpassword('')
@@ -55,11 +58,21 @@ export default function Login() {
             Login to your account
           </Heading>
         </Stack>
+        
         <Box rounded={'lg'} boxShadow={'lg'} p={8} bgColor='white'>
           <Stack spacing={4}>
+          {
+          alert ? (
+            <Alert status="error">
+            <AlertIcon />
+            {alert}
+          </Alert>
+          ) : null
+        }
             <FormControl id='email'>
               <FormLabel color='black'>Email address</FormLabel>
               <Input
+                isRequired
                 variant='outline'
                 borderColor='gray.500'
                 placeholder='Enter Email address'
@@ -74,6 +87,7 @@ export default function Login() {
             <FormControl id='password'>
               <FormLabel color='black'>Password</FormLabel>
               <Input
+               isRequired = {true}
                 variant='outline'
                 borderColor='gray.500'
                 placeholder='Enter password'

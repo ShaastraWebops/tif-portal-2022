@@ -38,6 +38,8 @@ export default function Application() {
   const [teamname, setTeamname] = React.useState<string>()
   const [alert, setAlert] = React.useState(false)
   const [salert, setSalert] = React.useState(false)
+  const [ualert, setuAlert] = React.useState(false)
+
   const { data, error, loading } = useMeQuery()
   const history = useHistory()
 
@@ -139,7 +141,12 @@ export default function Application() {
           videolink
         }
       }
-    }).catch(err => console.log(err))
+    }).then(res => {
+      if(res.data?.updateProject){
+        setuAlert(true)
+      }
+    })
+    .catch(err => console.log(err))
   }
   const [logout] = useLogoutUserMutation();
   
@@ -151,7 +158,7 @@ export default function Application() {
       backgroundColor='#2e2d2d'
       flexDirection='column'
     >
-      <Navbar isHome={true} isJMT={true} isLogin={false} isApp={false} />{' '}
+      {/* <Navbar isHome={true} isJMT={true} isLogin={false} isApp={false} />{' '} */}
       <Heading
         fontSize={'4xl'}
         textColor='#ff7e20'
@@ -208,6 +215,12 @@ export default function Application() {
           Application Submitted Sucessefully . Thank You
         </Alert>
         ) : null
+     }{
+       ualert ? ( <Alert status="success">
+       <AlertIcon />
+       Application Updated Sucessefully . Thank You
+     </Alert>
+     ) : null
      }
        { !data?.me?.isSubmitted ? 
         <Stack
@@ -219,7 +232,7 @@ export default function Application() {
           width={'auto'}
         >
           <Text color='black' marginTop={3} fontSize='xl' fontWeight='bold'>
-            Enter your Team Details
+            Enter your Team Details(Once team is created you wont able to change the team members)
           </Text>
           <FormControl id='teamName'>
             <FormLabel color='black'>Team Name</FormLabel>

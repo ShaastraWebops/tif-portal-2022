@@ -14,6 +14,8 @@ import {
   SimpleGrid,
   IconButton,
   Textarea,
+  Alert,
+  AlertIcon,
 } from '@chakra-ui/react'
 import { Navbar } from './Navbar'
 import { useRegisterUserMutation } from '../types/generated/generated'
@@ -28,6 +30,8 @@ export default function Register() {
   const [eerror, setEerror] = useState(false)
   const [perror, setPerror] = useState(false)
   const [register] = useRegisterUserMutation()
+  const [alert , setAlert] = React.useState();
+
 
   const handleregister = () => {
     register({
@@ -44,11 +48,12 @@ export default function Register() {
           history.push('/verifyOTP')
         }
       })
-      .catch((err) => console.log(err))
+      .catch((err) => setAlert(err.message))
     setemail('')
     setpassword('')
     setusername('')
   }
+
 
   return (
     <Flex
@@ -75,6 +80,14 @@ export default function Register() {
         bgColor='white'
         width='75%'
       >
+         {
+          alert ? (
+            <Alert status="error">
+            <AlertIcon />
+            {alert}
+          </Alert>
+          ) : null
+        }
         <Stack
           spacing={4}
           marginLeft={2}

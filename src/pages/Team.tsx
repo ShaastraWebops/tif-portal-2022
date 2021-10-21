@@ -32,7 +32,6 @@ export default function Team() {
     },
   })
 
-  console.log(data?.getTeamById.project)
   return (
     <Flex
       minH={'100vh'}
@@ -43,7 +42,7 @@ export default function Team() {
       className='team'
       width='100vw'
     >
-      <Navbar isHome={true} isJMT={true} isLogin={false} isApp={false} />
+      {/* <Navbar isHome={true} isJMT={true} isLogin={false} isApp={false} /> */}
       <Heading
         fontSize={'6xl'}
         textColor='#ff7e20'
