@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState } from 'react'
 import {
   Flex,
@@ -14,11 +14,13 @@ import {
   Alert,
   AlertIcon,
 } from '@chakra-ui/react'
-import { useLoginMutation } from '../types/generated/generated'
+import { useLoginMutation, UserRole } from '../types/generated/generated'
 import { useHistory } from 'react-router'
 import { Navbar } from './Navbar'
+import { Usercontext } from '../utils/Context'
 
 export default function Login() {
+  const {setRole} = useContext(Usercontext);
   const [email, setemail] = useState('')
   const [password, setpassword] = useState('')
   const [login] = useLoginMutation()
@@ -34,8 +36,12 @@ export default function Login() {
       },
     })
       .then((res) => {
-        if (res.data?.login?.id) {
+        if (res.data?.login?.id && res.data.login.role === UserRole.Leader) {
           history.push('/application')
+        }else if(res.data?.login?.id && res.data.login.role === UserRole.Admin){
+          setRole(res.data.login.role)
+          localStorage.setItem("role",res.data.login.role)
+          history.push("/admin")
         }
       })
       .catch((err) => setAlert(err.message))

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Flex, Heading, SimpleGrid , Link } from '@chakra-ui/react'
+import { Box, Flex, Heading, SimpleGrid , Link, Button, Text } from '@chakra-ui/react'
 import {
   Table,
   Thead,
@@ -12,7 +12,8 @@ import {
 } from "@chakra-ui/react"
 import "../styles/Admin.css"
 import { useState } from 'react'
-import { useGetTeamsQuery } from '../types/generated/generated'
+import { useGetTeamsQuery, useLogoutUserMutation } from '../types/generated/generated'
+import { useHistory } from 'react-router'
 
 export default function Admin() {
 
@@ -39,8 +40,11 @@ export default function Admin() {
 //     }
 //  ]
 
-  let { data , error , loading} = useGetTeamsQuery();
-  console.log(data)
+  const { data , error , loading} = useGetTeamsQuery();
+  console.log(data?.getTeams)
+  const teams  = data?.getTeams;
+  const history = useHistory();
+  const [logout] = useLogoutUserMutation();
   return (
     <Flex
       minH={'100vh'}
@@ -52,16 +56,27 @@ export default function Admin() {
     >
       {' '}
       <Heading
-        fontSize={'6xl'}
+        fontSize={'4xl'}
         textColor='#ff7e20'
         m={2}
         p={2}
-        marginBottom={5}
       >
         Registration Details
       </Heading>
+      <Text float={'right'} color={"#ff7e20"} fontSize={'2xl'}
+        mx={2}
+         _hover={{
+           cursor : "pointer"
+        }}
+         onClick={ async ()=>{
+           await logout().then(res => {
+             if(res.data?.logoutUser){
+              history.replace("/")
+             }
+           })
+         }}>Logout</Text>
       <Box textColor="white" p={3} fontSize="30px">
-        Total teams: 4
+        Total teams: {teams?.length}
       </Box>
       <Flex width="75%" margin="0 auto" marginBottom={3} fontSize="1vw" justifyContent="space-between" >
         <input type="text" placeholder="Search teams..."  onChange={(e:any) => {setFilter(e.target.value)}}/>
@@ -95,22 +110,26 @@ export default function Admin() {
         </Thead>
         <Tbody>
           {
-            filter != "" ? data?.getTeams.map((d,index) => {
-              if(d.name.includes(filter)) return(
+            filter != "" ? (teams?.map((d,index) => {
+              if(d.name.includes(filter)) {
+              return(
                 <Tr>
                    <Td fontSize={'1xl'}>{index+1}</Td>
-                    <Td fontSize={'1xl'}><Link>{d.name}</Link></Td>
-                    <Td fontSize={'1xl'}><Link>{d.project?.title}</Link></Td>
+                    <Td fontSize={'1xl'} ><Text _hover={{cursor : "pointer"}} onClick={()=> history.push(`/team/${d.id}`)
+                    }>{d.name}</Text></Td>
+                    <Td fontSize={'1xl'}>{d.project?.title}</Td>
                     <Td fontSize={'1xl'}>{d.project?.category}</Td>
                 </Tr>
-              ) 
+              ) }
               else return null
-            }) : category != "" ? data?.getTeams.map((d,index) => {
+            })) : category != "" ?
+             teams?.map((d,index) => {
               if(d.project?.category === category) return(
                 <Tr>
                    <Td fontSize={'1xl'}>{index+1}</Td>
-                    <Td fontSize={'1xl'}><Link>{d.name}</Link></Td>
-                    <Td fontSize={'1xl'}><Link>{d.project}</Link></Td>
+                    <Td fontSize={'1xl'}><Text _hover={{cursor : "pointer"}} onClick={()=> history.push(`/team/${d.id}`)
+                    }>{d.name}</Text></Td>
+                    <Td fontSize={'1xl'}>{d.project.title}</Td>
                     <Td fontSize={'1xl'}>{d.project.category}</Td>
                 </Tr>
               ) 
@@ -120,31 +139,14 @@ export default function Admin() {
               return(
                 <Tr>
                    <Td fontSize={'1xl'}>{index+1}</Td>
-                    <Td fontSize={'1xl'}><Link>{d.name}</Link></Td>
-                    <Td fontSize={'1xl'}><Link>{d.project}</Link></Td>
+                    <Td fontSize={'1xl'}><Text _hover={{cursor : "pointer"}} onClick={()=> history.push(`/team/${d.id}`)
+                    }>{d.name}</Text></Td>
+                    <Td fontSize={'1xl'}>{d.project?.title}</Td>
                     <Td fontSize={'1xl'}>{d.project?.category}</Td>
                 </Tr>
               )
             }) 
-          }
-          {/* <Tr>
-            <Td fontSize={'1xl'}>1.</Td>
-            <Td fontSize={'1xl'}><Link>ABC</Link></Td>
-            <Td fontSize={'1xl'}><Link>Foldable House</Link></Td>
-            <Td fontSize={'1xl'}>Home Comfort</Td>
-          </Tr>
-          <Tr>
-            <Td>2.</Td>
-            <Td><Link>ABC</Link></Td>
-            <Td><Link>Non Invasive Measurement of Blood Glucose & Haemoglobin</Link></Td>
-            <Td>Healthcare and sanitation</Td>
-          </Tr>
-          <Tr>
-            <Td>3.</Td>
-            <Td><Link>ABC</Link></Td>
-            <Td><Link>Scavenger robot to eradicate manual scavenging</Link></Td>
-            <Td>Others</Td>
-          </Tr> */}
+          } 
         </Tbody>
       </Table>
 
