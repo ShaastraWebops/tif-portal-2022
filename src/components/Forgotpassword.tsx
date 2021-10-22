@@ -16,15 +16,15 @@ import { useHistory } from 'react-router'
 export default function ForgotPassword() {
   const [email, setemail] = useState('')
   const [getpasswordotp] = useGetPasswordOtpMutation()
-  const history = useHistory();
+  const history = useHistory()
   const handleresetpassword = () => {
     getpasswordotp({
       variables: {
         email,
       },
-    }).then(res=>{
-      if(res.data?.getPasswordOTP){
-        history.push("/forgotpasswordOTP")
+    }).then((res) => {
+      if (res.data?.getPasswordOTP) {
+        history.push('/forgotpasswordOTP')
       }
     })
     setemail(' ')
@@ -36,7 +36,7 @@ export default function ForgotPassword() {
       justify={'center'}
       backgroundColor='#2e2d2d'
     >
-      <Navbar isHome={true} isJMT={true} isLogin={false} isApp={false} />
+      {/**<Navbar isHome={true} isJMT={true} isLogin={false} isApp={false} />**/}
       <Stack
         spacing={4}
         w={'full'}

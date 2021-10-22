@@ -1,7 +1,13 @@
 import React from 'react'
 import { useState } from 'react'
-import { Flex, Button, IconButton, Link } from '@chakra-ui/react'
-import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
+import {
+  Flex,
+  Button,
+  IconButton,
+  Link,
+
+} from '@chakra-ui/react'
+import { HamburgerIcon, CloseIcon} from '@chakra-ui/icons'
 import '../styles/Navbar.css'
 
 interface NavbarProps {
@@ -145,6 +151,7 @@ export const Navbar = (props: NavbarProps) => {
           ) : (
             <div></div>
           )}
+
           {props.isJMT ? (
             <Link href='/jmt' passHref>
               <Button

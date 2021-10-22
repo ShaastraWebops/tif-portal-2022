@@ -12,7 +12,7 @@ function Verification() {
       backgroundColor='#2e2d2d'
       flexDirection='column'
     >
-      <Navbar isHome={true} isJMT={true} isLogin={false} isApp={false} />
+      {/**<Navbar isHome={true} isJMT={true} isLogin={false} isApp={false} />**/}
       <SimpleGrid
         rounded={'lg'}
         boxShadow={'lg'}
