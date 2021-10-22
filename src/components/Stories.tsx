@@ -22,13 +22,13 @@ import storyImage from '../assests/stories.jpg'
 function Stories() {
   return (
     <React.Fragment>
-      <Box alignItems='center'>
+      <Box alignItems='center' maxWidth='100%' overflowX='hidden'>
         <Flex
-          height="100vh"
-          justifyContent="center"
+          justifyContent='center'
           flexDirection={'column'}
           alignItems={'center'}
           className='stories'
+          height={'500px'}
         >
           <Heading textColor='#ff7e20' m={3} p={3}>
             Success Stories

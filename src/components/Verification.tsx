@@ -1,5 +1,7 @@
 import React from 'react'
-import { Flex, Heading, SimpleGrid, Text, Link } from '@chakra-ui/react'
+import { Flex, Heading, SimpleGrid, Text } from '@chakra-ui/react'
+import { Navbar } from './Navbar'
+import { Link } from 'react-router-dom'
 
 function Verification() {
   return (
@@ -10,6 +12,7 @@ function Verification() {
       backgroundColor='#2e2d2d'
       flexDirection='column'
     >
+      {/**<Navbar isHome={true} isJMT={true} isLogin={false} isApp={false} />**/}
       <SimpleGrid
         rounded={'lg'}
         boxShadow={'lg'}
@@ -22,8 +25,11 @@ function Verification() {
         </Heading>
         <Text color='black' fontSize='xl'>
           Email address verified. Please{' '}
-          <Link to='/login' color='teal.600'>
-            Login
+          <Link to='/login'>
+            <Text textColor={'teal.600'} style={{ display: 'inline' }}>
+              {' '}
+              Login
+            </Text>
           </Link>{' '}
           to continue and complete your application.
         </Text>

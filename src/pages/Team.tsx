@@ -1,21 +1,37 @@
 import React from 'react'
-import { 
-    Flex, 
-    Heading,
-    Box, 
-    Table, 
-    Tr, 
-    Td, 
-    Tbody, 
-    Button, 
-    Grid, 
-    GridItem,
-    Image } from '@chakra-ui/react'
-import email from "../assests/Asset 10.png"
-import phone from "../assests/Asset 11.png"
-import "../styles/Admin.css"
+import {
+  Flex,
+  Heading,
+  Box,
+  Table,
+  Tr,
+  Td,
+  Tbody,
+  Button,
+  Grid,
+  GridItem,
+  Image,
+} from '@chakra-ui/react'
+import email from '../assests/Asset 10.png'
+import phone from '../assests/Asset 11.png'
+import '../styles/Admin.css'
+import { useParams } from 'react-router'
+import { Navbar } from '../components/Navbar'
+import {
+  useGetProjectbyteamIdQuery,
+  useGetTeamByIdQuery,
+} from '../types/generated/generated'
 
 export default function Team() {
+  const { id } = useParams<{ id: string }>()
+  console.log(id)
+
+  const { data, error, loading } = useGetTeamByIdQuery({
+    variables: {
+      teamid: id,
+    },
+  })
+
   return (
     <Flex
       minH={'100vh'}
@@ -23,10 +39,10 @@ export default function Team() {
       justify={'center'}
       backgroundColor='#2e2d2d'
       flexDirection='column'
-      className="team"
-      width="100vw"
+      className='team'
+      width='100vw'
     >
-      {' '}
+      {/* <Navbar isHome={true} isJMT={true} isLogin={false} isApp={false} /> */}
       <Heading
         fontSize={'6xl'}
         textColor='#ff7e20'
@@ -34,7 +50,7 @@ export default function Team() {
         p={1}
         marginBottom={0}
       >
-        Team name
+        {data?.getTeamById.name}
       </Heading>
       <Heading
         fontSize={'4xl'}
@@ -42,7 +58,7 @@ export default function Team() {
         textColor='white'
         marginBottom={0}
       >
-        Project name
+        {data?.getTeamById.project?.title}
       </Heading>
       <Heading
         fontSize={'4xl'}
@@ -50,191 +66,121 @@ export default function Team() {
         textColor='#ff7e20'
         marginBottom={5}
       >
-        Category
+        {data?.getTeamById.project?.category}
       </Heading>
       <Box
-      className="team-main-box"
-        width="75%"
-        display="flex"
-        flexDirection="column"
+        className='team-main-box'
+        width='75%'
+        display='flex'
+        flexDirection='column'
       >
-        <Heading 
-            textColor="white"
-            fontSize={'3xl'}
-        >
-            Project details
+        <Heading textColor='white' fontSize={'3xl'}>
+          Project details
         </Heading>
-        <Table 
-            variant="striped" 
-            colorScheme='orange' 
-            backgroundColor='white'
-            marginTop={4}
-            fontSize="1.1vw"
-            borderRadius="10px"
-            className="team-question-grid"
+        <Table
+          variant='striped'
+          colorScheme='orange'
+          backgroundColor='white'
+          marginTop={4}
+          fontSize='1.1vw'
+          borderRadius='10px'
+          className='team-question-grid'
         >
-            <Tbody >
-                <Tr>
-                    <Td fontWeight="bold">Overview</Td>
-                </Tr>
-                <Tr>
-                    <Td>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                    </Td>
-                </Tr>
-                <Tr>
-                    <Td fontWeight="bold">Uniqueness</Td>
-                </Tr>
-                <Tr>
-                    <Td>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                    </Td>
-                </Tr>
-                <Tr>
-                    <Td fontWeight="bold">Technology Implemented </Td>
-                </Tr>
-                <Tr>
-                    <Td>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                    </Td>
-                </Tr>
-                <Tr>
-                    <Td fontWeight="bold">Target crowd </Td>
-                </Tr>
-                <Tr>
-                    <Td>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                    </Td>
-                </Tr>
-                <Tr>
-                    <Td fontWeight="bold">IP Status </Td>
-                </Tr>
-                <Tr>
-                    <Td>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                    </Td>
-                </Tr>
-                <Tr>
-                    <Td fontWeight="bold">Partner Status </Td>
-                </Tr>
-                <Tr>
-                    <Td>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                    </Td>
-                </Tr>
-                <Tr>
-                    <Td fontWeight="bold">What stage is your prototype currently in? Is the prototype already under consideration for incubation by any other programs?</Td>
-                </Tr>
-                <Tr >
-                    <Td borderBottom="none">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                    </Td>
-                </Tr>
-            </Tbody>
+          <Tbody>
+            <Tr>
+              <Td fontWeight='bold'>Overview</Td>
+            </Tr>
+            <Tr>
+              <Td>{data?.getTeamById.project?.Q1}</Td>
+            </Tr>
+            <Tr>
+              <Td fontWeight='bold'>Uniqueness</Td>
+            </Tr>
+            <Tr>
+              <Td>{data?.getTeamById.project?.Q2}</Td>
+            </Tr>
+            <Tr>
+              <Td fontWeight='bold'>Technology Implemented </Td>
+            </Tr>
+            <Tr>
+              <Td>{data?.getTeamById.project?.Q3}</Td>
+            </Tr>
+            <Tr>
+              <Td fontWeight='bold'>Target crowd </Td>
+            </Tr>
+            <Tr>
+              <Td>{data?.getTeamById.project?.Q4}</Td>
+            </Tr>
+            <Tr>
+              <Td fontWeight='bold'>IP Status </Td>
+            </Tr>
+            <Tr>
+              <Td>{data?.getTeamById.project?.Q5}</Td>
+            </Tr>
+            <Tr>
+              <Td fontWeight='bold'>Partner Status </Td>
+            </Tr>
+            <Tr>
+              <Td>{data?.getTeamById.project?.Q6}</Td>
+            </Tr>
+            <Tr>
+              <Td fontWeight='bold'>
+                What stage is your prototype currently in? Is the prototype
+                already under consideration for incubation by any other
+                programs?
+              </Td>
+            </Tr>
+            <Tr>
+              <Td borderBottom='none'>{data?.getTeamById.project?.Q7}</Td>
+            </Tr>
+            <Tr>
+              <Td fontWeight='bold'>Video Link</Td>
+            </Tr>
+            <Tr>
+              <Td borderBottom='none'>
+                {data?.getTeamById.project?.videolink}
+              </Td>
+            </Tr>
+          </Tbody>
         </Table>
-        <Button
-            fontSize="1.2vw"
-             margin="auto"
-             marginTop={4}
-             p={6}
-             width="fit-content"
-              bg={'#ff7e20'}
-              color={'white'}
-              type='submit'
-              _hover={{
-                bg: 'white',
-                textColor: 'black',
-                border: '2px solid black',
-              }}
-        >
-            Video link
-        </Button>
       </Box>
       <Box
-        className="team-main-box"
-         marginTop={8}
-         width="75%"
-         display="flex"
-         flexDirection="column"
-         marginBottom={10}
+        className='team-main-box'
+        marginTop={8}
+        width='75%'
+        display='flex'
+        flexDirection='column'
+        marginBottom={10}
       >
-          <Heading 
-            textColor="white"
-            fontSize={'3xl'}
-        >
-            Team members
+        <Heading textColor='white' fontSize={'3xl'}>
+          Team members
         </Heading>
         <Grid className="member-grid" fontSize={20} width="100%" templateRows="repeat(1, 1fr)" templateColumns="repeat(4, 1fr)" columnGap={3} marginTop={4}>
-            <GridItem backgroundColor="white"p={4} borderRadius="10px">
-               <Flex flexDirection="column" className="member-grid-flex">
-                    <Box fontSize="2xl" margin="auto" marginTop={2}>Name</Box>
-                    <Flex alignSelf="center" width="90%" justifyContent="space-between" marginTop={4}>
-                        <Image src={email} width="15%"></Image>
-                        <Box textAlign="center" marginLeft={2}>abc@gmail.com</Box>
+           {
+               data?.getTeamById.members.map(member => {
+                   return(
+                    <GridItem backgroundColor="white"p={4} borderRadius="10px">
+                    <Flex flexDirection="column" className="member-grid-flex">
+                         <Box fontSize="2xl" margin="auto" marginTop={2}>{member.name}</Box>
+                         <Flex alignSelf="center" width="100%" justifyContent="space-between" marginTop={4}>
+                             <Image src={email} width="10%"></Image>
+                             <Box textAlign="center" marginLeft={2}>{member.email}</Box>
+                         </Flex>
+                         <Flex alignSelf="center" width="90%" justifyContent="space-between" marginTop={4}>
+                             <Image src={phone} width="15%"></Image>
+                             <Box textAlign="center" marginLeft={2}  >{member.contactno}</Box>
+                         </Flex>
+                         <Box fontSize="2xl" margin="auto" marginTop={2}>{member.institution}</Box>
+                         <Flex alignSelf="center" width="90%" justifyContent="space-between" marginTop={4} marginBottom={2}>
+                             {/* <Image src={p}  width="15%"></Image> */}
+                             <Box textAlign="center" margin="auto">{member.city}, <br /> {member.state}</Box>
+                         </Flex>
                     </Flex>
-                    <Flex alignSelf="center" width="90%" justifyContent="space-between" marginTop={4}>
-                        <Image src={phone} width="15%"></Image>
-                        <Box textAlign="center" marginLeft={2}  >234567890</Box>
-                    </Flex>
-                    <Box fontSize="2xl" margin="auto" marginTop={2}>College name</Box>
-                    <Flex alignSelf="center" width="90%" justifyContent="space-between" marginTop={4} marginBottom={2}>
-                        {/* <Image src={p}  width="15%"></Image> */}
-                        <Box textAlign="center" margin="auto">city, <br /> state</Box>
-                    </Flex>
-               </Flex>
-            </GridItem>
-            <GridItem backgroundColor="white"p={4} borderRadius="10px">
-               <Flex flexDirection="column" className="member-grid-flex">
-                    <Box fontSize="2xl" margin="auto" marginTop={2}>Name</Box>
-                    <Flex alignSelf="center" width="90%" justifyContent="space-between" marginTop={4}>
-                        <Image src={email} width="15%"></Image>
-                        <Box textAlign="center" marginLeft={2}>abc@gmail.com</Box>
-                    </Flex>
-                    <Flex alignSelf="center" width="90%" justifyContent="space-between" marginTop={4}>
-                        <Image src={phone} width="15%"></Image>
-                        <Box textAlign="center" marginLeft={2}  >234567890</Box>
-                    </Flex>
-                    <Box fontSize="2xl" margin="auto" marginTop={2}>College name</Box>
-                    <Flex alignSelf="center" width="90%" justifyContent="space-between" marginTop={4} marginBottom={2}>
-                        {/* <Image src={p}  width="15%"></Image> */}
-                        <Box textAlign="center" margin="auto">city, <br /> state</Box>
-                    </Flex>
-               </Flex>
-            </GridItem><GridItem backgroundColor="white"p={4} borderRadius="10px">
-               <Flex flexDirection="column" className="member-grid-flex">
-                    <Box fontSize="2xl" margin="auto" marginTop={2}>Name</Box>
-                    <Flex alignSelf="center" width="90%" justifyContent="space-between" marginTop={4}>
-                        <Image src={email} width="15%"></Image>
-                        <Box textAlign="center" marginLeft={2}>abc@gmail.com</Box>
-                    </Flex>
-                    <Flex alignSelf="center" width="90%" justifyContent="space-between" marginTop={4}>
-                        <Image src={phone} width="15%"></Image>
-                        <Box textAlign="center" marginLeft={2}  >234567890</Box>
-                    </Flex>
-                    <Box fontSize="2xl" margin="auto" marginTop={2}>College name</Box>
-                    <Flex alignSelf="center" width="90%" justifyContent="space-between" marginTop={4} marginBottom={2}>
-                        {/* <Image src={p}  width="15%"></Image> */}
-                        <Box textAlign="center" margin="auto">city, <br /> state</Box>
-                    </Flex>
-               </Flex>
-            </GridItem><GridItem backgroundColor="white"p={4} borderRadius="10px">
-               <Flex flexDirection="column" className="member-grid-flex">
-                    <Box fontSize="2xl" margin="auto" marginTop={2}>Name</Box>
-                    <Flex alignSelf="center" width="90%" justifyContent="space-between" marginTop={4}>
-                        <Image src={email} width="15%"></Image>
-                        <Box textAlign="center" marginLeft={2}>abc@gmail.com</Box>
-                    </Flex>
-                    <Flex alignSelf="center" width="90%" justifyContent="space-between" marginTop={4}>
-                        <Image src={phone} width="15%"></Image>
-                        <Box textAlign="center" marginLeft={2}  >234567890</Box>
-                    </Flex>
-                    <Box fontSize="2xl" margin="auto" marginTop={2}>College name</Box>
-                    <Flex alignSelf="center" width="90%" justifyContent="space-between" marginTop={4} marginBottom={2}>
-                        {/* <Image src={p}  width="15%"></Image> */}
-                        <Box textAlign="center" margin="auto">city, <br /> state</Box>
-                    </Flex>
-               </Flex>
-            </GridItem>
+                 </GridItem>
+                   )
+               })
+           }
+           
         </Grid>
       </Box>
     </Flex>

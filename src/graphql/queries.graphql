@@ -1,0 +1,87 @@
+query getUsers
+{
+  getUsers
+  {
+    id,
+    name,
+    email,
+    isVerified,
+    institution,
+    contactno,
+    city,
+    state,
+    role
+  }
+}
+
+
+query getTeams
+{
+  getTeams
+  {
+    id,
+    name,
+    project{
+        id
+        title
+        category
+    }
+  }
+}
+
+query me{
+  me{
+    id
+    isSubmitted
+    team{
+      id
+      members{
+        name
+        email
+      }
+    }
+  }
+}
+
+query getProjectbyteamId($teamid: String!){
+    getProjectbyteamId(teamid: $teamid){
+        id,
+        title,
+        category,
+        Q1,
+        Q2,
+        Q3,
+        Q4,
+        Q5,
+        Q6,
+        Q7,
+        videolink
+    }
+}
+
+query getTeamById($teamid: String!){
+    getTeamById(teamid: $teamid){
+       name,
+       project{
+          id,
+        title,
+        category,
+        Q1,
+        Q2,
+        Q3,
+        Q4,
+        Q5,
+        Q6,
+        Q7,
+        videolink
+       },
+       members{
+         name
+         email
+         contactno
+         institution
+         city
+         state
+       }
+    }
+}

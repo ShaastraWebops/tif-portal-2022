@@ -18,11 +18,11 @@ import React from 'react'
 function Timeline() {
   return (
     <React.Fragment>
-      <Flex flexDirection='column' alignItems='center' height="100vh" justifyContent="center">
+      <Flex flexDirection='column' alignItems='center' justifyContent='center'>
         <Heading textColor='#ff7e20' marginTop={5} marginBottom={10}>
           Structure and Timeline
         </Heading>
-        <Box>
+        <Box textColor={'white'}>
           <div className='steps-timeline'>
             <div className='steps-one'>
               <CircularProgress

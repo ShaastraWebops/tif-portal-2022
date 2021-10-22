@@ -1,33 +1,46 @@
 import React from 'react'
-import { Flex, Heading, Link, Box, Table, Th, Tr, Td, Tbody, Tfoot, Thead } from '@chakra-ui/react'
+import { Box, Flex, Heading, SimpleGrid , Link } from '@chakra-ui/react'
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+} from "@chakra-ui/react"
 import "../styles/Admin.css"
 import { useState } from 'react'
+import { useGetTeamsQuery } from '../types/generated/generated'
 
 export default function Admin() {
 
   const [filter, setFilter] = useState("") 
   const [category, setCategory] = useState("")
-  const data = [
-    {
-      no: '1', 
-      name: 'ABC', 
-      project: 'Foldable House',
-      category: 'Home Comfort'
-    },
-    {
-      no: '1', 
-      name: 'ABC', 
-      project: 'Non Invasive Measurement of Blood Glucose & Haemoglobin',
-      category: 'Healthcare and Sanitation'
-    },
-    {
-      no: '1', 
-      name: 'ABC', 
-      project: '	Scavenger robot to eradicate manual scavenging',
-      category: 'Others'
-    }
- ]
+//   const data = [
+//     {
+//       no: '1', 
+//       name: 'ABC', 
+//       project: 'Foldable House',
+//       category: 'Home Comfort'
+//     },
+//     {
+//       no: '1', 
+//       name: 'ABC', 
+//       project: 'Non Invasive Measurement of Blood Glucose & Haemoglobin',
+//       category: 'Healthcare and Sanitation'
+//     },
+//     {
+//       no: '1', 
+//       name: 'ABC', 
+//       project: '	Scavenger robot to eradicate manual scavenging',
+//       category: 'Others'
+//     }
+//  ]
 
+  let { data , error , loading} = useGetTeamsQuery();
+  console.log(data)
   return (
     <Flex
       minH={'100vh'}
@@ -82,34 +95,34 @@ export default function Admin() {
         </Thead>
         <Tbody>
           {
-            filter != "" ? data.map(d => {
+            filter != "" ? data?.getTeams.map((d,index) => {
               if(d.name.includes(filter)) return(
                 <Tr>
-                   <Td fontSize={'1xl'}>{d.no}</Td>
+                   <Td fontSize={'1xl'}>{index+1}</Td>
                     <Td fontSize={'1xl'}><Link>{d.name}</Link></Td>
-                    <Td fontSize={'1xl'}><Link>{d.project}</Link></Td>
-                    <Td fontSize={'1xl'}>{d.category}</Td>
+                    <Td fontSize={'1xl'}><Link>{d.project?.title}</Link></Td>
+                    <Td fontSize={'1xl'}>{d.project?.category}</Td>
                 </Tr>
               ) 
               else return null
-            }) : category != "" ? data.map(d => {
-              if(d.category === category) return(
+            }) : category != "" ? data?.getTeams.map((d,index) => {
+              if(d.project?.category === category) return(
                 <Tr>
-                   <Td fontSize={'1xl'}>{d.no}</Td>
+                   <Td fontSize={'1xl'}>{index+1}</Td>
                     <Td fontSize={'1xl'}><Link>{d.name}</Link></Td>
                     <Td fontSize={'1xl'}><Link>{d.project}</Link></Td>
-                    <Td fontSize={'1xl'}>{d.category}</Td>
+                    <Td fontSize={'1xl'}>{d.project.category}</Td>
                 </Tr>
               ) 
               else return null
             }) :
-            data.map(d => {
+            data?.getTeams.map((d,index) => {
               return(
                 <Tr>
-                   <Td fontSize={'1xl'}>{d.no}</Td>
+                   <Td fontSize={'1xl'}>{index+1}</Td>
                     <Td fontSize={'1xl'}><Link>{d.name}</Link></Td>
                     <Td fontSize={'1xl'}><Link>{d.project}</Link></Td>
-                    <Td fontSize={'1xl'}>{d.category}</Td>
+                    <Td fontSize={'1xl'}>{d.project?.category}</Td>
                 </Tr>
               )
             }) 

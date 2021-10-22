@@ -25,7 +25,13 @@ import Image6 from '../assests/Image6.jpg'
 function Gallery() {
   return (
     <React.Fragment>
-      <Flex  flexDirection={'column'} alignItems={'center'} height="100vh" justifyContent="center">
+      <Flex
+        flexDirection={'column'}
+        alignItems={'center'}
+        justifyContent='center'
+        maxWidth='100%'
+        overflowX='hidden'
+      >
         <Heading textColor='#ff7e20' m={3} p={3}>
           Gallery
         </Heading>
@@ -67,7 +73,7 @@ function Gallery() {
               <Image
                 boxSize='500px'
                 objectFit='cover'
-                src={Image4}
+                src={Image3}
                 alt='Gallery'
               />
             </Box>

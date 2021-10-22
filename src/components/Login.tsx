@@ -11,11 +11,38 @@ import {
   Button,
   Heading,
   Text,
+  Alert,
+  AlertIcon,
 } from '@chakra-ui/react'
+import { useLoginMutation } from '../types/generated/generated'
+import { useHistory } from 'react-router'
+import { Navbar } from './Navbar'
 
 export default function Login() {
   const [email, setemail] = useState('')
   const [password, setpassword] = useState('')
+  const [login] = useLoginMutation()
+  const history = useHistory()
+  const [alert, setAlert] = React.useState()
+  const handlelogin = () => {
+    login({
+      variables: {
+        LoginInput: {
+          email,
+          password,
+        },
+      },
+    })
+      .then((res) => {
+        if (res.data?.login?.id) {
+          history.push('/application')
+        }
+      })
+      .catch((err) => setAlert(err.message))
+
+    setemail('')
+    setpassword('')
+  }
 
   return (
     <Flex
@@ -24,17 +51,26 @@ export default function Login() {
       justify={'center'}
       backgroundColor='#2e2d2d'
     >
+      {/***<Navbar isHome={true} isJMT={true} isLogin={false} isApp={false} />**/}
       <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
         <Stack align={'center'}>
           <Heading fontSize={'4xl'} textColor='#ff7e20'>
             Login to your account
           </Heading>
         </Stack>
+
         <Box rounded={'lg'} boxShadow={'lg'} p={8} bgColor='white'>
           <Stack spacing={4}>
+            {alert ? (
+              <Alert status='error'>
+                <AlertIcon />
+                {alert}
+              </Alert>
+            ) : null}
             <FormControl id='email'>
               <FormLabel color='black'>Email address</FormLabel>
               <Input
+                isRequired
                 variant='outline'
                 borderColor='gray.500'
                 placeholder='Enter Email address'
@@ -49,6 +85,7 @@ export default function Login() {
             <FormControl id='password'>
               <FormLabel color='black'>Password</FormLabel>
               <Input
+                isRequired={true}
                 variant='outline'
                 borderColor='gray.500'
                 placeholder='Enter password'
@@ -87,6 +124,7 @@ export default function Login() {
                   textColor: 'black',
                   border: '2px solid black',
                 }}
+                onClick={handlelogin}
               >
                 Log in
               </Button>

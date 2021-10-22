@@ -38,10 +38,11 @@ function Contact() {
       <Flex
         alignItems='center'
         className='contact'
-        height="100vh"
-        justifyContent="center"
+        justifyContent='center'
         width='100%'
         flexDirection='column'
+        maxWidth='100%'
+        overflowX='hidden'
       >
         <Heading textColor='white' marginTop={5} marginBottom={3}>
           Contact Us

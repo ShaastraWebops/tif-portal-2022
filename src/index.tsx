@@ -4,11 +4,17 @@ import ReactDOM from "react-dom"
 import { App } from "./App"
 import reportWebVitals from "./reportWebVitals"
 import * as serviceWorker from "./serviceWorker"
+import { InMemoryCache , ApolloClient, ApolloProvider, HttpLink  } from "@apollo/client"
+import client from "./graphql"
+
+
 
 ReactDOM.render(
   <React.StrictMode>
+    <ApolloProvider client={client}>
     <ColorModeScript />
     <App />
+    </ApolloProvider>
   </React.StrictMode>,
   document.getElementById("root"),
 )

@@ -1,58 +1,99 @@
 import React from 'react'
 import { useState } from 'react'
-import { Flex, Button, IconButton, Link } from '@chakra-ui/react'
-import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
+import {
+  Flex,
+  Button,
+  IconButton,
+  Link,
+
+} from '@chakra-ui/react'
+import { HamburgerIcon, CloseIcon} from '@chakra-ui/icons'
 import '../styles/Navbar.css'
 
-export const Navbar = () => {
+interface NavbarProps {
+  isHome: boolean
+  isJMT: boolean
+  isLogin: boolean
+  isApp: boolean
+}
+
+export const Navbar = (props: NavbarProps) => {
   const [display, changeDisplay] = useState('none')
 
   return (
-    <Flex>
+    <Flex maxWidth='100%' overflowX='hidden'>
       <Flex className='nav' backgroundColor='gray.100'>
         {/* Desktop */}
         <Flex display={['none', 'none', 'flex', 'flex']}>
-          <Link href='/' passHref>
-            <Button
-              as='a'
-              variant='ghost'
-              aria-label='Home'
-              my={5}
-              w='100%'
-              fontSize='lg'
-              color='#ff7e20'
-            >
-              Home
-            </Button>
-          </Link>
+          {props.isHome ? (
+            <Link href='/' passHref>
+              <Button
+                as='a'
+                variant='ghost'
+                aria-label='Home'
+                my={5}
+                w='100%'
+                fontSize='lg'
+                color='#ff7e20'
+              >
+                Home
+              </Button>
+            </Link>
+          ) : (
+            <div></div>
+          )}
 
-          <Link href='/login' passHref>
-            <Button
-              as='a'
-              variant='ghost'
-              aria-label='Login'
-              my={5}
-              w='100%'
-              fontSize='lg'
-              color='#ff7e20'
-            >
-              Login
-            </Button>
-          </Link>
-
-          <Link href='/jmt' passHref>
-            <Button
-              as='a'
-              variant='ghost'
-              aria-label='Jmt'
-              my={5}
-              fontSize='lg'
-              w='100%'
-              color='#ff7e20'
-            >
-              Explore JMT
-            </Button>
-          </Link>
+          {props.isJMT ? (
+            <Link href='/jmt' passHref>
+              <Button
+                as='a'
+                variant='ghost'
+                aria-label='Jmt'
+                my={5}
+                fontSize='lg'
+                w='100%'
+                color='#ff7e20'
+              >
+                JMT
+              </Button>
+            </Link>
+          ) : (
+            <div></div>
+          )}
+          {props.isApp ? (
+            <Link href='/application' passHref>
+              <Button
+                as='a'
+                variant='ghost'
+                aria-label='Jmt'
+                my={5}
+                fontSize='lg'
+                w='100%'
+                color='#ff7e20'
+              >
+                Application
+              </Button>
+            </Link>
+          ) : (
+            <div></div>
+          )}
+          {props.isLogin ? (
+            <Link href='/login' passHref>
+              <Button
+                as='a'
+                variant='ghost'
+                aria-label='Jmt'
+                my={5}
+                fontSize='lg'
+                w='100%'
+                color='#ff7e20'
+              >
+                Login
+              </Button>
+            </Link>
+          ) : (
+            <div></div>
+          )}
         </Flex>
 
         {/* Mobile */}
@@ -77,7 +118,6 @@ export const Navbar = () => {
         pos='fixed'
         top='0'
         left='0'
-        zIndex={20}
         overflowY='auto'
         flexDir='column'
       >
@@ -94,47 +134,75 @@ export const Navbar = () => {
         </Flex>
 
         <Flex flexDir='column' align='center' color='#ff7e20'>
-          <Link href='/' passHref>
-            <Button
-              as='a'
-              variant='ghost'
-              aria-label='Home'
-              my={5}
-              w='100%'
-              fontSize='lg'
-              color='#ff7e20'
-            >
-              Home
-            </Button>
-          </Link>
+          {props.isHome ? (
+            <Link href='/' passHref>
+              <Button
+                as='a'
+                variant='ghost'
+                aria-label='Home'
+                my={5}
+                w='100%'
+                fontSize='lg'
+                color='#ff7e20'
+              >
+                Home
+              </Button>
+            </Link>
+          ) : (
+            <div></div>
+          )}
 
-          <Link href='/login' passHref>
-            <Button
-              as='a'
-              variant='ghost'
-              aria-label='About'
-              my={5}
-              w='100%'
-              fontSize='lg'
-              color='#ff7e20'
-            >
-              Login
-            </Button>
-          </Link>
-
-          <Link href='/jmt' passHref>
-            <Button
-              as='a'
-              variant='ghost'
-              aria-label='Contact'
-              my={5}
-              fontSize='lg'
-              w='100%'
-              color='#ff7e20'
-            >
-              Explore JMT
-            </Button>
-          </Link>
+          {props.isJMT ? (
+            <Link href='/jmt' passHref>
+              <Button
+                as='a'
+                variant='ghost'
+                aria-label='Home'
+                my={5}
+                w='100%'
+                fontSize='lg'
+                color='#ff7e20'
+              >
+                JMT
+              </Button>
+            </Link>
+          ) : (
+            <div></div>
+          )}
+          {props.isApp ? (
+            <Link href='/application' passHref>
+              <Button
+                as='a'
+                variant='ghost'
+                aria-label='Home'
+                my={5}
+                w='100%'
+                fontSize='lg'
+                color='#ff7e20'
+              >
+                Application
+              </Button>
+            </Link>
+          ) : (
+            <div></div>
+          )}
+          {props.isLogin ? (
+            <Link href='/login' passHref>
+              <Button
+                as='a'
+                variant='ghost'
+                aria-label='Home'
+                my={5}
+                w='100%'
+                fontSize='lg'
+                color='#ff7e20'
+              >
+                Login
+              </Button>
+            </Link>
+          ) : (
+            <div></div>
+          )}
         </Flex>
       </Flex>
     </Flex>
