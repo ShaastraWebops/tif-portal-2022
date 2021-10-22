@@ -30,8 +30,7 @@ export default function Register() {
   const [eerror, setEerror] = useState(false)
   const [perror, setPerror] = useState(false)
   const [register] = useRegisterUserMutation()
-  const [alert , setAlert] = React.useState();
-
+  const [alert, setAlert] = React.useState()
 
   const handleregister = () => {
     register({
@@ -54,7 +53,6 @@ export default function Register() {
     setusername('')
   }
 
-
   return (
     <Flex
       minH={'100vh'}
@@ -63,7 +61,7 @@ export default function Register() {
       backgroundColor='#2e2d2d'
       flexDirection='column'
     >
-      <Navbar isHome={true} isJMT={true} isLogin={true} isApp={false} />{' '}
+      {/**  <Navbar isHome={true} isJMT={true} isLogin={true} isApp={false} />{' '}*/}
       <Heading
         fontSize={'4xl'}
         textColor='#ff7e20'
@@ -80,14 +78,12 @@ export default function Register() {
         bgColor='white'
         width='75%'
       >
-         {
-          alert ? (
-            <Alert status="error">
+        {alert ? (
+          <Alert status='error'>
             <AlertIcon />
             {alert}
           </Alert>
-          ) : null
-        }
+        ) : null}
         <Stack
           spacing={4}
           marginLeft={2}

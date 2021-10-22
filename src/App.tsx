@@ -1,8 +1,5 @@
 import * as React from 'react'
-import {
-  ChakraProvider,
-  theme,
-} from '@chakra-ui/react'
+import { ChakraProvider, theme } from '@chakra-ui/react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import JMT from './pages/JMT'
@@ -17,9 +14,16 @@ import VerifyOtp from './components/VerifyOtp'
 import ForgotPasswordOTP from './components/ForgotpasswordOTP'
 import { Usercontext } from './utils/Context'
 import { UserRole } from './types/generated/generated'
+import Gallery from './components/Gallery'
+import History from './components/History'
+import Contact from './components/Contact'
+import Stories from './components/Stories'
+import Rules from './components/Rules'
+import Timeline from './components/Timeline'
+import About from './components/About'
 
 export const App = () => {
-  const [role, setRole] = React.useState<any | null>("")
+  const [role, setRole] = React.useState<any | null>('')
 
   React.useEffect(() => {
     if(localStorage.getItem("role")){
@@ -46,6 +50,13 @@ export const App = () => {
         <Route exact path='/admin' component={Admin} />
             : null
       }
+       <Route exact path='/about' component={About} />
+        <Route exact path='/gallery' component={Gallery} />
+        <Route exact path='/history' component={History} />
+        <Route exact path='/contact' component={Contact} />
+        <Route exact path='/stories' component={Stories} />
+        <Route exact path='/rules' component={Rules} />
+        <Route exact path='/timeline' component={Timeline} />
       </Usercontext.Provider>
     </Router>
   </ChakraProvider>
