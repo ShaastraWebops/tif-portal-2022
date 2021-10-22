@@ -68,6 +68,7 @@ const Home = () => {
           flexDirection={'column'}
           alignItems='center'
           justifyItems='center'
+          className="about"
         >
           <Heading textColor='#ff7e20' marginTop={2} height="30vh">
             About TIF
