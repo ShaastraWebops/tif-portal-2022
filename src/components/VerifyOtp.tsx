@@ -51,7 +51,7 @@ function VerifyOtp() {
           Verify your mail Id
         </Heading>
         <FormControl id='name'>
-          <FormLabel color='black'>OTP</FormLabel>
+          <FormLabel color='black'>OTP  (Check in the promotions if email not found)</FormLabel>
           <Input
             variant='outline'
             borderColor='gray.500'
