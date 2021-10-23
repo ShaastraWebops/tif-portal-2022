@@ -67,7 +67,8 @@ function ForgotPasswordOTP() {
               <AlertIcon />
               Your password is changed . Please <Text textColor={'teal.600'} style={{ display: 'inline' }} mx={1}>
               {' '}
-              Login
+              <Link href='/login'>Login</Link>
+              
             </Text>
             using new credentials
             </Alert> : null
