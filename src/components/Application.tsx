@@ -16,12 +16,17 @@ import {
   Textarea,
   Alert,
   AlertIcon,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
 } from '@chakra-ui/react'
-import { AddIcon, DeleteIcon } from '@chakra-ui/icons'
+import {  DeleteIcon } from '@chakra-ui/icons'
 import { useCreateTeamandRegisterMutation, useFillProjectMutation, useLogoutUserMutation, useMeQuery, useUpdateProjectMutation } from '../types/generated/generated'
 import { useHistory } from 'react-router'
-import { Link } from 'react-router-dom'
-import { Navbar } from './Navbar'
+
 
 export default function Application() {
   const [members, setMembers] = React.useState([
@@ -89,6 +94,7 @@ export default function Application() {
   const [title, setTitle] = React.useState(' ')
   const [fillproject] = useFillProjectMutation()
   const [othercategory, setOtherCategory] = useState(false)
+  const [vother , setOthers] = useState('');
   const [category, setCategory] = useState('')
   const [Q1, setQ1] = useState('')
   const [Q2, setQ2] = useState('')
@@ -99,12 +105,13 @@ export default function Application() {
   const [Q7, setQ7] = useState('')
   const [videolink, setVideolink] = useState('')
 
-  const handlefillproject = () => {
+  const handlefillproject = (e : any) => {
+    e.preventDefault();
     fillproject({
       variables: {
         ProjectInput: {
           title,
-          category,
+          category : othercategory ? vother : category,
           Q1,
           Q2,
           Q3,
@@ -125,12 +132,13 @@ export default function Application() {
   }
 
   const [updateproject] = useUpdateProjectMutation();
-  const handleUpdate = async () =>{
+  const handleUpdate = async (e : any) =>{
+    e.preventDefault();
     await updateproject({
       variables :{
         ProjectInput:{
           title,
-          category,
+          category : othercategory ? vother : category,
           Q1,
           Q2,
           Q3,
@@ -142,6 +150,7 @@ export default function Application() {
         }
       }
     }).then(res => {
+      console.log(res.data?.updateProject)
       if(res.data?.updateProject){
         setuAlert(true)
       }
@@ -149,6 +158,24 @@ export default function Application() {
     .catch(err => console.log(err))
   }
   const [logout] = useLogoutUserMutation();
+  var {isOpen, onOpen, onClose} = useDisclosure();
+  if(salert || ualert){
+   const onClose = () => {
+      window.location.reload()
+  }
+  return(
+    <Modal isOpen={salert || ualert} onClose={onClose}>
+            <ModalOverlay></ModalOverlay>
+            <ModalContent backgroundColor="#2e2d2d" color="#ff7e20" >
+                <ModalCloseButton onClick={onClose}></ModalCloseButton>
+                <ModalHeader paddingTop="4vh" borderBottom="2px solid #1c1c2bc2" margin="0 1vw" textAlign="center">
+                <h2>{salert ? "Application Submitted Successfully . Thank You" : null}
+                   {ualert ? " Application Updated Successfully . Thank You" : null}</h2>
+                </ModalHeader>
+            </ModalContent>
+        </Modal>
+      
+  )}
   
   return (
     <Flex
@@ -189,7 +216,7 @@ export default function Application() {
         }}
          onClick={()=>{
            history.push(`/team/${data?.me?.team?.id}`)
-         }}>Submitted Application</Text>
+         }}>View Submitted Application |</Text>
          : null   
       }
         </Box> 
@@ -208,21 +235,9 @@ export default function Application() {
             </Alert>
             ) : null
      } 
-     {
-        (salert) ? (
-          <Alert status="success">
-          <AlertIcon />
-          Application Submitted Sucessefully . Thank You
-        </Alert>
-        ) : null
-     }{
-       ualert ? ( <Alert status="success">
-       <AlertIcon />
-       Application Updated Sucessefully . Thank You
-     </Alert>
-     ) : null
-     }
+ 
        { !data?.me?.isSubmitted ? 
+       <form>
         <Stack
           spacing={4}
           marginLeft={2}
@@ -234,7 +249,7 @@ export default function Application() {
           <Text color='black' marginTop={3} fontSize='xl' fontWeight='bold'>
             Enter your Team Details(Once team is created you wont able to change the team members)
           </Text>
-          <FormControl id='teamName'>
+          <FormControl id='teamName' isRequired>
             <FormLabel color='black'>Team Name</FormLabel>
             <Input
               type='text'
@@ -253,8 +268,11 @@ export default function Application() {
           {
           members.map((member, index) => {
             return (
+
               <React.Fragment key={index}>
+                
                 <Box key={index}>
+                  
                   <Text
                     color='black'
                     fontWeight='medium'
@@ -281,7 +299,7 @@ export default function Application() {
                   </Text>
 
                   <SimpleGrid columns={[1, 2]} spacing={2} marginBottom={1}>
-                    <FormControl id='name1' marginRight={2}>
+                    <FormControl id='name1' marginRight={2} isRequired>
                       <FormLabel color='black'>Name</FormLabel>
                       <Input
                         variant='outline'
@@ -296,7 +314,7 @@ export default function Application() {
                         }
                       />
                     </FormControl>
-                    <FormControl id='contact1'>
+                    <FormControl id='contact1' isRequired>
                       <FormLabel color='black'>Contact No.</FormLabel>
                       <Input
                         type='number'
@@ -313,7 +331,7 @@ export default function Application() {
                     </FormControl>
                   </SimpleGrid>
                   <SimpleGrid columns={[1, 2]} spacing={2} marginBottom={1}>
-                    <FormControl id='email1' marginRight={2}>
+                    <FormControl id='email1' marginRight={2} isRequired>
                       <FormLabel color='black'>
                         Email address
                         {index === 0 ? '(registration mail)' : null}
@@ -331,7 +349,7 @@ export default function Application() {
                         }
                       />
                     </FormControl>
-                    <FormControl id='college1'>
+                    <FormControl id='college1' isRequired>
                       <FormLabel color='black'>College Name</FormLabel>
                       <Input
                         type='text'
@@ -348,7 +366,7 @@ export default function Application() {
                     </FormControl>
                   </SimpleGrid>
                   <SimpleGrid columns={[1, 2]} spacing={2}>
-                    <FormControl id='city1' marginRight={2}>
+                    <FormControl id='city1' marginRight={2} isRequired>
                       <FormLabel color='black'>City</FormLabel>
                       <Input
                         variant='outline'
@@ -363,7 +381,7 @@ export default function Application() {
                         }
                       />
                     </FormControl>
-                    <FormControl id='state1'>
+                    <FormControl id='state1' isRequired>
                       <FormLabel color='black'>State</FormLabel>
                       <Input
                         type='text'
@@ -420,18 +438,20 @@ export default function Application() {
                 bg={'#ff7e20'}
                 color={'white'}
                 height='50px'
+
                 _hover={{
                   bg: 'white',
                   textColor: 'black',
                   border: '2px solid black',
                 }}
-                onClick={handleaddteam}
+                onSubmit={handleaddteam}
               >
-                Add Team
+                Confirm Team
               </Button>
             </Flex>
-        </Stack> : null
+        </Stack></form>: null
        }
+      
         <Stack
           spacing={4}
           marginLeft={2}
@@ -442,10 +462,11 @@ export default function Application() {
           <Text color='black' marginTop={3} fontSize='xl' fontWeight='bold'>
             Project/Prototype Details
           </Text>
-          <FormControl id='title'>
+          <form onSubmit={data?.me?.isSubmitted ? handleUpdate : handlefillproject}>
+          <FormControl id='title' isRequired>
             <FormLabel color='black'>Title</FormLabel>
             <Input
-              required
+              aria-required = {true}
               variant='outline'
               borderColor='gray.500'
               placeholder='Project title'
@@ -456,7 +477,7 @@ export default function Application() {
               onChange={(e) => setTitle(e.target.value)}
             />
           </FormControl>
-          <FormControl id='category'>
+          <FormControl id='category' isRequired>
             <FormLabel color='black'>Select Category</FormLabel>
             <Select
               placeholder='Select category'
@@ -467,8 +488,8 @@ export default function Application() {
               bgColor='white'
               value={category}
               onChange={(e) => {
-                if (e.currentTarget.value === 'option10') {
-                  setCategory('option10')
+                if (e.currentTarget.value === 'Others') {
+                  setCategory('Others')
                   setOtherCategory(true)
                 } else {
                   setCategory(e.currentTarget.value)
@@ -490,10 +511,10 @@ export default function Application() {
               <option value='Defense and Service'>Defense and Service</option>
               <option value='Transportation'>Transportation</option>
               <option value='Communication'>Communication</option>
-              <option value='option10'>Others (Specify)</option>
+              <option value='Others'>Others (Specify)</option>
             </Select>
             {othercategory ? (
-              <FormControl id='otherCategory' marginTop={2}>
+              <FormControl id='otherCategory' marginTop={2} isRequired>
                 <FormLabel color='black'>Specify other category</FormLabel>
                 <Input
                   required={othercategory}
@@ -504,8 +525,8 @@ export default function Application() {
                   color='black'
                   type='text'
                   name='otherCategory'
-                  value={category}
-                  onChange={(e) => setCategory(e.currentTarget.value)}
+                  value={vother}
+                  onChange={(e) => setOthers(e.currentTarget.value)}
                 />
               </FormControl>
             ) : (
@@ -515,7 +536,7 @@ export default function Application() {
           <Text color='black' marginTop={3} fontSize='lg' fontWeight='bold'>
             Description
           </Text>
-          <FormControl id='question1'>
+          <FormControl id='question1' isRequired>
             <FormLabel color='black'>
               Overview (What problem does it address)
             </FormLabel>
@@ -532,7 +553,7 @@ export default function Application() {
               onChange={(e) => setQ1(e.target.value)}
             />
           </FormControl>
-          <FormControl id='question2'>
+          <FormControl id='question2' isRequired>
             <FormLabel color='black'>
               Uniqueness (Indicate ways in which your solution is better than
               the existing solution, highlighting the unique advantages of your
@@ -551,7 +572,7 @@ export default function Application() {
               onChange={(e) => setQ2(e.target.value)}
             />
           </FormControl>
-          <FormControl id='question3'>
+          <FormControl id='question3' isRequired>
             <FormLabel color='black'>
               Technology Implemented (Describe your technology briefly and
               mention how you’re using it in your solution)
@@ -569,7 +590,7 @@ export default function Application() {
               onChange={(e) => setQ3(e.target.value)}
             />
           </FormControl>
-          <FormControl id='question4'>
+          <FormControl id='question4' isRequired>
             <FormLabel color='black'>
               Target crowd (As a startup, whom will you approach for building
               revenues, i.e., who is your paying customer? Also, do mention if
@@ -588,7 +609,7 @@ export default function Application() {
               onChange={(e) => setQ4(e.target.value)}
             />
           </FormControl>
-          <FormControl id='question5'>
+          <FormControl id='question5' isRequired>
             <FormLabel color='black'>
               IP Status (Have you filed an IP or patent for your solution? If
               yes, kindly explain your IP strategy)
@@ -606,7 +627,7 @@ export default function Application() {
               onChange={(e) => setQ5(e.target.value)}
             />
           </FormControl>
-          <FormControl id='question6'>
+          <FormControl id='question6' isRequired>
             <FormLabel color='black'>
               Partner Status (As a startup, who will be your working partner(s)
               while scaling up? (e.g.: product development, industrial firms,
@@ -628,7 +649,7 @@ export default function Application() {
           <Text color='black' marginTop={3} fontSize='xl' fontWeight='bold'>
             Miscellaneous Questions
           </Text>
-          <FormControl id='question7'>
+          <FormControl id='question7' isRequired>
             <FormLabel color='black'>
               What stage is your prototype currently in? Is the prototype
               already under consideration for incubation by any other programs?
@@ -656,7 +677,7 @@ export default function Application() {
             The duration should be somewhere between 5-10 minutes. The
             submission should be via google drive link.
           </Text>
-          <FormControl id='video'>
+          <FormControl id='video' isRequired>
             <FormLabel color='black'>Enter Video Link</FormLabel>
             <Input
               required
@@ -681,11 +702,11 @@ export default function Application() {
                 textColor: 'black',
                 border: '2px solid black',
               }}
-              onClick={data?.me?.isSubmitted ? handleUpdate : handlefillproject}
             >
               {data?.me?.isSubmitted ? "Update" : "Submit"}
             </Button>
           </Flex>
+          </form>
         </Stack>
       </SimpleGrid>
     </Flex>
