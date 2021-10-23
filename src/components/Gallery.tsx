@@ -55,7 +55,7 @@ function Gallery() {
             </Box>
             <Box>
               <Image
-                boxSize='500px'
+                boxSize='520px'
                 objectFit='cover'
                 src={Image1}
                 alt='Gallery'

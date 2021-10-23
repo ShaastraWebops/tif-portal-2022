@@ -22,7 +22,7 @@ function Timeline() {
         <Heading textColor='#ff7e20' marginTop={5} marginBottom={10}>
           Structure and Timeline
         </Heading>
-        <Box textColor={'white'}>
+        <Box textColor={'white'} fontSize={'lg'}>
           <div className='steps-timeline'>
             <div className='steps-one'>
               <CircularProgress

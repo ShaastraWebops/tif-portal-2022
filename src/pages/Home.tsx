@@ -226,7 +226,7 @@ const Home = () => {
 
           <Box bg='#ff7e20' width={'50%'} textColor='white' p={2} m={2}>
             <Center>
-              <Text className='shaastra-title'>SHAASTRA'22</Text>
+              <Text className='shaastra-title' fontSize={'xl'}>SHAASTRA'22</Text>
             </Center>
           </Box>
           <Heading
@@ -248,8 +248,9 @@ const Home = () => {
                 textColor: 'black',
                 border: '2px solid black',
               }}
+              fontSize={'xl'}
             >
-              <Link href='/register'>Register Now</Link>
+              <Link href='/register' >Register Now</Link>
             </Button>
           </Box>
         </Flex>
@@ -290,7 +291,7 @@ const Home = () => {
           alignItems='center'
           justifyItems='center'
         >
-          <Heading textColor='#ff7e20' marginBottom={10} p={2}>
+          <Heading textColor='#ff7e20' marginBottom={10} p={2} marginTop={[5,5,5,10]}>
             What's in Store
           </Heading>
           <SimpleGrid
@@ -345,7 +346,7 @@ const Home = () => {
                     <Box boxSize='200px'>
                       <Image src={Logo3} alt='logo' objectFit='cover'></Image>
                     </Box>
-                    <Text fontSize='2xl'>Incubation Opportunities</Text>
+                    <Text fontSize='2xl' m={2} p={2}>Incubation Opportunities</Text>
                   </Flex>
                 </Center>
               </Box>
