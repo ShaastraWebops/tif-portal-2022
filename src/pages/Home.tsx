@@ -274,6 +274,7 @@ const Home = () => {
           flexDirection={'column'}
           alignItems='center'
           justifyItems='center'
+          className="about"
         >
           <div id='gallery'>
             {' '}
