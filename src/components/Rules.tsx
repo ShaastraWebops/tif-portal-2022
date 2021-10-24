@@ -452,7 +452,7 @@ function Rules() {
                 )}
               </Flex>
               {rule1 ? (
-                <UnorderedList marginLeft={5} marginRight={5} padding={2}>
+                <UnorderedList textColor={'white'} marginLeft={5} marginRight={5} padding={2}>
                   <ListItem>
                     The Competition is open to all currently enrolled college
                     students: All undergraduates from various programs,
@@ -503,7 +503,7 @@ function Rules() {
                 )}
               </Flex>
               {rule2 ? (
-                <UnorderedList marginLeft={5} marginRight={5} padding={2}>
+                <UnorderedList textColor={'white'} marginLeft={5} marginRight={5} padding={2}>
                   <ListItem>
                     Shortlisted teams should be present and must participate in
                     all webinars and workshops conducted online and during
@@ -544,7 +544,7 @@ function Rules() {
                 )}
               </Flex>
               {rule3 ? (
-                <UnorderedList marginLeft={5} marginRight={5} padding={2}>
+                <UnorderedList textColor={'white'} marginLeft={5} marginRight={5} padding={2}>
                   <ListItem>
                     Professional and Guided mentorship will be provided to the
                     shortlisted teams.
@@ -592,7 +592,7 @@ function Rules() {
                 )}
               </Flex>
               {rule4 ? (
-                <UnorderedList marginLeft={5} marginRight={5} padding={2}>
+                <UnorderedList textColor={'white'} marginLeft={5} marginRight={5} padding={2}>
                   <ListItem>
                     Each business plan and solution developed will be judged by
                     a group of entrepreneurs, venture capitalists, and business
@@ -637,7 +637,7 @@ function Rules() {
                 )}
               </Flex>
               {rule5 ? (
-                <UnorderedList marginLeft={5} marginRight={5} padding={2}>
+                <UnorderedList textColor={'white'} marginLeft={5} marginRight={5} padding={2}>
                   <ListItem>
                     The above-mentioned guidelines and norms cannot anticipate
                     every circumstance, provided the organisers reserve the
@@ -684,7 +684,7 @@ function Rules() {
                 )}
               </Flex>
               {rule6 ? (
-                <UnorderedList marginLeft={5} marginRight={5} padding={2}>
+                <UnorderedList textColor={'white'} marginLeft={5} marginRight={5} padding={2}>
                   <ListItem>
                     We reserve the right to use any information gathered during
                     the course of this event for our future promotions and
