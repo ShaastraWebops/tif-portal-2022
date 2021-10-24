@@ -61,7 +61,7 @@ const JMT = () => {
             </Heading>
             <Flex flexDirection='column' alignItems='center'>
               <Stack
-                direction={['column', 'row']}
+                direction={['column','column-reverse']}
                 spacing='24px'
                 // marginLeft={5}
                 marginRight={5}
@@ -81,14 +81,15 @@ const JMT = () => {
                     more.These webinars also acted as an introduction to JMT.
                   </Text>
                 </Box>
-                <Box>
+                <Center>
+                <Box p={2}>
                   <Image
                     src={Image1}
                     alt='photo'
-                    height={'200px'}
-                    width={'600px'}
+                    
                   ></Image>
                 </Box>
+                </Center>
               </Stack>
               <Stack
                 direction={['column', 'row']}
