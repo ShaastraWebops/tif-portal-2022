@@ -25,7 +25,7 @@ function Contact() {
 
   function submitForm() {
     window.open(
-      `mailto:${'webops@shaastra.org'}?subject=${encodeURIComponent(
+      `mailto:${'tif@shaastra.org'}?subject=${encodeURIComponent(
         subject
       )}&body=${encodeURIComponent(name)} (${encodeURIComponent(
         email
