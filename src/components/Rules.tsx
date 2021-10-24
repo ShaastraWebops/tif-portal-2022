@@ -15,6 +15,8 @@ import {
 } from '@chakra-ui/react'
 import React, { useState, useEffect } from 'react'
 import { TiChevronRight } from 'react-icons/ti'
+import { FaChevronDown } from 'react-icons/fa'
+import '../styles/Rules.css'
 
 function Rules() {
   const [rule1, setrule1] = useState(true)
@@ -125,17 +127,16 @@ function Rules() {
         maxWidth='100%'
         overflowX='hidden'
       >
-        <Heading textColor='#ff7e20'  p={2} marginBottom={6}>
+        <Heading textColor='#ff7e20' p={2} marginBottom={6}>
           Rules and Regulations
         </Heading>
         <Box marginBottom={3} p={2} marginTop={15}>
-          <Flex>
+          <Flex className='desktop-ctn'>
             <Flex
               float='left'
               flexDirection='column'
               width='50%'
               marginLeft={12}
-              
             >
               <Flex>
                 <Text
@@ -295,7 +296,13 @@ function Rules() {
                 )}
               </Flex>
             </Flex>
-            <Box float='right' width='50%' marginRight={24} textColor='white' fontSize={'xl'}>
+            <Box
+              float='right'
+              width='50%'
+              marginRight={24}
+              textColor='white'
+              fontSize={'xl'}
+            >
               {rule1 ? (
                 <UnorderedList>
                   <ListItem>
@@ -410,6 +417,294 @@ function Rules() {
               )}
             </Box>
           </Flex>
+          <Box className='mobile-ctn'>
+            <Flex
+              flexDirection='column'
+              alignItems='center'
+              justifyContent='center'
+              textAlign='center'
+            >
+              <Flex>
+                <Text
+                  id='rule1'
+                  textColor={color1}
+                  fontSize='3xl'
+                  onClick={() => {
+                    handleChange1()
+                  }}
+                  _hover={{
+                    textColor: 'white',
+                  }}
+                >
+                  Eligibility
+                </Text>
+                {rule1 ? (
+                  <Icon
+                    as={FaChevronDown}
+                    color='white'
+                    h={8}
+                    w={8}
+                    marginLeft={3}
+                    marginTop={3}
+                  ></Icon>
+                ) : (
+                  <div></div>
+                )}
+              </Flex>
+              {rule1 ? (
+                <UnorderedList marginLeft={5} marginRight={5} padding={2}>
+                  <ListItem>
+                    The Competition is open to all currently enrolled college
+                    students: All undergraduates from various programs,
+                    Postgraduates and Ph.D. Research Scholars.
+                  </ListItem>
+                  <ListItem>
+                    Early-stage startups are also eligible for the competition.
+                  </ListItem>
+                  <ListItem>
+                    Teams should strictly have a hardware prototype while they
+                    are registering for the event. App-based startups and
+                    services are not eligible to apply for the event.
+                  </ListItem>
+                  <ListItem>
+                    The competition accepts qualified teams, new ventures, or
+                    significant expansion of existing business based on the
+                    following condition: Proposed technology solution should
+                    promise major innovation and expansion.
+                  </ListItem>
+                </UnorderedList>
+              ) : (
+                <div></div>
+              )}
+              <Flex>
+                <Text
+                  fontSize='3xl'
+                  textColor={color2}
+                  onClick={() => {
+                    handleChange2()
+                  }}
+                  _hover={{
+                    textColor: 'white',
+                  }}
+                >
+                  Participation
+                </Text>
+                {rule2 ? (
+                  <Icon
+                    as={FaChevronDown}
+                    color='white'
+                    h={8}
+                    w={8}
+                    marginLeft={3}
+                    marginTop={3}
+                  ></Icon>
+                ) : (
+                  <div></div>
+                )}
+              </Flex>
+              {rule2 ? (
+                <UnorderedList marginLeft={5} marginRight={5} padding={2}>
+                  <ListItem>
+                    Shortlisted teams should be present and must participate in
+                    all webinars and workshops conducted online and during
+                    Shaastra.
+                  </ListItem>
+                  <ListItem>
+                    Ignorance of the above criteria can lead to the elimination
+                    of the team and discontinuation from the further process.
+                  </ListItem>
+                </UnorderedList>
+              ) : (
+                <div></div>
+              )}
+              <Flex>
+                <Text
+                  textColor={color3}
+                  fontSize='3xl'
+                  onClick={() => {
+                    handleChange3()
+                  }}
+                  _hover={{
+                    textColor: 'white',
+                  }}
+                >
+                  Mentorship
+                </Text>
+                {rule3 ? (
+                  <Icon
+                    as={FaChevronDown}
+                    color='white'
+                    h={8}
+                    w={8}
+                    marginLeft={3}
+                    marginTop={3}
+                  ></Icon>
+                ) : (
+                  <div></div>
+                )}
+              </Flex>
+              {rule3 ? (
+                <UnorderedList marginLeft={5} marginRight={5} padding={2}>
+                  <ListItem>
+                    Professional and Guided mentorship will be provided to the
+                    shortlisted teams.
+                  </ListItem>
+                  <ListItem>
+                    Teams are highly encouraged to seek faculty, business, and
+                    technical mentors assigned to them and are strongly advised
+                    to develop a solid business plan and an idea of their market
+                    by the end of the online mentoring sessions.
+                  </ListItem>
+                  <ListItem>
+                    The freedom of seeking advice or suggestions is up to the
+                    team and its members. If the team doesn't require the help
+                    of a mentor, they must inform the organising team at the
+                    earliest to eliminate futility.
+                  </ListItem>
+                </UnorderedList>
+              ) : (
+                <div></div>
+              )}
+              <Flex>
+                <Text
+                  textColor={color4}
+                  fontSize='3xl'
+                  onClick={() => {
+                    handleChange4()
+                  }}
+                  _hover={{
+                    textColor: 'white',
+                  }}
+                >
+                  Judging and Evaluation
+                </Text>
+                {rule4 ? (
+                  <Icon
+                    as={FaChevronDown}
+                    color='white'
+                    h={8}
+                    w={8}
+                    marginLeft={3}
+                    marginTop={3}
+                  ></Icon>
+                ) : (
+                  <div></div>
+                )}
+              </Flex>
+              {rule4 ? (
+                <UnorderedList marginLeft={5} marginRight={5} padding={2}>
+                  <ListItem>
+                    Each business plan and solution developed will be judged by
+                    a group of entrepreneurs, venture capitalists, and business
+                    professionals at the event's culmination.
+                  </ListItem>
+                  <ListItem>
+                    The judges will evaluate your business plans and technology
+                    as they would evaluate any business opportunity.
+                  </ListItem>
+                  <ListItem>
+                    The decisions of the judging panel are final and have the
+                    sole authority to determine the winners.
+                  </ListItem>
+                </UnorderedList>
+              ) : (
+                <div></div>
+              )}
+              <Flex>
+                <Text
+                  textColor={color5}
+                  fontSize='3xl'
+                  onClick={() => {
+                    handleChange5()
+                  }}
+                  _hover={{
+                    textColor: 'white',
+                  }}
+                >
+                  Modified Circumstances
+                </Text>
+                {rule5 ? (
+                  <Icon
+                    as={FaChevronDown}
+                    color='white'
+                    h={8}
+                    w={8}
+                    marginLeft={3}
+                    marginTop={3}
+                  ></Icon>
+                ) : (
+                  <div></div>
+                )}
+              </Flex>
+              {rule5 ? (
+                <UnorderedList marginLeft={5} marginRight={5} padding={2}>
+                  <ListItem>
+                    The above-mentioned guidelines and norms cannot anticipate
+                    every circumstance, provided the organisers reserve the
+                    right to modify these rules and regulations in any manner
+                    for the well-being of the competition.
+                  </ListItem>
+                  <ListItem>
+                    Any team that violates not only the rules and regulations
+                    but the spirit of the competition may be disqualified
+                    resulting in forfeiture of awards and prize money.
+                  </ListItem>
+                  <ListItem>
+                    Inquiries related to eligibility can be sent to the contact
+                    details mentioned in the website.
+                  </ListItem>
+                </UnorderedList>
+              ) : (
+                <div></div>
+              )}
+              <Flex>
+                <Text
+                  textColor={color6}
+                  fontSize='3xl'
+                  onClick={() => {
+                    handleChange6()
+                  }}
+                  _hover={{
+                    textColor: 'white',
+                  }}
+                >
+                  Mutual Understanding
+                </Text>
+                {rule6 ? (
+                  <Icon
+                    as={FaChevronDown}
+                    color='white'
+                    h={8}
+                    w={8}
+                    marginLeft={3}
+                    marginTop={3}
+                  ></Icon>
+                ) : (
+                  <div></div>
+                )}
+              </Flex>
+              {rule6 ? (
+                <UnorderedList marginLeft={5} marginRight={5} padding={2}>
+                  <ListItem>
+                    We reserve the right to use any information gathered during
+                    the course of this event for our future promotions and
+                    academic purpose.
+                  </ListItem>
+                  <ListItem>
+                    All affiliates and the organizers of the Competition retain
+                    the right to use all competition materials to promote the
+                    events and for general academic purposes.
+                  </ListItem>
+                  <ListItem>
+                    Under no circumstances shall the organising team sign any
+                    sort of Non-Disclosure agreement with the teams.
+                  </ListItem>
+                </UnorderedList>
+              ) : (
+                <div></div>
+              )}
+            </Flex>
+          </Box>
         </Box>
       </Flex>
     </React.Fragment>

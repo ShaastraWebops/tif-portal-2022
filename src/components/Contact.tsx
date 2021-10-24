@@ -43,6 +43,7 @@ function Contact() {
         flexDirection='column'
         maxWidth='100%'
         overflowX='hidden'
+        marginTop={5}
       >
         <Heading textColor='white' marginTop={5} marginBottom={3}>
           Contact Us
@@ -56,13 +57,28 @@ function Contact() {
             columns={[1, 1, 2]}
             spacing={20}
             width='100%'
+            marginBottom={5}
           >
-            <Box backgroundColor='white'>
-              <Text color='black' fontSize='m' marginTop={2} marginBottom={5}>
+            <Box backgroundColor='white' className='form-ctn'>
+              <Text
+                color='black'
+                fontSize='m'
+                margin={2}
+                marginBottom={5}
+                padding={2}
+                paddingLeft={5}
+                paddingRight={5}
+              >
                 If you have any query, feel free to reach out to us
               </Text>
               <form onSubmit={submitForm}>
-                <Stack spacing={8} m={3} marginBottom={5}>
+                <Stack
+                  spacing={8}
+                  m={3}
+                  marginBottom={5}
+                  paddingLeft={2}
+                  paddingRight={2}
+                >
                   <Input
                     variant='flushed'
                     placeholder='Name'
@@ -74,6 +90,7 @@ function Contact() {
                     value={name}
                     onChange={(e) => setname(e.target.value)}
                     borderBottomColor='black'
+                    padding={2}
                   />
                   <Input
                     variant='flushed'
@@ -86,6 +103,7 @@ function Contact() {
                     value={email}
                     onChange={(e) => setemail(e.target.value)}
                     borderBottomColor='black'
+                    padding={2}
                   />
                   <Input
                     variant='flushed'
@@ -98,6 +116,7 @@ function Contact() {
                     value={subject}
                     onChange={(e) => setsubject(e.target.value)}
                     borderBottomColor='black'
+                    padding={2}
                   />
                   <Textarea
                     variant='flushed'
@@ -110,6 +129,7 @@ function Contact() {
                     value={message}
                     onChange={(e) => setmessage(e.target.value)}
                     borderBottomColor='black'
+                    padding={2}
                   />
                 </Stack>
                 <Button
@@ -125,8 +145,8 @@ function Contact() {
                 </Button>
               </form>
             </Box>
-            <Box marginLeft={20} marginRight={20}>
-              <Stack spacing={5}>
+            <Flex flexDirection='column' className='side-ctn'>
+              <Stack spacing={6} alignItems='center'>
                 <Flex>
                   <Icon as={HiMail} color='white' w={10} h={10}></Icon>
                   <Text color='white' fontSize='xl' marginLeft={3} p={1}>
@@ -141,7 +161,7 @@ function Contact() {
                     h={10}
                     marginTop={3}
                   ></Icon>
-                  <Box marginLeft={4}>
+                  <Box marginLeft={4} marginBottom={3}>
                     <Text color='white' fontSize='xl'>
                       Aman
                     </Text>
@@ -158,7 +178,7 @@ function Contact() {
                     h={10}
                     marginTop={3}
                   ></Icon>
-                  <Box marginLeft={4}>
+                  <Box marginLeft={4} marginBottom={3}>
                     <Text color='white' fontSize='xl'>
                       Baibhabi
                     </Text>
@@ -167,43 +187,43 @@ function Contact() {
                     </Text>
                   </Box>
                 </Flex>
+                <Flex>
+                  <Text fontSize='xl' color='white'>
+                    Follow us:
+                  </Text>
+                  <a href='https://www.facebook.com/Shaastra/'>
+                    <Icon
+                      as={FaFacebook}
+                      color='white'
+                      w={8}
+                      h={8}
+                      marginLeft={6}
+                      marginRight={4}
+                    ></Icon>
+                  </a>
+                  <a href='https://www.instagram.com/shaastra_iitm/'>
+                    <Icon
+                      as={FaInstagram}
+                      color='white'
+                      w={8}
+                      h={8}
+                      marginLeft={4}
+                      marginRight={4}
+                    ></Icon>
+                  </a>
+                  <a href='https://www.linkedin.com/company/shaastra-iit-madras/'>
+                    <Icon
+                      as={FaLinkedin}
+                      color='white'
+                      w={8}
+                      h={8}
+                      marginLeft={4}
+                      marginRight={4}
+                    ></Icon>
+                  </a>
+                </Flex>
               </Stack>
-              <Flex marginTop={8}>
-                <Text fontSize='xl' color='white'>
-                  Follow us:
-                </Text>
-                <a href='https://www.facebook.com/Shaastra/'>
-                  <Icon
-                    as={FaFacebook}
-                    color='white'
-                    w={8}
-                    h={8}
-                    marginLeft={6}
-                    marginRight={4}
-                  ></Icon>
-                </a>
-                <a href='https://www.instagram.com/shaastra_iitm/'>
-                  <Icon
-                    as={FaInstagram}
-                    color='white'
-                    w={8}
-                    h={8}
-                    marginLeft={4}
-                    marginRight={4}
-                  ></Icon>
-                </a>
-                <a href='https://www.linkedin.com/company/shaastra-iit-madras/'>
-                  <Icon
-                    as={FaLinkedin}
-                    color='white'
-                    w={8}
-                    h={8}
-                    marginLeft={4}
-                    marginRight={4}
-                  ></Icon>
-                </a>
-              </Flex>
-            </Box>
+            </Flex>
           </SimpleGrid>
         </Center>
       </Flex>
