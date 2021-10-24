@@ -336,6 +336,9 @@ function Rules() {
                     Ignorance of the above criteria can lead to the elimination
                     of the team and discontinuation from the further process.
                   </ListItem>
+                  <ListItem>
+                   The shortlisted teams are required to pay a fee of Rs 1000
+                  </ListItem>
                 </UnorderedList>
               ) : rule3 ? (
                 <UnorderedList>
@@ -512,6 +515,9 @@ function Rules() {
                   <ListItem>
                     Ignorance of the above criteria can lead to the elimination
                     of the team and discontinuation from the further process.
+                  </ListItem>
+                  <ListItem>
+                   The shortlisted teams are required to pay a fee of Rs 1000
                   </ListItem>
                 </UnorderedList>
               ) : (
