@@ -231,15 +231,19 @@ const Home = () => {
               </Text>
             </Center>
           </Box>
+          <Center>
           <Heading
             p={2}
             m={2}
             size='xl'
             fontFamily={'Montserrat'}
             color={'white'}
+            textAlign={'center'}
           >
             Tech and Innovation Fair
+            
           </Heading>
+          </Center>
           <Box p={2} m={2}>
             <Button
               bg='#ff7e20'
