@@ -39,7 +39,7 @@ function Gallery() {
           <Carousel infiniteLoop autoPlay dynamicHeight>
             <Box>
               <Image
-                boxSize='500px'
+                boxSize={["auto","auto",'500px']}
                 objectFit='cover'
                 src={Image5}
                 alt='Gallery'
@@ -47,7 +47,7 @@ function Gallery() {
             </Box>
             <Box>
               <Image
-                boxSize='500px'
+                boxSize={["auto","auto",'500px']}
                 objectFit='cover'
                 src={Image6}
                 alt='Gallery'
@@ -55,7 +55,7 @@ function Gallery() {
             </Box>
             <Box>
               <Image
-                boxSize='520px'
+                boxSize={["auto","auto",'520px']}
                 objectFit='cover'
                 src={Image1}
                 alt='Gallery'
@@ -63,7 +63,7 @@ function Gallery() {
             </Box>
             <Box>
               <Image
-                boxSize='500px'
+                boxSize={["auto","auto",'500px']}
                 objectFit='cover'
                 src={Image2}
                 alt='Gallery'
@@ -71,7 +71,7 @@ function Gallery() {
             </Box>
             <Box>
               <Image
-                boxSize='500px'
+                boxSize={["auto","auto",'500px']}
                 objectFit='cover'
                 src={Image3}
                 alt='Gallery'
