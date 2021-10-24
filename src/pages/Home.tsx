@@ -195,28 +195,62 @@ const Home = () => {
                   </MenuButton>
                   <MenuList>
                     <MenuItem>
-                      <Link href='#about'>About TIF</Link>
+                      <Link href='#about' onClick={() => changeDisplay('none')}>
+                        About TIF
+                      </Link>
                     </MenuItem>
                     <MenuItem>
-                      <Link href='#history'>History and Evolution</Link>
+                      <Link
+                        href='#history'
+                        onClick={() => changeDisplay('none')}
+                      >
+                        History and Evolution
+                      </Link>
                     </MenuItem>
                     <MenuItem>
-                      <Link href='#gallery'>Gallery</Link>
+                      <Link
+                        href='#gallery'
+                        onClick={() => changeDisplay('none')}
+                      >
+                        Gallery
+                      </Link>
                     </MenuItem>
                     <MenuItem>
-                      <Link href='#timeline'>Structure and Timeline</Link>
+                      <Link
+                        href='#timeline'
+                        onClick={() => changeDisplay('none')}
+                      >
+                        Structure and Timeline
+                      </Link>
                     </MenuItem>
                     <MenuItem>
-                      <Link href='#prizes'>Prizes</Link>
+                      <Link
+                        href='#prizes'
+                        onClick={() => changeDisplay('none')}
+                      >
+                        Prizes
+                      </Link>
                     </MenuItem>
                     <MenuItem>
-                      <Link href='#rules'>Rules and Regulations</Link>
+                      <Link href='#rules' onClick={() => changeDisplay('none')}>
+                        Rules and Regulations
+                      </Link>
                     </MenuItem>
                     <MenuItem>
-                      <Link href='#stories'>Success Stories</Link>
+                      <Link
+                        href='#stories'
+                        onClick={() => changeDisplay('none')}
+                      >
+                        Success Stories
+                      </Link>
                     </MenuItem>
                     <MenuItem>
-                      <Link href='#contact'>Contact Us</Link>
+                      <Link
+                        href='#contact'
+                        onClick={() => changeDisplay('none')}
+                      >
+                        Contact Us
+                      </Link>
                     </MenuItem>
                   </MenuList>
                 </Menu>
@@ -232,17 +266,16 @@ const Home = () => {
             </Center>
           </Box>
           <Center>
-          <Heading
-            p={2}
-            m={2}
-            size='xl'
-            fontFamily={'Montserrat'}
-            color={'white'}
-            textAlign={'center'}
-          >
-            Tech and Innovation Fair
-            
-          </Heading>
+            <Heading
+              p={2}
+              m={2}
+              size='xl'
+              fontFamily={'Montserrat'}
+              color={'white'}
+              textAlign={'center'}
+            >
+              Tech and Innovation Fair
+            </Heading>
           </Center>
           <Box p={2} m={2}>
             <Button
