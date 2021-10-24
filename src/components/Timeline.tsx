@@ -61,8 +61,8 @@ function Timeline() {
                 thickness='16px'
               />
               <div className='text-ctn'>
-                <p className='steps-heading'>November</p>
-                <p className='steps-description'>Screening</p>
+                <p className='steps-heading'>30th November</p>
+                <p className='steps-description'>Declaration of shortlisted teams</p>
               </div>
             </div>
             <div className='steps-four'>
