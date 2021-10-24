@@ -33,7 +33,7 @@ function Timeline() {
                 thickness='16px'
               />
               <div className='text-ctn'>
-                <p className='steps-heading'>13th October</p>
+                <p className='steps-heading'>24th October</p>
                 <p className='steps-description'>Registration</p>
               </div>
             </div>
@@ -47,7 +47,7 @@ function Timeline() {
                 thickness='16px'
               />
               <div className='text-ctn'>
-                <p className='steps-heading'>30th October</p>
+                <p className='steps-heading'>14th November</p>
                 <p className='steps-description'>Registration closes</p>
               </div>
             </div>
