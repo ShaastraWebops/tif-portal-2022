@@ -36,7 +36,7 @@ function Stories() {
           </Heading>
           <Box width={'90%'}>
             <Carousel infiniteLoop autoPlay>
-              <Box>
+              <Box className="story">
                 <Box>
                   <Icon
                     as={ImQuotesLeft}
@@ -59,6 +59,7 @@ function Stories() {
                       color='black'
                       marginTop={5}
                       marginRight={10}
+                      className="text"
                     >
                       Competition has a lot of things we can learn even if we
                       win or not, these learnings will be useful throughout our
@@ -77,7 +78,7 @@ function Stories() {
                   </Box>
                 </Flex>
               </Box>
-              <Box>
+              <Box className="story">
                 <Box>
                   <Icon
                     as={ImQuotesLeft}
@@ -99,6 +100,7 @@ function Stories() {
                       fontSize='lg'
                       color='black'
                       marginTop={5}
+                      className="text"
                       marginRight={24}
                     >
                       Initially, when we got the mail saying we’ve been
@@ -119,7 +121,7 @@ function Stories() {
                   </Box>
                 </Flex>
               </Box>
-              <Box>
+              <Box className="story">
                 <Box>
                   <Icon
                     as={ImQuotesLeft}
@@ -142,6 +144,7 @@ function Stories() {
                       color='black'
                       marginTop={5}
                       marginRight={24}
+                      className="text"
                     >
                       We were working on our device for few months and always
                       wanted to make it into a startup to help people. That’s
@@ -163,7 +166,7 @@ function Stories() {
                   </Box>
                 </Flex>
               </Box>
-              <Box>
+              <Box className="story">
                 <Box>
                   <Icon
                     as={ImQuotesLeft}
@@ -185,6 +188,7 @@ function Stories() {
                       color='black'
                       marginTop={5}
                       marginRight={24}
+                      className="text"
                     >
                       We were a project prototype while we registered for
                       Shaastra TIF 2018. TIF 2018 gave us much insights through
