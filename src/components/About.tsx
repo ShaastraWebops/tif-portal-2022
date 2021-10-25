@@ -17,7 +17,7 @@ function About() {
           About TIF
         </Heading>
         <Box width='95%' p={2} m={2}>
-          <Text textColor='white' className='about-tif-text'>
+          <Text textColor='white' className='about-tif-text' textAlign={['justify']}>
             Tech and Innovation Fair (TIF) is a{' '}
             <b> flagship competition event </b>of Shaastra that scouts for
             budding entrepreneurs by
