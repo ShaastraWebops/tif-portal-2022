@@ -14,9 +14,11 @@ import {
 import React from 'react'
 import { MdLocationOn } from 'react-icons/md'
 import '../styles/History.scss'
-import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
-import 'react-vertical-timeline-component/style.min.css';
-
+import {
+  VerticalTimeline,
+  VerticalTimelineElement,
+} from 'react-vertical-timeline-component'
+import 'react-vertical-timeline-component/style.min.css'
 
 function History() {
   return (
@@ -26,6 +28,7 @@ function History() {
         maxWidth='100%'
         overflowX='hidden'
         bgColor='white'
+        className='header'
         alignItems='center'
       >
         <Heading textColor='#ff7e20' marginTop={4} marginBottom={4}>
@@ -166,59 +169,81 @@ function History() {
           </Flex>
         </Flex>
       </Flex>
-      <Flex className="mobile-timeline" display="none">
-      <VerticalTimeline>
-        <VerticalTimelineElement>
-             <Text color='#ff7e20' fontSize='2xl' textAlign='center'>
-                2018
-              </Text>
-              <Text
-                fontSize='sm'
-                fontWeight='bold'
-                color='#2e2d2d'
-                textAlign='center'
-              >
-                TIF was officially launched. It consisted of 3 days of
-                exhibitions and a pitching competition.
-              </Text>
-        </VerticalTimelineElement>
-        <VerticalTimelineElement>
-              <Text color='#ff7e20' fontSize='2xl' textAlign="center">
-                2019
-              </Text>
-              <Text fontSize='sm' fontWeight='bold'  color='#2e2d2d' textAlign="center">
-                A B-plan event called Power2idea was organized by Colours of
-                Youth during Shaastra.
-              </Text>
-        </VerticalTimelineElement>
-        <VerticalTimelineElement>
+      <Flex className='mobile-timeline' display='none'>
+        <VerticalTimeline>
+          <VerticalTimelineElement
+            iconStyle={{ background: '#ff7e20', color: '#fff' }}
+            icon={<MdLocationOn />}
+          >
             <Text color='#ff7e20' fontSize='2xl' textAlign='center'>
-                2020
-              </Text>
-              <Text
-                fontSize='sm'
-                fontWeight='bold'
-                color='#2e2d2d'
-                textAlign='center'
-                marginRight={2}
-              >
-                The current structure of TIF was formed which consists of
-                mentorship, webinars, workshops, panel discussions, exhibitions
-                and the final pitching ceremony.
-              </Text>
-        </VerticalTimelineElement>
-        <VerticalTimelineElement>
-              <Text color='#ff7e20' fontSize='2xl' textAlign="center">
-                2021
-              </Text>
-              <Text fontSize='sm' fontWeight='bold' color='#2e2d2d' textAlign="center">
-                TIF was successfully conducted as an online event. A project
-                demonstration session was held for participants to showcase
-                their prototypes. Workshops, panel discussions and the finals
-                were all conducted through online platforms.
-              </Text>
-        </VerticalTimelineElement>
-      </VerticalTimeline>
+              2018
+            </Text>
+            <Text
+              fontSize='sm'
+              fontWeight='bold'
+              color='#2e2d2d'
+              textAlign='center'
+            >
+              TIF was officially launched. It consisted of 3 days of exhibitions
+              and a pitching competition.
+            </Text>
+          </VerticalTimelineElement>
+          <VerticalTimelineElement
+            iconStyle={{ background: '#ff7e20', color: '#fff' }}
+            icon={<MdLocationOn />}
+          >
+            <Text color='#ff7e20' fontSize='2xl' textAlign='center'>
+              2019
+            </Text>
+            <Text
+              fontSize='sm'
+              fontWeight='bold'
+              color='#2e2d2d'
+              textAlign='center'
+            >
+              A B-plan event called Power2idea was organized by Colours of Youth
+              during Shaastra.
+            </Text>
+          </VerticalTimelineElement>
+          <VerticalTimelineElement
+            iconStyle={{ background: '#ff7e20', color: '#fff' }}
+            icon={<MdLocationOn />}
+          >
+            <Text color='#ff7e20' fontSize='2xl' textAlign='center'>
+              2020
+            </Text>
+            <Text
+              fontSize='sm'
+              fontWeight='bold'
+              color='#2e2d2d'
+              textAlign='center'
+              marginRight={2}
+            >
+              The current structure of TIF was formed which consists of
+              mentorship, webinars, workshops, panel discussions, exhibitions
+              and the final pitching ceremony.
+            </Text>
+          </VerticalTimelineElement>
+          <VerticalTimelineElement
+            iconStyle={{ background: '#ff7e20', color: '#fff' }}
+            icon={<MdLocationOn />}
+          >
+            <Text color='#ff7e20' fontSize='2xl' textAlign='center'>
+              2021
+            </Text>
+            <Text
+              fontSize='sm'
+              fontWeight='bold'
+              color='#2e2d2d'
+              textAlign='center'
+            >
+              TIF was successfully conducted as an online event. A project
+              demonstration session was held for participants to showcase their
+              prototypes. Workshops, panel discussions and the finals were all
+              conducted through online platforms.
+            </Text>
+          </VerticalTimelineElement>
+        </VerticalTimeline>
       </Flex>
     </React.Fragment>
   )

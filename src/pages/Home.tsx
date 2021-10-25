@@ -28,11 +28,9 @@ import Contact from '../components/Contact'
 import Logo1 from '../assests/Logo1.png'
 import Logo2 from '../assests/Logo2.png'
 import Logo3 from '../assests/Logo3.png'
-import { ChevronDownIcon, HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
-import { Navbar } from '../components/Navbar'
+import { ChevronDownIcon } from '@chakra-ui/icons'
 
 const Home = () => {
-  const [display, changeDisplay] = useState('none')
   return (
     <React.Fragment>
       <Center minHeight={'100vh'} className='home'>
@@ -46,7 +44,7 @@ const Home = () => {
           <Flex maxWidth='100%' overflowX='hidden'>
             <Flex className='nav' backgroundColor='gray.100'>
               {/* Desktop */}
-              <Flex display={['none', 'none', 'flex', 'flex']}>
+              <Flex className='nav-ctn'>
                 <Link href='/jmt' passHref>
                   <Button
                     as='a'
@@ -87,9 +85,9 @@ const Home = () => {
                   >
                     Navigate
                   </MenuButton>
-                  <MenuList>
+                  <MenuList pointer='cursor'>
                     <MenuItem>
-                      <Link href='#about'>About TIF</Link>
+                      <Link id='#about'>About TIF</Link>
                     </MenuItem>
                     <MenuItem>
                       <Link href='#history'>History and Evolution</Link>
@@ -111,146 +109,6 @@ const Home = () => {
                     </MenuItem>
                     <MenuItem>
                       <Link href='#contact'>Contact Us</Link>
-                    </MenuItem>
-                  </MenuList>
-                </Menu>
-              </Flex>
-
-              {/* Mobile */}
-              <IconButton
-                aria-label='Open Menu'
-                size='lg'
-                mr={2}
-                color='#ff7e20'
-                icon={<HamburgerIcon />}
-                onClick={() => changeDisplay('flex')}
-                display={['flex', 'flex', 'none', 'none']}
-              />
-            </Flex>
-
-            {/* Mobile Content */}
-            <Flex
-              w='100vw'
-              display={display}
-              bgColor='gray.50'
-              zIndex={20}
-              h='100vh'
-              pos='fixed'
-              top='0'
-              left='0'
-              overflowY='auto'
-              flexDir='column'
-            >
-              <Flex justify='flex-end'>
-                <IconButton
-                  mt={2}
-                  mr={2}
-                  aria-label='Open Menu'
-                  size='lg'
-                  color='#ff7e20'
-                  icon={<CloseIcon />}
-                  onClick={() => changeDisplay('none')}
-                />
-              </Flex>
-
-              <Flex flexDir='column' align='center' color='#ff7e20'>
-                <Link href='/jmt' passHref marginRight={5}>
-                  <Button
-                    as='a'
-                    variant='ghost'
-                    aria-label='Home'
-                    my={5}
-                    w='100%'
-                    fontSize='lg'
-                    color='#ff7e20'
-                  >
-                    JMT
-                  </Button>
-                </Link>
-                <Link href='/login' passHref marginRight={5}>
-                  <Button
-                    as='a'
-                    variant='ghost'
-                    aria-label='Home'
-                    my={5}
-                    w='100%'
-                    fontSize='lg'
-                    color='#ff7e20'
-                  >
-                    Login
-                  </Button>
-                </Link>
-                <Menu>
-                  <MenuButton
-                    as={Button}
-                    rightIcon={<ChevronDownIcon />}
-                    variant='ghost'
-                    aria-label='Home'
-                    my={5}
-                    w='50%'
-                    fontSize='lg'
-                    color='#ff7e20'
-                  >
-                    Navigate
-                  </MenuButton>
-                  <MenuList>
-                    <MenuItem>
-                      <Link href='#about' onClick={() => changeDisplay('none')}>
-                        About TIF
-                      </Link>
-                    </MenuItem>
-                    <MenuItem>
-                      <Link
-                        href='#history'
-                        onClick={() => changeDisplay('none')}
-                      >
-                        History and Evolution
-                      </Link>
-                    </MenuItem>
-                    <MenuItem>
-                      <Link
-                        href='#gallery'
-                        onClick={() => changeDisplay('none')}
-                      >
-                        Gallery
-                      </Link>
-                    </MenuItem>
-                    <MenuItem>
-                      <Link
-                        href='#timeline'
-                        onClick={() => changeDisplay('none')}
-                      >
-                        Structure and Timeline
-                      </Link>
-                    </MenuItem>
-                    <MenuItem>
-                      <Link
-                        href='#prizes'
-                        onClick={() => changeDisplay('none')}
-                      >
-                        Prizes
-                      </Link>
-                    </MenuItem>
-                    <MenuItem>
-                      <Link href='#rules' onClick={() => changeDisplay('none')}>
-                        Rules and Regulations
-                      </Link>
-                    </MenuItem>
-                    <MenuItem>
-                      <Link
-                        href='#stories'
-                        onClick={() => changeDisplay('none')}
-                      >
-                        Success Stories
-                      </Link>
-                    </MenuItem>
-                    <MenuItem>
-                      <Link
-                        href='#contact'
-                        onClick={() => changeDisplay('none')}
-                      >
-                        Contact Us
-                      </Link>
                     </MenuItem>
                   </MenuList>
                 </Menu>

@@ -4,7 +4,6 @@
   background-size: cover !important;
 }
 
-
 $outline-width: 0;
 $break-point: 1400px;
 
@@ -46,13 +45,14 @@ $break-point: 1400px;
   }
 }
 
-@media screen and (max-width: 1000px)
-{
-  .history{
+@media screen and (max-width: 1000px) {
+  .history {
     display: none !important;
   }
-  .mobile-timeline
-  {
+  .mobile-timeline {
     display: flex !important;
+  }
+  .header {
+    background-color: transparent !important;
   }
 }
