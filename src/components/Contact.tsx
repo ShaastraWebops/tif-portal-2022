@@ -222,10 +222,22 @@ function Contact() {
                     ></Icon>
                   </a>
                 </Flex>
+                
               </Stack>
+              
             </Flex>
           </SimpleGrid>
+          
         </Center>
+        <Center>
+          <Flex flexDirection={['column']} p={2} m={2}>
+          <Text fontSize={'xl'} fontWeight={600} textColor={'white'}>Shaastra TIF 2022 ©  All Rights Reserved</Text>
+         <Center>
+          <Text fontSize={'sm'} textColor={'white'}>DESIGNED BY SHAASTRA WEBOPS 2022</Text>
+          </Center>
+          </Flex>
+            
+          </Center>
       </Flex>
     </React.Fragment>
   )
