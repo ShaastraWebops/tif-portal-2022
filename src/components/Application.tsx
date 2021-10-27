@@ -74,7 +74,8 @@ export default function Application() {
   }
 
   const [createteam] = useCreateTeamandRegisterMutation()
-  const handleaddteam = () => {
+  const handleaddteam = (e : any) => {
+    e.preventDefault()
     createteam({
       variables: {
         createTeamAndRegisterData: {
@@ -103,11 +104,12 @@ export default function Application() {
   const [Q5, setQ5] = useState('')
   const [Q6, setQ6] = useState('')
   const [Q7, setQ7] = useState('')
-  const [videolink, setVideolink] = useState('')
+  const [videolink, setVideolink] = useState('');
+  const [teamalert , setTeamalert] = useState(false);
 
   const handlefillproject = (e : any) => {
     e.preventDefault();
-    fillproject({
+    alert ? fillproject({
       variables: {
         ProjectInput: {
           title,
@@ -128,9 +130,9 @@ export default function Application() {
           setSalert(true)
         }
       })
-      .catch((err) => console.log(err))
+      .catch((err) => console.log(err)) : setTeamalert(true) ;
   }
-
+  
   const [updateproject] = useUpdateProjectMutation();
   const handleUpdate = async (e : any) =>{
     e.preventDefault();
@@ -235,9 +237,8 @@ export default function Application() {
             </Alert>
             ) : null
      } 
- 
-       { !data?.me?.isSubmitted ? 
-       <form>
+       { !data?.me?.isSubmitted || data.me.team === null ? 
+       <form onSubmit={handleaddteam}>
         <Stack
           spacing={4}
           marginLeft={2}
@@ -433,21 +434,20 @@ export default function Application() {
               ) : (
             <div></div>
           )}
-              <Button
+              { !alert ? <Button
                 mx={2}
                 bg={'#ff7e20'}
                 color={'white'}
                 height='50px'
-
+                type='submit'
                 _hover={{
                   bg: 'white',
                   textColor: 'black',
                   border: '2px solid black',
                 }}
-                onSubmit={handleaddteam}
               >
                 Confirm Team
-              </Button>
+              </Button> : null }
             </Flex>
         </Stack></form>: null
        }
@@ -462,7 +462,7 @@ export default function Application() {
           <Text color='black' marginTop={3} fontSize='xl' fontWeight='bold'>
             Project/Prototype Details
           </Text>
-          <form onSubmit={data?.me?.isSubmitted ? handleUpdate : handlefillproject}>
+          <form onSubmit={data?.me?.isSubmitted && data.me.team !== null ? handleUpdate : handlefillproject}>
           <FormControl id='title' isRequired>
             <FormLabel color='black'>Title</FormLabel>
             <Input
@@ -703,10 +703,17 @@ export default function Application() {
                 border: '2px solid black',
               }}
             >
-              {data?.me?.isSubmitted ? "Update" : "Submit"}
+              {data?.me?.isSubmitted && data.me.team !== null ? "Update" : "Submit"}
             </Button>
+            
           </Flex>
           </form>
+          {
+              teamalert ? ( <Alert status="error" textColor={'black'}>
+              <AlertIcon />
+              Create Team and Register
+            </Alert>) : null
+            }
         </Stack>
       </SimpleGrid>
     </Flex>
