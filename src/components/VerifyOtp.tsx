@@ -9,15 +9,20 @@ import {
   FormLabel,
   Input,
   Button,
+  Alert,
+  AlertIcon,
 } from '@chakra-ui/react'
-import { useVerifyUserMutation } from '../types/generated/generated'
+import { useResendVerificationMailMutation, useVerifyUserMutation } from '../types/generated/generated'
 import { useHistory } from 'react-router'
 
 function VerifyOtp() {
   const [otp, setOtp] = React.useState('')
   const history = useHistory()
   const [verifyuser] = useVerifyUserMutation()
-
+  const [resendmail] = useResendVerificationMailMutation();
+  const [email , setemail] = React.useState('');
+  const [input , setInput] = React.useState(false);
+  const [alert , setalert] = React.useState(false)
   const handlesubmit = () => {
     verifyuser({
       variables: {
@@ -31,6 +36,20 @@ function VerifyOtp() {
       })
       .catch((err) => console.log(err))
   }
+  const resend = () =>{
+    resendmail({variables:{
+      requestForgotPassInput : {
+        email
+      }
+    }}).then(res => {
+      if(res.data?.resendVerificationMail){
+        setalert(true)
+      }
+    })
+    .catch(err => console.error(err)
+    )
+  }
+
 
   return (
     <Flex
@@ -79,8 +98,59 @@ function VerifyOtp() {
           >
             Submit
           </Button>
+          {
+            !input ? (<Button onClick = {()=>setInput(true)}
+              m={2}
+              bg={'#ff7e20'}
+              color={'white'}
+              type='submit'
+              _hover={{
+                bg: 'white',
+                textColor: 'black',
+                border: '2px solid black',
+              }}>
+               Resend Verification mail
+             </Button>) : null
+          }
         </Flex>
+        {
+        input ? ( < Flex flexDirection={['column']}><FormControl id='name'>
+        <FormLabel color='black'>Email</FormLabel>
+        <Input
+          variant='outline'
+          borderColor='gray.500'
+          placeholder='email'
+          _placeholder={{ color: 'gray.500' }}
+          color='black'
+          type='email'
+          name='oemail'
+          value={email}
+          onChange={(e) => setemail(e.target.value)}
+        />
+      </FormControl> 
+      <Button onClick = {resend}
+      m={2}
+      bg={'#ff7e20'}
+      color={'white'}
+      type='submit'
+      _hover={{
+        bg: 'white',
+        textColor: 'black',
+        border: '2px solid black',
+      }}>
+       Resend Verification mail
+     </Button>
+     {
+       alert ? (
+         <Alert status='success'>
+           <AlertIcon />
+           Verification mail has been sent 
+         </Alert>
+       ) : null
+     } </Flex>) : null
+      }
       </SimpleGrid>
+    
     </Flex>
   )
 }

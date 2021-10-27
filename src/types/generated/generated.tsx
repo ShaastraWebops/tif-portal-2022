@@ -207,7 +207,7 @@ export type LoginMutationVariables = Exact<{
 }>;
 
 
-export type LoginMutation = { login?: Maybe<{ id: string, role: UserRole, isSubmitted: boolean }> };
+export type LoginMutation = { login?: Maybe<{ id: string, role: UserRole, isSubmitted: boolean, isVerified: boolean }> };
 
 export type LogoutUserMutationVariables = Exact<{ [key: string]: never; }>;
 
@@ -354,6 +354,7 @@ export const LoginDocument = gql`
     id
     role
     isSubmitted
+    isVerified
   }
 }
     `;

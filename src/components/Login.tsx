@@ -36,7 +36,11 @@ export default function Login() {
       },
     })
       .then((res) => {
-        if (res.data?.login?.id && res.data.login.role === UserRole.Leader) {
+        console.log(res.data?.login?.isVerified)
+        if(!res.data?.login?.isVerified){
+          history.push('/verifyOTP')
+        }
+        if (res.data?.login?.isVerified && res.data?.login?.id && res.data.login.role === UserRole.Leader) {
           history.push('/application')
         }else if(res.data?.login?.id && res.data.login.role === UserRole.Admin){
           setRole(res.data.login.role)

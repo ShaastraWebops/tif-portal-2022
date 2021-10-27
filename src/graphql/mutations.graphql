@@ -11,6 +11,7 @@ mutation login($LoginInput: LoginInput!) {
        id
        role
        isSubmitted
+       isVerified
    }
 }
 
