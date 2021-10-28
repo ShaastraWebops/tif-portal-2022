@@ -8,6 +8,8 @@ import {
   Input,
   Stack,
   Text,
+  Alert,
+  AlertIcon,
 } from '@chakra-ui/react'
 import { Navbar } from './Navbar'
 import { useGetPasswordOtpMutation } from '../types/generated/generated'
@@ -17,6 +19,7 @@ export default function ForgotPassword() {
   const [email, setemail] = useState('')
   const [getpasswordotp] = useGetPasswordOtpMutation()
   const history = useHistory()
+  const [Error,setError] = React.useState("");
   const handleresetpassword = () => {
     getpasswordotp({
       variables: {
@@ -26,7 +29,7 @@ export default function ForgotPassword() {
       if (res.data?.getPasswordOTP) {
         history.push('/forgotpasswordOTP')
       }
-    })
+    }).catch(err => setError(err.message))
     setemail(' ')
   }
   return (
@@ -55,6 +58,14 @@ export default function ForgotPassword() {
         >
           Forgot your password?
         </Heading>
+        {
+          Error ? (
+            <Alert status='error'>
+              <AlertIcon />
+              {Error}
+            </Alert>
+          ) : null
+        }
         <Text fontSize={{ base: 'sm', sm: 'md' }} color='black'>
           You&apos;ll get an email with a reset link
         </Text>
