@@ -85,3 +85,7 @@ query getTeamById($teamid: String!){
        }
     }
 }
+
+query exportCSV{
+    exportCSV
+  }

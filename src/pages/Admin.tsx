@@ -12,8 +12,11 @@ import {
 } from "@chakra-ui/react"
 import "../styles/Admin.css"
 import { useState } from 'react'
-import { useGetTeamsQuery, useLogoutUserMutation } from '../types/generated/generated'
+import { useExportCsvQuery, useGetTeamsQuery, useLogoutUserMutation } from '../types/generated/generated'
 import { useHistory } from 'react-router'
+import fileDownload from "js-file-download";
+import { EditIcon } from '@chakra-ui/icons'
+
 
 export default function Admin() {
 
@@ -45,6 +48,7 @@ export default function Admin() {
   const teams  = data?.getTeams;
   const history = useHistory();
   const [logout] = useLogoutUserMutation();
+  const {data : data2 } = useExportCsvQuery();
   return (
     <Flex
       minH={'100vh'}
@@ -63,6 +67,7 @@ export default function Admin() {
       >
         Registration Details
       </Heading>
+      <Flex flexDirection={['column','row']}>
       <Text float={'right'} color={"#ff7e20"} fontSize={'2xl'}
         mx={2}
          _hover={{
@@ -75,6 +80,26 @@ export default function Admin() {
              }
            })
          }}>Logout</Text>
+          <Button
+          color={"#ff7e20"}
+          variant="outline"
+          border="2px solid"
+          borderColor="#ff7e20"
+          size="sm"
+          p={2}
+          m={2}
+          onClick={() => {
+            fileDownload(
+              data2?.exportCSV!,
+              `teams_participants.csv`
+            );
+          }}
+                  >
+                    <EditIcon m={2} />
+                    Download participants csv
+                  </Button>
+
+      </Flex>
       <Box textColor="white" p={3} fontSize="30px">
         Total teams: {teams?.length}
       </Box>

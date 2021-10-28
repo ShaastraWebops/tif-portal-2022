@@ -282,7 +282,7 @@ export default function Application() {
                   >
                     Team Member {index + 1}{' '}
                     {index === 0 ? '(Your Details)' : null}
-                    {index === 0 ? null : (
+                    {index === 0 || alert ? null : (
                       <IconButton
                         m={2}
                         style={{ display: 'inline' }}

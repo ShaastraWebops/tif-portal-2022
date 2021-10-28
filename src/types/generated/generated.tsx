@@ -132,6 +132,7 @@ export type ProjectInput = {
 };
 
 export type Query = {
+  exportCSV: Scalars['String'];
   getProjectbyteamId: Project;
   getProjects: Array<Project>;
   getTeamById: Team;
@@ -284,6 +285,11 @@ export type GetTeamByIdQueryVariables = Exact<{
 
 
 export type GetTeamByIdQuery = { getTeamById: { name: string, project?: Maybe<{ id: string, title: string, category: string, Q1: string, Q2: string, Q3: string, Q4: string, Q5: string, Q6: string, Q7: string, videolink: string }>, members: Array<{ name: string, email: string, contactno?: Maybe<string>, institution?: Maybe<string>, city?: Maybe<string>, state?: Maybe<string> }> } };
+
+export type ExportCsvQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ExportCsvQuery = { exportCSV: string };
 
 
 export const RegisterUserDocument = gql`
@@ -839,4 +845,39 @@ export type GetTeamByIdLazyQueryHookResult = ReturnType<typeof useGetTeamByIdLaz
 export type GetTeamByIdQueryResult = ApolloReactCommon.QueryResult<GetTeamByIdQuery, GetTeamByIdQueryVariables>;
 export function refetchGetTeamByIdQuery(variables?: GetTeamByIdQueryVariables) {
       return { query: GetTeamByIdDocument, variables: variables }
+    }
+export const ExportCsvDocument = gql`
+    query exportCSV {
+  exportCSV
+}
+    `;
+
+/**
+ * __useExportCsvQuery__
+ *
+ * To run a query within a React component, call `useExportCsvQuery` and pass it any options that fit your needs.
+ * When your component renders, `useExportCsvQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useExportCsvQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useExportCsvQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<ExportCsvQuery, ExportCsvQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<ExportCsvQuery, ExportCsvQueryVariables>(ExportCsvDocument, options);
+      }
+export function useExportCsvLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<ExportCsvQuery, ExportCsvQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<ExportCsvQuery, ExportCsvQueryVariables>(ExportCsvDocument, options);
+        }
+export type ExportCsvQueryHookResult = ReturnType<typeof useExportCsvQuery>;
+export type ExportCsvLazyQueryHookResult = ReturnType<typeof useExportCsvLazyQuery>;
+export type ExportCsvQueryResult = ApolloReactCommon.QueryResult<ExportCsvQuery, ExportCsvQueryVariables>;
+export function refetchExportCsvQuery(variables?: ExportCsvQueryVariables) {
+      return { query: ExportCsvDocument, variables: variables }
     }
