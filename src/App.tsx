@@ -26,6 +26,9 @@ export const App = () => {
   const [role, setRole] = React.useState<any | null>('')
 
   React.useEffect(() => {
+    if(localStorage.getItem("chakra-ui-color-mode")){
+      localStorage.removeItem("chakra-ui-color-mode")
+    }
     if(localStorage.getItem("role")){
       setRole(localStorage.getItem("role"))
     }

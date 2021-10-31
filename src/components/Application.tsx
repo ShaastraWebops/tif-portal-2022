@@ -24,7 +24,7 @@ import {
   ModalCloseButton,
 } from '@chakra-ui/react'
 import {  DeleteIcon } from '@chakra-ui/icons'
-import { useCreateTeamandRegisterMutation, useFillProjectMutation, useLogoutUserMutation, useMeQuery, useUpdateProjectMutation } from '../types/generated/generated'
+import { refetchMeQuery, useCreateTeamandRegisterMutation, useFillProjectMutation, useLogoutUserMutation, useMeQuery, useUpdateProjectMutation , MeQuery, MeDocument} from '../types/generated/generated'
 import { useHistory } from 'react-router'
 
 
@@ -39,13 +39,13 @@ export default function Application() {
       state: '',
     },
   ])
-
+  
   const [teamname, setTeamname] = React.useState<string>()
   const [alert, setAlert] = React.useState(false)
   const [salert, setSalert] = React.useState(false)
   const [ualert, setuAlert] = React.useState(false)
 
-  const { data, error, loading } = useMeQuery()
+  const { data, error, loading} = useMeQuery()
   const history = useHistory()
 
   const handleMembersInput = ({
@@ -73,7 +73,9 @@ export default function Application() {
     setMembers(values)
   }
 
-  const [createteam] = useCreateTeamandRegisterMutation()
+  const [createteam] = useCreateTeamandRegisterMutation({
+    refetchQueries : [{query  : MeDocument}]
+  })
   const handleaddteam = (e : any) => {
     e.preventDefault()
     createteam({
@@ -109,7 +111,7 @@ export default function Application() {
 
   const handlefillproject = (e : any) => {
     e.preventDefault();
-    alert ? fillproject({
+    data?.me?.team ? fillproject({
       variables: {
         ProjectInput: {
           title,
@@ -237,7 +239,7 @@ export default function Application() {
             </Alert>
             ) : null
      } 
-       { !data?.me?.isSubmitted || data.me.team === null ? 
+       { data?.me?.team === null ? 
        <form onSubmit={handleaddteam}>
         <Stack
           spacing={4}
@@ -711,7 +713,7 @@ export default function Application() {
           {
               teamalert ? ( <Alert status="error" textColor={'black'}>
               <AlertIcon />
-              Create Team and Register
+              Create Team and Submit
             </Alert>) : null
             }
         </Stack>
