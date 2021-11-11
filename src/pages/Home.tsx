@@ -273,8 +273,16 @@ const Home = () => {
             {' '}
             <Stories />
           </div>
+          <Partners />
+          </Flex>
+          </Center>
+        <Center minHeight={'100vh'} backgroundColor='#2e2d2d' p={3}>
+        <Flex
+          flexDirection={'column'}
+          alignItems='center'
+          justifyItems='center'
+        >
 
-          {/* <Partners /> */}
           <div id='contact'>
             {' '}
             <Contact />
