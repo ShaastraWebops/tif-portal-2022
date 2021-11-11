@@ -37,7 +37,7 @@ function Partners() {
                 </Box>
                 <Box  m={2} p={2}>
                   <a href='https://channeliam.com/' target={'_blank'}><Image src={pat2} objectFit={'cover'} alt='' boxSize={'300px'}/></a>
-                  <Center><Heading textColor='#ff7e20' m={2} p={2} as='h2' size="xl">Media Partner</Heading>
+                  <Center><Heading textColor='white' m={2} p={2} as='h2' size="xl">Media Partner</Heading>
                 </Center>
                   </Box>
               </Flex>
@@ -52,7 +52,7 @@ function Partners() {
               <Flex width={'90%'} flexDirection={['column','column','row','row']} m={2} p={2} style={{'justifyContent':'space-between'}}>
               <Box  m={2} p={2}>
                   <a href='https://www.creyalearning.com/stemlearning/' target={'_blank'}><Image src={pat4} objectFit={'cover'} alt='' boxSize={'300px'}/></a>
-                  <Center><Heading textColor='#ff7e20' m={2} p={2} as='h2' size="xl">Innovation Partner</Heading>
+                  <Center><Heading textColor='white' m={2} p={2} as='h2' size="xl">Innovation Partner</Heading>
                 </Center>
                   </Box>
                 
