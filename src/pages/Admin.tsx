@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react"
 import "../styles/Admin.css"
 import { useState } from 'react'
-import { useExportCsvQuery, useGetTeamsQuery, useLogoutUserMutation } from '../types/generated/generated'
+import { useExportCsvQuery, useGetTeamsQuery, useGetUsersQuery, useLogoutUserMutation } from '../types/generated/generated'
 import { useHistory } from 'react-router'
 import fileDownload from "js-file-download";
 import { EditIcon } from '@chakra-ui/icons'
@@ -22,28 +22,10 @@ export default function Admin() {
 
   const [filter, setFilter] = useState("") 
   const [category, setCategory] = useState("")
-//   const data = [
-//     {
-//       no: '1', 
-//       name: 'ABC', 
-//       project: 'Foldable House',
-//       category: 'Home Comfort'
-//     },
-//     {
-//       no: '1', 
-//       name: 'ABC', 
-//       project: 'Non Invasive Measurement of Blood Glucose & Haemoglobin',
-//       category: 'Healthcare and Sanitation'
-//     },
-//     {
-//       no: '1', 
-//       name: 'ABC', 
-//       project: '	Scavenger robot to eradicate manual scavenging',
-//       category: 'Others'
-//     }
-//  ]
+
 
   const { data , error , loading} = useGetTeamsQuery();
+  const {data : udata} = useGetUsersQuery();
   console.log(data?.getTeams)
   const teams  = data?.getTeams;
   const history = useHistory();
@@ -67,7 +49,7 @@ export default function Admin() {
       >
         Registration Details
       </Heading>
-      <Flex flexDirection={['column','row']}>
+      <Flex flexDirection={['column','row-reverse']}>
       <Text float={'right'} color={"#ff7e20"} fontSize={'2xl'}
         mx={2}
          _hover={{
@@ -100,9 +82,14 @@ export default function Admin() {
                   </Button>
 
       </Flex>
+      <Flex flexDirection={['column','row-reverse']}>
       <Box textColor="white" p={3} fontSize="30px">
         Total teams: {teams?.length}
       </Box>
+      <Box textColor="white" p={3} fontSize="30px">
+        Registered Users: {udata?.getUsers?.length}
+      </Box>
+      </Flex>
       <Flex width="75%" margin="0 auto" marginBottom={3} fontSize="1vw" justifyContent="space-between" >
         <input type="text" placeholder="Search teams..."  onChange={(e:any) => {setFilter(e.target.value)}}/>
         <select name="category" id="category" onChange={(e:any) => setCategory(e.target.value)}>
