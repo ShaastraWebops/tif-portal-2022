@@ -91,37 +91,37 @@ export default function Team() {
               <Td fontWeight='bold'>Overview</Td>
             </Tr>
             <Tr>
-              <Td>{data?.getTeamById.project?.Q1}</Td>
+              <Td><pre>{data?.getTeamById.project?.Q1}</pre></Td>
             </Tr>
             <Tr>
               <Td fontWeight='bold'>Uniqueness</Td>
             </Tr>
             <Tr>
-              <Td>{data?.getTeamById.project?.Q2}</Td>
+              <Td><pre>{data?.getTeamById.project?.Q2}</pre></Td>
             </Tr>
             <Tr>
               <Td fontWeight='bold'>Technology Implemented </Td>
             </Tr>
             <Tr>
-              <Td>{data?.getTeamById.project?.Q3}</Td>
+              <Td><pre>{data?.getTeamById.project?.Q3}</pre></Td>
             </Tr>
             <Tr>
               <Td fontWeight='bold'>Target crowd </Td>
             </Tr>
             <Tr>
-              <Td>{data?.getTeamById.project?.Q4}</Td>
+              <Td><pre>{data?.getTeamById.project?.Q4}</pre></Td>
             </Tr>
             <Tr>
               <Td fontWeight='bold'>IP Status </Td>
             </Tr>
             <Tr>
-              <Td>{data?.getTeamById.project?.Q5}</Td>
+              <Td><pre>{data?.getTeamById.project?.Q5}</pre></Td>
             </Tr>
             <Tr>
               <Td fontWeight='bold'>Partner Status </Td>
             </Tr>
             <Tr>
-              <Td>{data?.getTeamById.project?.Q6}</Td>
+              <Td><pre>{data?.getTeamById.project?.Q6}</pre></Td>
             </Tr>
             <Tr>
               <Td fontWeight='bold'>
@@ -131,7 +131,7 @@ export default function Team() {
               </Td>
             </Tr>
             <Tr>
-              <Td borderBottom='none'>{data?.getTeamById.project?.Q7}</Td>
+              <Td borderBottom='none'><pre>{data?.getTeamById.project?.Q7}</pre></Td>
             </Tr>
             <Tr>
               <Td fontWeight='bold'>Video Link</Td>
