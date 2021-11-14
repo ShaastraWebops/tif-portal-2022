@@ -47,7 +47,7 @@ function Timeline() {
                 thickness='16px'
               />
               <div className='text-ctn'>
-                <p className='steps-heading'>14th November</p>
+                <p className='steps-heading'>21st November</p>
                 <p className='steps-description'>Registration closes</p>
               </div>
             </div>
