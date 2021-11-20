@@ -22,9 +22,7 @@ function About() {
             <b> flagship competition event </b>of Shaastra that scouts for
             budding entrepreneurs by
             <b> providing a platform to develop tech-based projects </b> and
-            enhance their potential to grow into a commercial product. We invite
-            prototypes from various fields like robotics, healthcare,
-            biotechnology, agriculture, and IoT.
+            enhance their potential to grow into a commercial product.We invite prototypes from a wide range of categories.
           </Text>
         </Box>
         <Box width={['85%']}>

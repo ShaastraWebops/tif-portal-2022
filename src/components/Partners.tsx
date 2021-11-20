@@ -16,6 +16,7 @@ import pat1 from '../assests/SpecialeInvest.png';
 import pat2 from '../assests/Channel.jpg';
 import pat3 from "../assests/TechCryptors.png";
 import pat4 from "../assests/creya-logo.png";
+import pat5 from '../assests/advantEdge.png';
 function Partners() {
   return (
     <React.Fragment>
@@ -30,10 +31,14 @@ function Partners() {
             <Heading textColor='#ff7e20' marginTop={5} as='h2' size="xl">Tech and Innovation Fair</Heading>
             </Center>
             <Center  width={'100%'} m={2} p={2}>
-              <Flex width={'90%'} flexDirection={['column','column','row','row']} m={2} p={2} style={{'justifyContent':'space-between'}}>
+              <Flex width={'100%'} flexDirection={['column','column','row','row']} m={2} p={2} style={{'justifyContent':'space-between'}}>
                 <Box m={2} p={2}>
                   <a href='https://www.specialeinvest.com/' target={'_blank'}>
                     <Image src={pat1} alt='' boxSize={'350px'}/></a>
+                </Box>
+                <Box m={2} p={2}>
+                  <a href='http://www.advantedge.vc/' target={'_blank'}>
+                    <Image src={pat5} alt='' boxSize={'350px'}/></a>
                 </Box>
                 <Box  m={2} p={2}>
                   <a href='https://channeliam.com/' target={'_blank'}><Image src={pat2} objectFit={'cover'} alt='' boxSize={'300px'}/></a>
