@@ -233,7 +233,7 @@ const Home = () => {
                     <Image src={Logo2} alt='logo' objectFit='cover'></Image>
                   </Box>
                   <Text fontSize='2xl' m={2} p={2}>
-                    Cash Prizes
+                    Prize Pool of 1 Lakh
                   </Text>
                 </Flex>
               </Center>
