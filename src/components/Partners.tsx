@@ -17,6 +17,8 @@ import pat2 from '../assests/Channel.jpg';
 import pat3 from "../assests/TechCryptors.png";
 import pat4 from "../assests/creya-logo.png";
 import pat5 from '../assests/advantEdge.png';
+import pat6 from '../assests/Artboard 1@400.png';
+
 function Partners() {
   return (
     <React.Fragment>
@@ -45,6 +47,10 @@ function Partners() {
                   <Center><Heading textColor='white' m={2} p={2} as='h2' size="xl">Media Partner</Heading>
                 </Center>
                   </Box>
+                    <Box m={2} p={2}>
+                  <a href='http://www.100x.vc/' target={'_blank'}>
+                    <Image src={pat6} alt='' boxSize={'350px'}/></a>
+                </Box>
               </Flex>
             </Center>
 
@@ -55,16 +61,17 @@ function Partners() {
             </Center>
             <Center  width={'100%'} m={2} p={2}>
               <Flex width={'90%'} flexDirection={['column','column','row','row']} m={2} p={2} style={{'justifyContent':'space-between'}}>
-              <Box  m={2} p={2}>
+              <Flex m={2} p={2} alignItems={'center'} flexDirection={'column'} textAlign={'center'} justifyContent={'center'}>
                   <a href='https://www.creyalearning.com/stemlearning/' target={'_blank'}><Image src={pat4} objectFit={'cover'} alt='' boxSize={'300px'}/></a>
                   <Center><Heading textColor='white' m={2} p={2} as='h2' size="xl">Innovation Partner</Heading>
                 </Center>
-                  </Box>
+                  </Flex>
                 
-                <Box m={2} p={2}>
+                <Flex m={2} p={2} alignItems={'center'} flexDirection={'column'} textAlign={'center'} justifyContent={'center'}>
                   <a href='https://techcryptors.com/' target={'_blank'}>
-                    <Image src={pat3} alt='' boxSize={'350px'}/></a>
-                </Box>
+                    <Image src={pat3} alt='' boxSize={'300px'}/></a>
+                    <Heading textColor='white' m={2} p={2} as='h2' size="xl">Mentorship Partner</Heading>
+                </Flex>
                 
               </Flex>
             </Center>
