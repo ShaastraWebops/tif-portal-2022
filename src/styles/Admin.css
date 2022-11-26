@@ -1,0 +1,56 @@
+.admin , .team
+{
+    margin-bottom: 0%;
+    overflow-x: hidden !important;
+}
+
+.admin input
+{
+    width: 60vw;
+}
+.admin select, .admin select:focus, .admin input, .admin input:focus
+{
+    outline: none;
+    background-color: #2e2d2d;
+    color: white;
+    border: 2px solid #ff7e20;
+    padding: 0.25vw;
+}
+
+@media only screen and (max-width: 800px)
+{
+    .team .team-question-grid
+    {
+        font-size: 2.9vw !important;
+    }
+    .admin th 
+    {
+        line-height: 120%;
+    }
+    .admin 
+    {
+        width: fit-content !important;
+    }
+    .team .chakra-heading
+    {
+        text-align: center;
+    }
+    .member-grid
+    {
+        grid-template-columns: repeat(1, 1fr) !important;
+        grid-template-rows: repeat(4, 1fr) !important;
+        column-gap: 0 !important;
+        row-gap: 10px;
+    }
+    .member-grid-flex
+    {
+        width: 100% !important;
+    }
+}
+@media only screen and (max-width: 300px)
+{
+    .team-main-box
+    {
+        width: 90% !important;
+    }
+}

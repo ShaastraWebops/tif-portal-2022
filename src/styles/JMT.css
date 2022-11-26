@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+.stories {
+  background-color: white;
+  background-repeat: no-repeat;
+  background-size: cover !important;
+}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+.carousel-status {
+  display: none;
+}
+.carousel .control-next.control-arrow:before {
+  border-left: 15px solid black;
+}
+
+.carousel .control-prev.control-arrow:before {
+  border-right: 15px solid black;
+}
+
+.carousel .control-dots {
+  display: none;
+}

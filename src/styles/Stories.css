@@ -1,0 +1,48 @@
+.stories {
+  background-color: white;
+  background-repeat: no-repeat;
+  background-size: cover !important;
+}
+
+.carousel-status {
+  display: none;
+}
+.carousel .control-next.control-arrow:before {
+  border-left: 15px solid black;
+}
+
+.carousel .control-prev.control-arrow:before {
+  border-right: 15px solid black;
+}
+
+.carousel .control-dots {
+  display: none;
+}
+
+@media screen and (max-width: 900px)
+{
+  .stories
+  {
+    width: 100vw !important;
+  }
+  .stories svg
+  {
+    width: 8% !important;
+    margin: 0% !important;
+  }
+  .stories .chakra-text
+  {
+    margin: auto !important;
+    width: 70% !important;
+  }
+  .stories .text 
+  {
+    margin-top: 7vh !important;
+  }
+  .story 
+  {
+    display: flex !important;
+    justify-content: center !important;
+    flex-direction: column !important;
+  }
+}
