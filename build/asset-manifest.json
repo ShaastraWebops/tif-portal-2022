@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/static/css/main.bf2acd70.css",
+    "main.js": "/static/js/main.7f9ee5b2.js",
+    "static/js/787.28cb0dcd.chunk.js": "/static/js/787.28cb0dcd.chunk.js",
+    "static/media/Image6.jpg": "/static/media/Image6.1607dac2b8c364f0f34f.jpg",
+    "static/media/Image5.jpg": "/static/media/Image5.d7706ec40cf8919438a9.jpg",
+    "static/media/Image1.jpg": "/static/media/Image1.77545709198e50764561.jpg",
+    "static/media/Image2.jpg": "/static/media/Image2.cf8abfaaecc253e6a251.jpg",
+    "static/media/Homebackground.jpg": "/static/media/Homebackground.70fc28c86e124bbc205d.jpg",
+    "static/media/Image3.jpg": "/static/media/Image3.4475cc43340574fccaa7.jpg",
+    "static/media/TechCryptors.png": "/static/media/TechCryptors.f58e78bc484b90d7f375.png",
+    "static/media/innovision.png": "/static/media/innovision.504e4500619208e1972c.png",
+    "static/media/Channel.jpg": "/static/media/Channel.60ae0d31e581314a845a.jpg",
+    "static/media/advantEdge.png": "/static/media/advantEdge.3013fc471c618d63270e.png",
+    "static/media/SpecialeInvest.png": "/static/media/SpecialeInvest.e46d3c9601a43679b568.png",
+    "static/media/Artboard 1@400.png": "/static/media/Artboard 1@400.15098f334600a51807f4.png",
+    "static/media/RoadBackground.png": "/static/media/RoadBackground.d49d4b8a4d8c374c75cd.png",
+    "static/media/creya-logo.png": "/static/media/creya-logo.fb733a34370bc4e1ad29.png",
+    "static/media/Logo1.png": "/static/media/Logo1.d69e35298d01e2842eb5.png",
+    "static/media/Logo2.png": "/static/media/Logo2.122baae8d9dacaaa915a.png",
+    "static/media/Logo3.png": "/static/media/Logo3.86645be54f9ff3642ea5.png",
+    "index.html": "/index.html",
+    "main.bf2acd70.css.map": "/static/css/main.bf2acd70.css.map",
+    "main.7f9ee5b2.js.map": "/static/js/main.7f9ee5b2.js.map",
+    "787.28cb0dcd.chunk.js.map": "/static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bf2acd70.css",
+    "static/js/main.7f9ee5b2.js"
+  ]
+}
