@@ -163,10 +163,10 @@ function Contact() {
                   ></Icon>
                   <Box marginLeft={4} marginBottom={3}>
                     <Text color='white' fontSize='xl'>
-                      Aman
+                    Thazeel
                     </Text>
                     <Text color='white' fontSize='xl'>
-                      +91 6385140247
+                      +91 94975 47798
                     </Text>
                   </Box>
                 </Flex>
@@ -180,10 +180,10 @@ function Contact() {
                   ></Icon>
                   <Box marginLeft={4} marginBottom={3}>
                     <Text color='white' fontSize='xl'>
-                      Baibhabi
+                    Jacqueline
                     </Text>
                     <Text color='white' fontSize='xl'>
-                      +91 9989591690
+                      +91 7025121990
                     </Text>
                   </Box>
                 </Flex>
@@ -231,9 +231,9 @@ function Contact() {
         </Center>
         <Center>
           <Flex flexDirection={['column']} p={2} m={2}>
-          <Text fontSize={'xl'} fontWeight={600} textColor={'white'}>Shaastra TIF 2022 ©  All Rights Reserved</Text>
+          <Text fontSize={'xl'} fontWeight={600} textColor={'white'}>Shaastra TIF 2023 ©  All Rights Reserved</Text>
          <Center>
-          <Text fontSize={'sm'} textColor={'white'}>DESIGNED BY SHAASTRA WEBOPS 2022</Text>
+          <Text fontSize={'sm'} textColor={'white'}>DESIGNED BY SHAASTRA WEBOPS 2023</Text>
           </Center>
           </Flex>
             

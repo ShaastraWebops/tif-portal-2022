@@ -119,7 +119,7 @@ const Home = () => {
           <Box bg='#ff7e20' width={'50%'} textColor='white' p={2} m={2}>
             <Center>
               <Text className='shaastra-title' fontSize={'xl'}>
-                SHAASTRA'22
+                SHAASTRA'23
               </Text>
             </Center>
           </Box>
