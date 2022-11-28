@@ -28,6 +28,10 @@
   transform: translate3d(150px, 68px, 0px) !important;
 }
 
+.css-2czsk2 {
+  overflow-x: hidden;
+}
+
 @media screen and (max-width: 375px) {
   .css-r6z5ec {
     position: absolute;
