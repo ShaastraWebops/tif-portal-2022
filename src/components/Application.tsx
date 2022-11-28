@@ -65,11 +65,11 @@ export default function Application() {
       values[index]['email'] = event.target.value
     } else if (event.target.name === 'college') {
       values[index]['institution'] = event.target.value
-    } else if (event.target.name === 'city') {
-      values[index]['city'] = event.target.value
     } else if (event.target.name === 'state') {
       values[index]['state'] = event.target.value
-    }
+    } else if (event.target.name === 'city') {
+      values[index]['city'] = event.target.value
+    } 
     setMembers(values)
   }
 
@@ -78,6 +78,7 @@ export default function Application() {
   })
   const handleaddteam = (e : any) => {
     e.preventDefault()
+    console.log(teamname, members)
     createteam({
       variables: {
         createTeamAndRegisterData: {
@@ -87,6 +88,7 @@ export default function Application() {
       },
     })
       .then((res) => {
+        console.log(res)
         if (res.data?.createTeamAndRegister) {
           setAlert(true)
         }
