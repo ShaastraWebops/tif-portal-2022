@@ -87,11 +87,6 @@ const Home = () => {
                   </MenuButton>
                   <MenuList >
                     <MenuItem>
-                    <a href="#about">About</a>
-                      {/* <Link href='#about'>About TIF</Link> */}
-                    </MenuItem>
-                    <MenuItem>
-                      <Link href='#history'>History and Evolution</Link>
                     </MenuItem>
                     <MenuItem>
                       <Link href='#gallery'>Gallery</Link>
@@ -153,7 +148,6 @@ const Home = () => {
           </Box>
         </Flex>
       </Center>
-
       <div id='about'>
         {' '}
         <About />

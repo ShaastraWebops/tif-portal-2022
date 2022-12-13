@@ -18,7 +18,7 @@ function About() {
         </Heading>
         <Box width='95%' p={2} m={2}>
           <Text textColor='white' className='about-tif-text' textAlign={['justify']}>
-          Tech and Innovation Fair (TIF) is a <b>flagship competition event</b>of Shaastra that scouts for budding entrepreneurs by <b>providing a platform to develop tech-based projects</b> and enhance their potential to grow into a commercial product. We invite prototypes from various fields like robotics, healthcare, biotechnology, agriculture, and IoT.
+          Step into the world of technology with Shaastra's <b>flagship competition event Tech and Innovation fair!</b> TIF provides a platform for the advancement of hardware <b>tech-based projects</b> from various fields like robotics, healthcare, biotechnology, agriculture and IoT into commercial products. Through TIF we aim to promote an innovative, problem-solving mindset and encourage entrepreneurial culture.
           </Text>
         </Box>
         <Box width={['85%']}>
