@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+.home {
+  background-image: url('../assests/Homebackground.jpg') !important;
+  background-repeat: no-repeat;
+  background-size: cover !important;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+.shaastra-title {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.registerbutton {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300 !important ;
+}
+
+.about-tif-text {
+  font-family: 'Open Sans', sans-serif;
+  letter-spacing: 1px;
+}
+
+.css-r6z5ec {
+  position: absolute;
+  transform: translate3d(150px, 68px, 0px) !important;
+}
+
+.css-2czsk2 {
+  overflow-x: hidden;
+}
+
+@media screen and (max-width: 375px) {
+  .css-r6z5ec {
+    position: absolute;
+    transform: translate3d(130px, 68px, 0px) !important;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .css-r6z5ec {
+    position: absolute;
+    transform: translate3d(95px, 68px, 0px) !important;
+  }
+}

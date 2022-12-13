@@ -1,0 +1,12 @@
+.mobile-ctn {
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  .desktop-ctn {
+    display: none !important;
+  }
+  .mobile-ctn {
+    display: flex !important;
+  }
+}
