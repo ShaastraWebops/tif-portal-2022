@@ -36,7 +36,7 @@ export default function Login() {
       },
     })
       .then((res) => {
-        console.log(res.data?.login?.isVerified)
+        console.log(res.data?.login?.isVerified, "yes")
         if(!res.data?.login?.isVerified){
           history.push('/verifyOTP')
         }
@@ -48,7 +48,10 @@ export default function Login() {
           history.push("/admin")
         }
       })
-      .catch((err) => setAlert(err.message))
+      .catch((err) => {
+        setAlert(err.message)
+        console.log(err.message)
+      })
 
     setemail('')
     setpassword('')
