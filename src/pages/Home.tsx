@@ -143,7 +143,7 @@ const Home = () => {
               }}
               fontSize={'xl'}
             >
-              <Link href='/register'>Register Now</Link>
+              {/* <Link href='/register'>Register Now</Link> */}
             </Button>
           </Box>
         </Flex>

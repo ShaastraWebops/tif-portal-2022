@@ -114,14 +114,14 @@ export default function Login() {
                 align={'start'}
                 justify={'space-between'}
               >
-                <Flex>
+                {/* <Flex>
                   <Text marginRight={2} color='black'>
                     New User?
                   </Text>
                   <Link color={'blue.400'} href='/register'>
                     Register
                   </Link>
-                </Flex>
+                </Flex> */}
                 <Link color={'blue.400'} href='/forgotpassword'>
                   Forgot password?
                 </Link>
