@@ -11,6 +11,7 @@ import {
   Grid,
   GridItem,
   Image,
+  FormControl,
 } from '@chakra-ui/react'
 import email from '../assests/Asset 10.png'
 import phone from '../assests/Asset 11.png'
@@ -182,6 +183,25 @@ export default function Team() {
            }
            
         </Grid>
+        <FormControl>
+          <Button
+                bg={'#ff7e20'}
+                color={'white'}
+                mt= {4}
+                type='submit'
+                onClick={()=> {
+                  window.location.assign('https://rzp.io/l/PmI11cE')
+                }}
+                _hover={{
+                  bg: 'white',
+                  textColor: 'black',
+                  border: '2px solid black',
+                }}
+              >
+                Make Payment
+            </Button>
+          
+        </FormControl>
       </Box>
     </Flex>
   )
